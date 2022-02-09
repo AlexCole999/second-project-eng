@@ -1,0 +1,28 @@
+
+@mixin alignedByFlex {
+  display: flex;
+  justify-content: center;
+}
+@mixin columnedByFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.block {
+  @include alignedByFlex;
+    &__body{
+      @include columnedByFlex;
+      width: 1200px;
+      }
+    &__title {
+      font-weight: bold;
+      font-size: 40px;
+      }
+    &__description {
+      margin-top: 15px;
+      }
+    .text {
+      font-style: italic;
+      font-size: 18px;
+      }
+}
