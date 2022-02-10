@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
 }
-.block {
+.App {
   @include alignedByFlex;
     &__body{
       @include columnedByFlex;

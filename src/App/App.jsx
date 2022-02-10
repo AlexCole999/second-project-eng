@@ -3,12 +3,12 @@ import './App.scss'
 
 export default function App() {
   return (
-    <div className="block">
-      <div className="block__body">
-        <div className="block__title">
+    <div className="App">
+      <div className="App__body">
+        <div className="App__title">
           TITLE
         </div>
-        <div className="block__description text">
+        <div className="App__description text">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi temporibus dolorem iusto laboriosam aliquid
           explicabo dolores vero eos ex perferendis? Magnam, ratione cupiditate. A porro autem ut tempora soluta iusto?
         </div>

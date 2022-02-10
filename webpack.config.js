@@ -4,7 +4,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  mode: 'development',
   entry: {
     main: './index.jsx'
   },
@@ -20,6 +19,12 @@ module.exports = {
   ],
   devServer: {
     port: 3000
+  },
+  resolve: {
+    extensions: ['.js', '.json', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname)
+    }
   },
   module: {
     rules: [
