@@ -1,4 +1,4 @@
-import App from './App/App.jsx';
+import App from './App/App';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';

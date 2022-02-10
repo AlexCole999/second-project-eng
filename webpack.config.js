@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
-    main: './index.jsx'
+    main: './index.tsx'
   },
   output: {
     filename: '[name].[contenthash].js',
@@ -21,7 +21,7 @@ module.exports = {
     port: 3000
   },
   resolve: {
-    extensions: ['.js', '.json', '.jsx'],
+    extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(__dirname)
     }
@@ -37,12 +37,12 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /\.jsx/,
+        test: /\.ts/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ['@babel/preset-react']
           }
         }
       }
