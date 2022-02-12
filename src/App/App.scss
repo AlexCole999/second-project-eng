@@ -9,20 +9,13 @@
   align-items: center;
 }
 .App {
-  @include alignedByFlex;
     &__body{
-      @include columnedByFlex;
-      width: 1200px;
-      }
-    &__title {
-      font-weight: bold;
-      font-size: 40px;
-      }
-    &__description {
-      margin-top: 15px;
-      }
-    .text {
-      font-style: italic;
-      font-size: 18px;
+      height:100vh;
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      grid-template-rows: 1fr 150px;
+      grid-template-areas: 'Nav Dashboard'
+                            'Nav Dashboard'
+                            'Nav Footer';
       }
 }
