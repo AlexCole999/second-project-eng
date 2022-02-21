@@ -6,6 +6,7 @@ import Footer from './Footer/Footer';
 
 
 export default function App() {
+  let num = 5;
   return (
     <div className="App">
       <div className="App__body">
