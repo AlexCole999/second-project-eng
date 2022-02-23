@@ -3,8 +3,8 @@ import './Dashboard.scss'
 
 type Props = { name?: string }
 
-export default function Dashboard({ name }: Props) {
+export default function Dashboard({ }: Props) {
   return (
-    <div className='Dashboard'>Dashboard{name}</div>
+    <div className='Dashboard'>Dashboard</div>
   )
 }
