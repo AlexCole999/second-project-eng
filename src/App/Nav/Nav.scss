@@ -1,4 +1,17 @@
 .Nav{
   background-color: rgb(255, 236, 128);
   grid-area: Nav;
+    &__body{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+    }
+    &__elem{
+      min-height: 25px;
+      min-width: 25px;
+      color:red;
+    }
 }
