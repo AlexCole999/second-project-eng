@@ -25,7 +25,7 @@ module.exports = {
     port: 3000
   },
   resolve: {
-    extensions: ['.js', '.json', '.jsx', '.css', 'scss'],
+    extensions: ['.js', '.json', '.jsx'],
     alias: {
       '@': path.resolve(__dirname)
     }
