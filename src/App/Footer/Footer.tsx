@@ -1,7 +1,9 @@
 import React from 'react'
 import './Footer.scss'
 
-export default function Footer() {
+type Props = {}
+
+export default function Footer({ }: Props) {
   return (
     <div className='Footer'>Footer</div>
   )

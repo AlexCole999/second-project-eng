@@ -1,7 +1,9 @@
 import React from 'react'
 import './Nav.scss'
 
-export default function Nav() {
+type Props = {}
+
+export default function Nav({ }: Props) {
   return (
     <div className='Nav'>Nav</div>
   )
