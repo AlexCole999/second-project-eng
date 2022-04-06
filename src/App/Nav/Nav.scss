@@ -9,10 +9,35 @@
   &__body {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .User {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 170px;
+
+    &__photo {
+      height: 65px;
+      width: 65px;
+      border-radius: 50%;
+      border: 3px solid white;
+    }
+
+    &__name {
+      margin-top: 7px;
+      color: white;
+    }
+
   }
 
   &__elem {
-    padding: 5px 0px 0px 5px;
+    padding: 7px 0px 6px 10px;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -25,14 +50,14 @@
 
 
   &__search {
-    width: 85%;
+    width: 82%;
     margin-left: 2px;
     padding: 5px;
   }
 
 
   &__elemicon {
-    color: rgba(107, 28, 211, 0.767);
+    color: rgba(255, 255, 255, 0.767);
   }
 
   &__elemtext {
@@ -40,4 +65,5 @@
     margin-left: 10px;
     color: white;
   }
+
 }
