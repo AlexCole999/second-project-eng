@@ -1,17 +1,37 @@
-.Nav{
-  background-color: rgb(255, 236, 128);
+.Nav {
+  background-color: rgb(44, 62, 230);
   grid-area: Nav;
-    &__body{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-direction: column;
-      height: 100%;
-      width: 100%;
-    }
-    &__elem{
-      min-height: 25px;
-      min-width: 25px;
-      color:red;
-    }
+
+  a {
+    text-decoration: none;
+  }
+
+  &__body {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__elem {
+    padding: 5px 0px 0px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    transition: all 1s ease;
+  }
+
+  &__elem:hover {
+    background-color: red;
+  }
+
+  &__elemicon {
+    min-height: 25px;
+    min-width: 25px;
+    color: red;
+  }
+
+  &__elemtext {
+    font-size: 14px;
+    margin-left: 10px;
+    color: white;
+  }
 }
