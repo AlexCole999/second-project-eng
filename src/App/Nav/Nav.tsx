@@ -10,14 +10,24 @@ export default function Nav({ }: Props) {
     <div className='Nav'>
       <div className="Nav__body">
         <div className="Nav__top">
-          <div className="Nav__elem"><AiFillAccountBook size={50} title="1" /></div>
-          <div className="Nav__elem"><AiFillAccountBook size={50} title="1" /></div>
-          <div className="Nav__elem"><AiFillAccountBook size={50} title="1" /></div>
-          <div className="Nav__elem"><AiFillAccountBook size={50} title="1" /></div>
+          <NavLink to={"/second-project-eng/DeepSearch"} className="Navbar-right-elem" title="Искать слова">
+            <div className="Nav__elem"><AiFillAccountBook size={50} title="1" /></div>
+          </NavLink>
+          <NavLink to={"/second-project-eng/MyWords"} className="Navbar-right-elem" title="Искать слова">
+            <div className="Nav__elem"><AiFillAccountBook size={50} title="1" /></div>
+          </NavLink>
+          <NavLink to={"/second-project-eng/Contacts"} className="Navbar-right-elem" title="Искать слова">
+            <div className="Nav__elem"><AiFillAccountBook size={50} title="1" /></div>
+          </NavLink>
+          <NavLink to={"/second-project-eng/Learn"} className="Navbar-right-elem" title="Искать слова">
+            <div className="Nav__elem"><AiFillAccountBook size={50} title="1" /></div>
+          </NavLink>
         </div>
         <div className='Nav__bottom'>
-          <div className="Nav__elem"><AiFillAccountBook size={50} title="1" /></div>
-          <div>Nav</div>
+          <NavLink to={"/second-project-eng/Statistics"} className="Navbar-right-elem" title="Искать слова">
+            <div className="Nav__elem"><AiFillAccountBook size={50} title="1" /></div>
+            <div>Nav</div>
+          </NavLink>
         </div>
       </div>
     </div>
