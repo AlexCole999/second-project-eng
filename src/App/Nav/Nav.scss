@@ -1,5 +1,5 @@
 .Nav {
-  background-color: rgb(44, 62, 230);
+  background-color: rgb(38, 45, 110);
   grid-area: Nav;
 
   a {
@@ -23,10 +23,16 @@
     background-color: red;
   }
 
+
+  &__search {
+    width: 85%;
+    margin-left: 2px;
+    padding: 5px;
+  }
+
+
   &__elemicon {
-    min-height: 25px;
-    min-width: 25px;
-    color: red;
+    color: rgba(107, 28, 211, 0.767);
   }
 
   &__elemtext {

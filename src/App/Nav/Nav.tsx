@@ -9,11 +9,15 @@ export default function Nav({ }: Props) {
   return (
     <div className='Nav'>
       <div className="Nav__body">
+        <div className="Nav__elem">
+          <input placeholder="Поиск..." className="Nav__search" type="input" />
+        </div>
         <NavLink to={"/second-project-eng/DeepSearch"} className="Navbar-right-elem" title="Продвинутый поиск">
           <div className="Nav__elem">
             <div className="Nav__elemicon"><AiFillAccountBook size={35} /></div>
             <div className="Nav__elemtext">Поиск</div>
-          </div>          </NavLink>
+          </div>
+        </NavLink>
         <NavLink to={"/second-project-eng/MyWords"} className="Navbar-right-elem" title="Добавленные слова">
           <div className="Nav__elem">
             <div className="Nav__elemicon"><AiFillAccountBook size={35} /></div>
