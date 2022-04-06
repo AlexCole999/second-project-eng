@@ -1,21 +1,22 @@
-
 @mixin alignedByFlex {
   display: flex;
   justify-content: center;
 }
+
 @mixin columnedByFlex {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .App {
-    &__body{
-      height:100vh;
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      grid-template-rows: 1fr 150px;
-      grid-template-areas: 'Nav Dashboard'
-                            'Nav Dashboard'
-                            'Nav Footer';
-      }
+  &__body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'Nav Dashboard'
+      'Nav Dashboard'
+      'Nav Dashboard';
+  }
 }
