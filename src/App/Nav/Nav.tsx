@@ -6,22 +6,30 @@ import { FiZoomIn } from "react-icons/fi";
 import { FiPlay } from "react-icons/fi";
 import { FiTrendingUp } from "react-icons/fi";
 import { FiSliders } from "react-icons/fi";
+import { FiChevronsRight } from "react-icons/fi";
 import { BsQuestionLg } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 
 type Props = {}
 
 export default function Nav({ }: Props) {
+  function some(e) {
+    let a = document.querySelector('.Nav');
+    e.target.classList.toggle('_closed');
+    console.log(e.target);
+  }
   return (
     <div className='Nav'>
       <div className="Nav__body">
         <div className="Nav__top">
+          <div className="Nav__trigger" onClick={some} style={{ padding: "7px 0px 0px 10px" }}>
+            <div ><FiChevronsRight size={25} /></div>
+          </div>
           <div className="User">
             <div className="User__photo"></div>
-            <div className="User__name">leonid.samograew</div>
           </div>
           <div className="Nav__elem">
-            <input placeholder="Введите слово..." className="Nav__search" type="input" />
+            <input placeholder="..." className="Nav__search" type="input" />
           </div>
           <NavLink to={"/second-project-eng/DeepSearch"} className="Navbar-right-elem" title="Продвинутый поиск">
             <div className="Nav__elem">
@@ -63,6 +71,6 @@ export default function Nav({ }: Props) {
           </NavLink>
         </div>
       </div>
-    </div>
+    </div >
   )
 }

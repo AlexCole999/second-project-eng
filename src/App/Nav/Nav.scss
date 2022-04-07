@@ -1,9 +1,19 @@
 .Nav {
   background-color: rgb(38, 45, 110);
   grid-area: Nav;
+  width: 170px;
+  transition: 1s all ease;
 
   a {
     text-decoration: none;
+  }
+
+  &__trigger {
+    color: white;
+
+    ._closed {
+      background-color: #fff;
+    }
   }
 
   &__body {
@@ -12,26 +22,18 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
   }
 
   .User {
-    margin-top: 10px;
+    padding: 10px 0px 10px 10px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    max-width: 170px;
 
     &__photo {
-      height: 65px;
-      width: 65px;
+      height: 38px;
+      width: 38px;
       border-radius: 50%;
-      border: 3px solid white;
-    }
-
-    &__name {
-      margin-top: 7px;
-      color: white;
+      border: 2px solid white;
     }
 
   }
@@ -48,13 +50,10 @@
     background-color: red;
   }
 
-
   &__search {
     width: 82%;
-    margin-left: 2px;
-    padding: 5px;
+    padding: 7px 0px;
   }
-
 
   &__elemicon {
     color: rgba(255, 255, 255, 0.767);
