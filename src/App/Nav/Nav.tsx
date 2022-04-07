@@ -15,20 +15,22 @@ type Props = {}
 export default function Nav({ }: Props) {
   function openCloseTrigger() {
     let navElem = document.querySelector('.Nav');
+    let navTrigger = document.querySelector('.Nav__trigger');
     navElem.classList.toggle('Nav_opened');
+    navTrigger.classList.toggle('Nav__trigger_opened');
   }
   return (
     <div className='Nav'>
       <div className="Nav__body">
         <div className="Nav__top">
-          <div className="Nav__trigger" onClick={openCloseTrigger} style={{ padding: "7px 0px 0px 10px" }}>
+          <div className="Nav__trigger" onClick={openCloseTrigger}>
             <div ><FiChevronsRight size={25} /></div>
           </div>
           <div className="User">
             <div className="User__photo"></div>
           </div>
           <div className="Nav__search">
-            <input placeholder="Найти" type="input" />
+            <input placeholder="..." type="input" />
           </div>
           <NavLink to={"/second-project-eng/DeepSearch"} className="Navbar-right-elem" title="Продвинутый поиск">
             <div className="Nav__elem">
