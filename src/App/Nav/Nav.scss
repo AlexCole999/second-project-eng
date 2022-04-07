@@ -1,8 +1,12 @@
 .Nav {
   background-color: rgb(38, 45, 110);
   grid-area: Nav;
-  width: 170px;
-  transition: 1s all ease;
+  max-width: 60px;
+  transition: 0.65s all ease;
+
+  &_opened {
+    max-width: 170px;
+  }
 
   a {
     text-decoration: none;
@@ -10,10 +14,6 @@
 
   &__trigger {
     color: white;
-
-    ._closed {
-      background-color: #fff;
-    }
   }
 
   &__body {
@@ -51,8 +51,13 @@
   }
 
   &__search {
-    width: 82%;
-    padding: 7px 0px;
+    max-width: 80%;
+    padding: 7px 10px;
+
+    input {
+      width: 98%;
+      padding: 7px 0px;
+    }
   }
 
   &__elemicon {

@@ -15,8 +15,7 @@ type Props = {}
 export default function Nav({ }: Props) {
   function some(e) {
     let a = document.querySelector('.Nav');
-    e.target.classList.toggle('_closed');
-    console.log(e.target);
+    a.classList.toggle('Nav_opened');
   }
   return (
     <div className='Nav'>
@@ -28,8 +27,8 @@ export default function Nav({ }: Props) {
           <div className="User">
             <div className="User__photo"></div>
           </div>
-          <div className="Nav__elem">
-            <input placeholder="..." className="Nav__search" type="input" />
+          <div className="Nav__search">
+            <input placeholder="Найти" type="input" />
           </div>
           <NavLink to={"/second-project-eng/DeepSearch"} className="Navbar-right-elem" title="Продвинутый поиск">
             <div className="Nav__elem">
