@@ -21,8 +21,12 @@
   }
 
   &__trigger {
-    color: white;
+    color: rgba(255, 255, 255, 0.5);
     transition: 1s all ease;
+
+    &:hover {
+      color: white;
+    }
 
     &_opened {
       transform: rotateY(180deg);
@@ -30,7 +34,7 @@
   }
 
   .User {
-    padding: 10px 0px 10px 10px;
+    padding: 5px 0px 10px 10px;
     display: flex;
     align-items: center;
 
@@ -55,7 +59,7 @@
   }
 
   &__elem {
-    padding: 7px 0px 6px 10px;
+    padding: 6px 0px 6px 10px;
     display: flex;
     align-items: center;
     justify-content: start;
