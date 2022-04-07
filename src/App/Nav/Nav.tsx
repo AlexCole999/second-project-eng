@@ -13,15 +13,15 @@ import { NavLink } from "react-router-dom";
 type Props = {}
 
 export default function Nav({ }: Props) {
-  function some(e) {
-    let a = document.querySelector('.Nav');
-    a.classList.toggle('Nav_opened');
+  function openCloseTrigger() {
+    let navElem = document.querySelector('.Nav');
+    navElem.classList.toggle('Nav_opened');
   }
   return (
     <div className='Nav'>
       <div className="Nav__body">
         <div className="Nav__top">
-          <div className="Nav__trigger" onClick={some} style={{ padding: "7px 0px 0px 10px" }}>
+          <div className="Nav__trigger" onClick={openCloseTrigger} style={{ padding: "7px 0px 0px 10px" }}>
             <div ><FiChevronsRight size={25} /></div>
           </div>
           <div className="User">
