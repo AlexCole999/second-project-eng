@@ -13,24 +13,41 @@ import { NavLink } from "react-router-dom";
 type Props = {}
 
 export default function Nav({ }: Props) {
-  function openCloseTrigger() {
+
+  function openCloseTrigger(): void {
     let navElem = document.querySelector('.Nav');
     let navTrigger = document.querySelector('.Nav__trigger');
     navElem.classList.toggle('Nav_opened');
     navTrigger.classList.toggle('Nav__trigger_opened');
   }
+
+  function yandexDictionaryRequest(input: string): void {
+    if (input) {
+      if (input.match(/\w+$/)) {
+        fetch
+          ('https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943&lang=en-ru&text=' + input)
+          .then(x => x.json())
+          .then(x => console.log(x));
+      }
+    }
+  }
+
   return (
     <div className='Nav'>
       <div className="Nav__body">
         <div className="Nav__top">
           <div className="Nav__trigger" onClick={openCloseTrigger}>
-            <div ><FiChevronsRight size={25} /></div>
+            <div >
+              <FiChevronsRight size={25} />
+            </div>
           </div>
           <div className="User">
             <div className="User__photo"></div>
           </div>
           <div className="Nav__search">
-            <input placeholder="..." type="input" />
+            <input placeholder="..."
+              type="input"
+              onChange={(e) => { yandexDictionaryRequest(e.target.value) }} />
           </div>
           <NavLink to={"/second-project-eng/DeepSearch"} className="Navbar-right-elem" title="Продвинутый поиск">
             <div className="Nav__elem">
