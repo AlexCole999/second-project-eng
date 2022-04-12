@@ -39,10 +39,16 @@
     align-items: center;
 
     &__photo {
-      height: 38px;
-      width: 38px;
+      min-height: 38px;
+      min-width: 38px;
       border-radius: 50%;
       border: 2px solid white;
+    }
+
+    &__name {
+      font-size: 14px;
+      margin-left: 10px;
+      color: white;
     }
 
   }

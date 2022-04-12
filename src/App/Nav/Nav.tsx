@@ -42,6 +42,7 @@ export default function Nav({ }: Props) {
           </div>
           <div className="User">
             <div className="User__photo"></div>
+            <div className="User__name">Leonid</div>
           </div>
           <div className="Nav__search">
             <input placeholder="..."
