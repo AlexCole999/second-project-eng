@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default function Statistics() {
+type Props = {}
+
+export default function Statistics({ }: Props) {
   return (
     <div>Statistics</div>
   )

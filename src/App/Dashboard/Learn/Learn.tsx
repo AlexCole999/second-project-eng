@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default function Learn() {
+type Props = {}
+
+export default function Learn({ }: Props) {
   return (
     <div>Learn</div>
   )

@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default function Instruction() {
+type Props = {}
+
+export default function Instruction({ }: Props) {
   return (
     <div>Instruction</div>
   )
