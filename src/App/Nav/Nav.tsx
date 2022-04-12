@@ -1,6 +1,5 @@
 import React from 'react'
 import './Nav.scss'
-import { AiFillAccountBook } from "react-icons/ai";
 import { FiList } from "react-icons/fi";
 import { FiZoomIn } from "react-icons/fi";
 import { FiPlay } from "react-icons/fi";
