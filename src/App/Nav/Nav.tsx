@@ -9,6 +9,7 @@ import { FiChevronsRight } from "react-icons/fi";
 import { BsQuestionLg } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import NavSearch from './NavSearch/NavSearch';
+import NavUser from './NavUser/NavUser';
 
 type Props = {}
 
@@ -31,10 +32,7 @@ export default function Nav({ }: Props) {
               <FiChevronsRight size={25} />
             </div>
           </div>
-          <div className="User">
-            <div className="User__photo"></div>
-            <div className="User__name">Leonid</div>
-          </div>
+          <NavUser />
           <NavSearch />
           <NavLink to={"/second-project-eng/DeepSearch"} className="Navbar-right-elem" title="Продвинутый поиск">
             <div className="Nav__elem">

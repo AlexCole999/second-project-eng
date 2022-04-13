@@ -1,0 +1,19 @@
+.NavUser {
+  padding: 5px 0px 10px 10px;
+  display: flex;
+  align-items: center;
+
+  &__photo {
+    min-height: 38px;
+    min-width: 38px;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+
+  &__name {
+    font-size: 14px;
+    margin-left: 10px;
+    color: white;
+  }
+
+}
