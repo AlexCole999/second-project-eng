@@ -23,11 +23,9 @@ export default function NavSearch({ }: Props) {
   function openCloseLanguagesTrigger(): void {
     languageList.current.classList.toggle('NavSearch__languagesList_opened');
     languageListTrigger.current.classList.toggle('NavSearch__languagesListTrigger_opened');
-    console.log(languageList.current)
-    // navtrigger.current.classList.toggle('Nav__languageList_opened');
   }
 
-  const debouncedRequest = debounce(yandexDictionaryRequest, 500)
+  const debouncedYandexDictionaryRequest = debounce(yandexDictionaryRequest, 500)
 
   function yandexDictionaryRequest(input: string): void {
     if (input.match(/[a-zA-Zа-яА-Я]+$/)) {
@@ -50,7 +48,7 @@ export default function NavSearch({ }: Props) {
         type="input"
         onChange={
           (e) => {
-            debouncedRequest(e.target.value);
+            debouncedYandexDictionaryRequest(e.target.value);
           }} />
       <div className="NavSearch__languages">
         <div className="NavSearch__selectedLanguage">
@@ -60,7 +58,10 @@ export default function NavSearch({ }: Props) {
           <FiChevronsRight size={20} />
         </div>
         <div className="NavSearch__languagesList" ref={languageList}>
-          {languages.map(x => <div className="NavSearch__languageListElem">{x}</div>)}
+          {languages.map(x =>
+            <div className="NavSearch__languageListElem">
+              {x}
+            </div>)}
         </div>
       </div>
     </div>
