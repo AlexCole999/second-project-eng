@@ -1,12 +1,18 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import yandexDictionaryKey from '../../../API/yandexDictionaryKey';
 import debounce from './../../../functions/debounce';
 import './NavSearch.scss';
+import { FiChevronsRight } from "react-icons/fi";
+
 
 type Props = {}
 
 export default function NavSearch({ }: Props) {
+
+  const [selectedLanguage, setSelectedLanguage] = useState('ru-es')
+  const languageList = useRef(null);
+  const languageListTrigger = useRef(null);
 
   const languages = [
     "bg-ru", "cs-ru", "de-ru", "en-ru",
@@ -14,7 +20,12 @@ export default function NavSearch({ }: Props) {
     "pl-ru", "pt-ru", "sv-ru", "tr-ru",
     "uk-ru", "zh-ru"]
 
-  const [selectedLanguage, setSelectedLanguage] = useState('ru-es')
+  function openCloseLanguagesTrigger(): void {
+    languageList.current.classList.toggle('NavSearch__languagesList_opened');
+    languageListTrigger.current.classList.toggle('NavSearch__languagesListTrigger_opened');
+    console.log(languageList.current)
+    // navtrigger.current.classList.toggle('Nav__languageList_opened');
+  }
 
   const debouncedRequest = debounce(yandexDictionaryRequest, 500)
 
@@ -45,7 +56,10 @@ export default function NavSearch({ }: Props) {
         <div className="NavSearch__selectedLanguage">
           {selectedLanguage}
         </div>
-        <div className="NavSearch__languageList">
+        <div className="NavSearch__languagesListTrigger" onClick={openCloseLanguagesTrigger} ref={languageListTrigger}>
+          <FiChevronsRight size={20} />
+        </div>
+        <div className="NavSearch__languagesList" ref={languageList}>
           {languages.map(x => <div className="NavSearch__languageListElem">{x}</div>)}
         </div>
       </div>

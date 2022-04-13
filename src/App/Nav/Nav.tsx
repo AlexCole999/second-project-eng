@@ -1,4 +1,6 @@
 import React from 'react'
+import { useRef } from 'react'
+
 import './Nav.scss'
 import { FiList } from "react-icons/fi";
 import { FiZoomIn } from "react-icons/fi";
@@ -15,19 +17,21 @@ type Props = {}
 
 export default function Nav({ }: Props) {
 
-  function openCloseTrigger(): void {
-    let navElem = document.querySelector('.Nav');
-    let navTrigger = document.querySelector('.Nav__trigger');
-    navElem.classList.toggle('Nav_opened');
-    navTrigger.classList.toggle('Nav__trigger_opened');
+  const nav = useRef();
+  const navtrigger = useRef(null)
+
+  function openCloseNavTrigger(): void {
+    console.log(nav.current)
+    console.log(navtrigger.current)
+    nav.current.classList.toggle('Nav_opened');
+    navtrigger.current.classList.toggle('Nav__trigger_opened');
   }
 
-
   return (
-    <div className='Nav'>
+    <div className='Nav' ref={nav}>
       <div className="Nav__body">
         <div className="Nav__top">
-          <div className="Nav__trigger" onClick={openCloseTrigger}>
+          <div className="Nav__trigger" ref={navtrigger} onClick={openCloseNavTrigger}>
             <div >
               <FiChevronsRight size={25} />
             </div>
