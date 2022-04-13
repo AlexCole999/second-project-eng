@@ -8,6 +8,7 @@ import { FiSliders } from "react-icons/fi";
 import { FiChevronsRight } from "react-icons/fi";
 import { BsQuestionLg } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
+import NavSearch from './NavSearch/NavSearch';
 
 type Props = {}
 
@@ -20,16 +21,6 @@ export default function Nav({ }: Props) {
     navTrigger.classList.toggle('Nav__trigger_opened');
   }
 
-  function yandexDictionaryRequest(input: string): void {
-    if (input) {
-      if (input.match(/\w+$/)) {
-        fetch
-          ('https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943&lang=en-ru&text=' + input)
-          .then(x => x.json())
-          .then(x => console.log(x));
-      }
-    }
-  }
 
   return (
     <div className='Nav'>
@@ -44,11 +35,7 @@ export default function Nav({ }: Props) {
             <div className="User__photo"></div>
             <div className="User__name">Leonid</div>
           </div>
-          <div className="Nav__search">
-            <input placeholder="..."
-              type="input"
-              onChange={(e) => { yandexDictionaryRequest(e.target.value) }} />
-          </div>
+          <NavSearch />
           <NavLink to={"/second-project-eng/DeepSearch"} className="Navbar-right-elem" title="Продвинутый поиск">
             <div className="Nav__elem">
               <div className="Nav__elemicon"><FiZoomIn size={40} /></div>
