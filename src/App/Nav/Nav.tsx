@@ -42,16 +42,16 @@ export default function Nav({ }: Props) {
               <div className="Nav__elemtext">Поиск</div>
             </div>
           </NavLink>
-          <NavLink to={"/second-project-eng/MyWords"} className="Navbar-right-elem" title="Добавленные слова">
-            <div className="Nav__elem">
-              <div className="Nav__elemicon"><FiList size={40} /></div>
-              <div className="Nav__elemtext">Мои слова</div>
-            </div>
-          </NavLink>
           <NavLink to={"/second-project-eng/Learn"} className="Navbar-right-elem" title="Учить">
             <div className="Nav__elem">
               <div className="Nav__elemicon"><FiPlay size={40} /></div>
               <div className="Nav__elemtext">Учить</div>
+            </div>
+          </NavLink>
+          <NavLink to={"/second-project-eng/MyWords"} className="Navbar-right-elem" title="Добавленные слова">
+            <div className="Nav__elem">
+              <div className="Nav__elemicon"><FiList size={40} /></div>
+              <div className="Nav__elemtext">Мои слова</div>
             </div>
           </NavLink>
           <NavLink to={"/second-project-eng/Statistics"} className="Navbar-right-elem" title="Статистика">
