@@ -1,9 +1,9 @@
 import React from 'react';
+import './NavSearch.scss';
 import { useState, useRef } from 'react';
+import { FiChevronsRight } from "react-icons/fi";
 import yandexDictionaryKey from '../../../API/yandexDictionaryKey';
 import debounce from './../../../functions/debounce';
-import './NavSearch.scss';
-import { FiChevronsRight } from "react-icons/fi";
 
 
 type Props = {}
