@@ -11,6 +11,7 @@ type Props = {}
 export default function NavSearch({ }: Props) {
 
   const [selectedLanguage, setSelectedLanguage] = useState('ru-es')
+
   const languageList = useRef(null);
   const languageListTrigger = useRef(null);
 
@@ -44,6 +45,12 @@ export default function NavSearch({ }: Props) {
 
   return (
     <div className="NavSearch">
+      <div className="NavSearch__searchedWords">
+        {languages.map(x =>
+          <div className="NavSearch__languageListElem">
+            {x}
+          </div>)}
+      </div>
       <input placeholder="..."
         type="input"
         onChange={
