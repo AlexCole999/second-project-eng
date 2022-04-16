@@ -4,6 +4,12 @@
   max-width: 60px;
   transition: 1s all ease;
 
+  // .flags {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 5px;
+  // }
+
   &_opened {
     max-width: 170px;
   }

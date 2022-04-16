@@ -3,6 +3,7 @@ import './NavSearch.scss';
 import { useState, useRef } from 'react';
 import { FiChevronsRight } from "react-icons/fi";
 import yandexDictionaryKey from '../../../API/yandexDictionaryKey';
+import ReactCountryFlag from "react-country-flag"
 import debounce from './../../../functions/debounce';
 
 
@@ -46,10 +47,7 @@ export default function NavSearch({ }: Props) {
   return (
     <div className="NavSearch">
       <div className="NavSearch__searchedWords">
-        {languages.map(x =>
-          <div className="NavSearch__languageListElem">
-            {x}
-          </div>)}
+        someresults
       </div>
       <input placeholder="..."
         type="input"
@@ -65,6 +63,21 @@ export default function NavSearch({ }: Props) {
           <FiChevronsRight size={20} />
         </div>
         <div className="NavSearch__languagesList" ref={languageList}>
+          {/* <div className="flags">
+            <ReactCountryFlag countryCode="US" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="DE" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="FR" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="ES" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="IT" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="TR" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="CZ" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="PL" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="BG" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="NL" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="PT" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="SV" style={{ width: '100%', height: '100%' }} svg />
+            <ReactCountryFlag countryCode="UA" style={{ width: '100%', height: '100%' }} svg />
+          </div> */}
           {languages.map(x =>
             <div className="NavSearch__languageListElem">
               {x}
