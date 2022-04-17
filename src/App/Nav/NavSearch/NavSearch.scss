@@ -32,7 +32,7 @@
   &__selectedLanguage {
     margin: 7px 0px 3px 0px;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 11px;
     text-transform: uppercase;
   }
 
@@ -53,19 +53,23 @@
   }
 
   &__languagesList {
-    font-size: 11px;
-    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
     font-style: italic;
     max-height: 0px;
     transition: 1s all ease;
 
     &_opened {
-      max-height: 500px;
+      max-height: 700px;
     }
   }
 
   &__languageListElem {
-    margin: 2px 0px 2px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
 }

@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import { FiChevronsRight } from "react-icons/fi";
 import yandexDictionaryKey from '../../../API/yandexDictionaryKey';
 import ReactCountryFlag from "react-country-flag"
+<div>somelang</div>
 import debounce from './../../../functions/debounce';
 
 
@@ -11,15 +12,15 @@ type Props = {}
 
 export default function NavSearch({ }: Props) {
 
-  const [selectedLanguage, setSelectedLanguage] = useState('ru-es')
+  const [selectedLanguage, setSelectedLanguage] = useState('en-ru')
 
   const languageList = useRef(null);
   const languageListTrigger = useRef(null);
 
   const languages = [
-    "bg-ru", "cs-ru", "de-ru", "en-ru",
-    "es-ru", "fr-ru", "it-ru", "nl-ru",
-    "pl-ru", "pt-ru", "sv-ru", "tr-ru",
+    "cs-ru",
+
+    "pt-ru", "sv-ru", "tr-ru",
     "uk-ru", "zh-ru"]
 
   function openCloseLanguagesTrigger(): void {
@@ -63,25 +64,38 @@ export default function NavSearch({ }: Props) {
           <FiChevronsRight size={20} />
         </div>
         <div className="NavSearch__languagesList" ref={languageList}>
-          {/* <div className="flags">
-            <ReactCountryFlag countryCode="US" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="DE" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="FR" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="ES" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="IT" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="TR" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="CZ" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="PL" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="BG" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="NL" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="PT" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="SV" style={{ width: '100%', height: '100%' }} svg />
-            <ReactCountryFlag countryCode="UA" style={{ width: '100%', height: '100%' }} svg />
-          </div> */}
-          {languages.map(x =>
-            <div className="NavSearch__languageListElem">
-              {x}
-            </div>)}
+          <div className="NavSearch__languageListElem">
+            <ReactCountryFlag countryCode="US" style={{ width: '35px', height: '35px' }} svg />
+            <div>en-ru</div>
+          </div>
+          <div className="NavSearch__languageListElem">
+            <ReactCountryFlag countryCode="DE" style={{ width: '35px', height: '35px' }} svg />
+            <div>de-ru</div>
+          </div>
+          <div className="NavSearch__languageListElem">
+            <ReactCountryFlag countryCode="FR" style={{ width: '35px', height: '35px' }} svg />
+            <div>fr-ru</div>
+          </div>
+          <div className="NavSearch__languageListElem">
+            <ReactCountryFlag countryCode="ES" style={{ width: '35px', height: '35px' }} svg />
+            <div>es-ru</div>
+          </div>
+          <div className="NavSearch__languageListElem">
+            <ReactCountryFlag countryCode="IT" style={{ width: '35px', height: '35px' }} svg />
+            <div>it-ru</div>
+          </div>
+          <div className="NavSearch__languageListElem">
+            <ReactCountryFlag countryCode="PL" style={{ width: '35px', height: '35px' }} svg />
+            <div>pl-ru</div>
+          </div>
+          <div className="NavSearch__languageListElem">
+            <ReactCountryFlag countryCode="BG" style={{ width: '35px', height: '35px' }} svg />
+            <div>bg-ru</div>
+          </div>
+          <div className="NavSearch__languageListElem">
+            <ReactCountryFlag countryCode="NL" style={{ width: '35px', height: '35px' }} svg />
+            <div>nl-ru</div>
+          </div>
         </div>
       </div>
     </div>
