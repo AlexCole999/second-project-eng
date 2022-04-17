@@ -18,6 +18,7 @@
     color: red;
     left: 60px;
     padding: 15px;
+    display: none;
   }
 
   &__languages {
@@ -54,7 +55,7 @@
 
   &__languagesList {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     font-size: 12px;
     font-style: italic;
@@ -70,6 +71,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0px 5px 0px 5px;
+    flex-grow: 1;
   }
 
   &__languageListElemFlag {

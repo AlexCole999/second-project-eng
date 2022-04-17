@@ -105,6 +105,14 @@ export default function NavSearch({ }: Props) {
           </div>
           <div className="NavSearch__languageListElem">
             <div className="NavSearch__languageListElemFlag">
+              <ReactCountryFlag countryCode="NL" style={{ width: '35px', height: '35px' }} svg />
+            </div>
+            <div className="NavSearch__languageListElemText">
+              nl-ru
+            </div>
+          </div>
+          <div className="NavSearch__languageListElem">
+            <div className="NavSearch__languageListElemFlag">
               <ReactCountryFlag countryCode="PL" style={{ width: '35px', height: '35px' }} svg />
             </div>
             <div className="NavSearch__languageListElemText">
@@ -121,10 +129,10 @@ export default function NavSearch({ }: Props) {
           </div>
           <div className="NavSearch__languageListElem">
             <div className="NavSearch__languageListElemFlag">
-              <ReactCountryFlag countryCode="NL" style={{ width: '35px', height: '35px' }} svg />
+              <ReactCountryFlag countryCode="CZ" style={{ width: '35px', height: '35px' }} svg />
             </div>
             <div className="NavSearch__languageListElemText">
-              nl-ru
+              cs-ru
             </div>
           </div>
         </div>
