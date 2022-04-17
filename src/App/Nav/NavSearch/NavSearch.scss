@@ -72,4 +72,12 @@
     align-items: center;
   }
 
+  &__languageListElemFlag {
+    transition: 0.2s all ease;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
+
 }
