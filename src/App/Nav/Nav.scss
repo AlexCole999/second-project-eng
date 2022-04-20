@@ -23,6 +23,7 @@
   &__trigger {
     color: rgba(255, 255, 255, 0.5);
     transition: 1s all ease;
+    cursor: pointer;
 
     &:hover {
       color: white;
