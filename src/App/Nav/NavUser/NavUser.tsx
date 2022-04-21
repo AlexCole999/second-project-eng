@@ -1,21 +1,24 @@
 import React from 'react'
+import { useState } from 'react'
 import './NavUser.scss'
 // import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 // import { initializeApp } from 'firebase/app';
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCu_dkznKgP8ZxVTwvkNbAnGdTluiIO5eU",
+//   authDomain: "firstfirebase-04-08-2021.firebaseapp.com",
+//   projectId: "firstfirebase-04-08-2021",
+//   storageBucket: "firstfirebase-04-08-2021.appspot.com",
+//   messagingSenderId: "53473763739",
+//   appId: "1:53473763739:web:a641946d7b4760eb33413e",
+//   measurementId: "G-GDBP4GBHYF"
+// };
 
 type Props = {}
 
 export default function NavUser({ }: Props) {
 
-  // const firebaseConfig = {
-  //   apiKey: "AIzaSyCu_dkznKgP8ZxVTwvkNbAnGdTluiIO5eU",
-  //   authDomain: "firstfirebase-04-08-2021.firebaseapp.com",
-  //   projectId: "firstfirebase-04-08-2021",
-  //   storageBucket: "firstfirebase-04-08-2021.appspot.com",
-  //   messagingSenderId: "53473763739",
-  //   appId: "1:53473763739:web:a641946d7b4760eb33413e",
-  //   measurementId: "G-GDBP4GBHYF"
-  // };
+  // const [user, setuser] = useState('not loged in');
 
   // const app = initializeApp(firebaseConfig);
 
@@ -31,7 +34,7 @@ export default function NavUser({ }: Props) {
   //       const token = credential.accessToken;
   //       // The signed-in user info.
   //       const user = result.user;
-  //       console.log(result)
+  //       setuser(result.user.email);
   //       // ...
   //     }).catch((error) => {
   //       // Handle Errors here.
@@ -49,8 +52,9 @@ export default function NavUser({ }: Props) {
     <div className="NavUser">
       <div className="NavUser__photo">
         {/* <button onClick={somefunc}></button> */}
+        {/* <button onClick={() => console.log(user)}></button> */}
       </div>
-      <div className="NavUser__name">Leonid</div>
+      {/* <div className="NavUser__name">{user}</div> */}
     </div>
   )
 }
