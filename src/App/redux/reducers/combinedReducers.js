@@ -1,7 +1,5 @@
-
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import getWordsFromFirebaseReducer from './getWordsFromFirebaseReducer';
-
 
 const combinedReducers = combineReducers({
   wordsFromFirebase: getWordsFromFirebaseReducer
