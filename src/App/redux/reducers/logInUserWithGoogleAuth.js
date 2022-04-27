@@ -1,6 +1,6 @@
 let defaultstate = { data: [] }
 
-const logInUserWithGoogleAuth = (state = defaultstate, action) => {
+const logInUserWithGoogleAuthReducer = (state = defaultstate, action) => {
   switch (action.type) {
     case "ADD_DATA_FROM_GOOGLEAUTH":
       return { ...state, data: action.payload }
