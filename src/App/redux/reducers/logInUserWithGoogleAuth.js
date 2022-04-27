@@ -8,4 +8,4 @@ const logInUserWithGoogleAuthReducer = (state = defaultstate, action) => {
   }
 }
 
-export default logInUserWithGoogleAuth;
+export default logInUserWithGoogleAuthReducer;
