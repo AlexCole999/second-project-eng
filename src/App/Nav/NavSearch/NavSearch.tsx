@@ -2,7 +2,7 @@ import React from 'react';
 import './NavSearch.scss';
 import { useState, useRef } from 'react';
 import ReactCountryFlag from "react-country-flag"
-import debounce from './../../../functions/debounce';
+import debounce from '../../functions/debounce';
 import yandexDictionaryKey from '../../API/yandexDictionaryKey';
 
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
