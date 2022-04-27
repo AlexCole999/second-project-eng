@@ -1,5 +1,5 @@
-import React from 'react'
 import './Dashboard.scss'
+import React from 'react'
 import { Routes, Route } from "react-router-dom";
 import DeepSearch from './DeepSearch/DeepSearch';
 import Instruction from './Instruction/Instruction';
