@@ -5,6 +5,7 @@ import { initializeApp } from 'firebase/app';
 import firebaseConfig from './../../API/firebase/firebaseConfig';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { FiUserX, FiUserCheck } from 'react-icons/fi';
+
 type Props = {}
 
 export default function NavUser({ }: Props) {
