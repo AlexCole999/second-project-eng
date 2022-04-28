@@ -38,31 +38,31 @@ export default function Nav({ }: Props) {
           </div>
           <NavUser />
           <NavSearch />
-          <NavLink to={"/second-project-eng/DeepSearch"} className="Navbar-right-elem" title="Продвинутый поиск">
+          <NavLink to={"/second-project-eng/DeepSearch"} title="Продвинутый поиск">
             <div className="Nav__elem">
               <div className="Nav__elemicon"><FiZoomIn size={40} /></div>
               <div className="Nav__elemtext">Поиск</div>
             </div>
           </NavLink>
-          <NavLink to={"/second-project-eng/Learn"} className="Navbar-right-elem" title="Учить">
+          <NavLink to={"/second-project-eng/Learn"} title="Учить">
             <div className="Nav__elem">
               <div className="Nav__elemicon"><FiPlay size={40} /></div>
               <div className="Nav__elemtext">Учить</div>
             </div>
           </NavLink>
-          <NavLink to={"/second-project-eng/MyWords"} className="Navbar-right-elem" title="Добавленные слова">
+          <NavLink to={"/second-project-eng/MyWords"} title="Добавленные слова">
             <div className="Nav__elem">
               <div className="Nav__elemicon"><FiList size={40} /></div>
               <div className="Nav__elemtext">Мои слова</div>
             </div>
           </NavLink>
-          <NavLink to={"/second-project-eng/Statistics"} className="Navbar-right-elem" title="Статистика">
+          <NavLink to={"/second-project-eng/Statistics"} title="Статистика">
             <div className="Nav__elem">
               <div className="Nav__elemicon"><FiTrendingUp size={40} /></div>
               <div className="Nav__elemtext">Статистика</div>
             </div>
           </NavLink>
-          <NavLink to={"/second-project-eng/Settings"} className="Navbar-right-elem" title="Настройки">
+          <NavLink to={"/second-project-eng/Settings"} title="Настройки">
             <div className="Nav__elem">
               <div className="Nav__elemicon"><FiSliders size={40} /></div>
               <div className="Nav__elemtext">Настройки</div>
@@ -70,7 +70,7 @@ export default function Nav({ }: Props) {
           </NavLink>
         </div>
         <div className="Nav__bottom">
-          <NavLink to={"/second-project-eng/Instruction"} className="Navbar-right-elem" title="F.A.Q.">
+          <NavLink to={"/second-project-eng/Instruction"} title="F.A.Q.">
             <div className="Nav__elem">
               <div className="Nav__elemicon"><BsQuestionLg size={40} /></div>
               <div className="Nav__elemtext">Краткая инструкция</div>

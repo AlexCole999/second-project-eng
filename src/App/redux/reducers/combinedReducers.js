@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import getWordsFromFirebaseReducer from './getWordsFromFirebaseReducer';
-import logInUserWithGoogleAuthReducer from './logInUserWithGoogleAuth';
+import logInUserWithGoogleAuthReducer from './logInUserWithGoogleAuthReducer';
 
 const combinedReducers = combineReducers({
   wordsFromFirebase: getWordsFromFirebaseReducer,
