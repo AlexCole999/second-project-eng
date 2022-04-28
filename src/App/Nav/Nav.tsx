@@ -21,8 +21,6 @@ export default function Nav({ }: Props) {
   const navtrigger = useRef(null)
 
   function openCloseNavTrigger(): void {
-    console.log(nav.current)
-    console.log(navtrigger.current)
     nav.current.classList.toggle('Nav_opened');
     navtrigger.current.classList.toggle('Nav__trigger_opened');
   }
