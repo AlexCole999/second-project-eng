@@ -12,6 +12,10 @@
     font-size: 25px;
     height: 45px;
     color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    min-width: 50px;
+    min-height: 50px;
   }
 
   &__logInButton {
