@@ -1,18 +1,27 @@
 import React from 'react';
 import './NavSearch.scss';
 import { useState, useRef } from 'react';
-import ReactCountryFlag from "react-country-flag"
 import debounce from '../../functions/debounce';
 import yandexDictionaryKey from './../../API/yandexDictionary/yandexDictionaryKey';
-
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
+
+import us from './flags/us.svg';
+import de from './flags/de.svg';
+import fr from './flags/fr.svg';
+import es from './flags/es.svg';
+import it from './flags/it.svg';
+import nl from './flags/nl.svg';
+import pl from './flags/pl.svg';
+import bg from './flags/bg.svg';
+import cz from './flags/cz.svg';
+
 
 type Props = {}
 
 export default function NavSearch({ }: Props) {
 
   const [selectedLanguage, setSelectedLanguage] = useState('en-ru')
-  const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="US" style={{ width: '35px', height: '35px' }} svg />)
+  const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
 
   const languageListTrigger = useRef(null);
   const languagesList = useRef(null);
@@ -47,23 +56,23 @@ export default function NavSearch({ }: Props) {
 
   function languageFlagCheck(language) {
     language == 'de-ru'
-      ? setSelectedLanguageFlag(<ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="DE" style={{ width: '35px', height: '35px' }} svg />)
+      ? setSelectedLanguageFlag(<img src={de} alt="" className="NavSearch__languageListElemFlag" />)
       : language == 'fr-ru'
-        ? setSelectedLanguageFlag(<ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="FR" style={{ width: '35px', height: '35px' }} svg />)
+        ? setSelectedLanguageFlag(<img src={fr} alt="" className="NavSearch__languageListElemFlag" />)
         : language == 'es-ru'
-          ? setSelectedLanguageFlag(<ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="ES" style={{ width: '35px', height: '35px' }} svg />)
+          ? setSelectedLanguageFlag(<img src={es} alt="" className="NavSearch__languageListElemFlag" />)
           : language == 'it-ru'
-            ? setSelectedLanguageFlag(<ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="IT" style={{ width: '35px', height: '35px' }} svg />)
+            ? setSelectedLanguageFlag(<img src={it} alt="" className="NavSearch__languageListElemFlag" />)
             : language == 'nl-ru'
-              ? setSelectedLanguageFlag(<ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="NL" style={{ width: '35px', height: '35px' }} svg />)
+              ? setSelectedLanguageFlag(<img src={nl} alt="" className="NavSearch__languageListElemFlag" />)
               : language == 'pl-ru'
-                ? setSelectedLanguageFlag(<ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="PL" style={{ width: '35px', height: '35px' }} svg />)
+                ? setSelectedLanguageFlag(<img src={pl} alt="" className="NavSearch__languageListElemFlag" />)
                 : language == 'bg-ru'
-                  ? setSelectedLanguageFlag(<ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="BG" style={{ width: '35px', height: '35px' }} svg />)
+                  ? setSelectedLanguageFlag(<img src={bg} alt="" className="NavSearch__languageListElemFlag" />)
                   : language == 'cs-ru'
-                    ? setSelectedLanguageFlag(<ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="CZ" style={{ width: '35px', height: '35px' }} svg />)
+                    ? setSelectedLanguageFlag(<img src={cz} alt="" className="NavSearch__languageListElemFlag" />)
                     : language == 'en-ru'
-                      ? setSelectedLanguageFlag(<ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="US" style={{ width: '35px', height: '35px' }} svg />)
+                      ? setSelectedLanguageFlag(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
                       : ""
   }
 
@@ -99,55 +108,55 @@ export default function NavSearch({ }: Props) {
           ref={languagesList}
           onClick={selectLanguage}>
           <div className="NavSearch__languageListElem">
-            <ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="US" style={{ width: '30px', height: '30px' }} svg />
+            <img src={us} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               en-ru
             </div>
           </div>
           <div className="NavSearch__languageListElem">
-            <ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="DE" style={{ width: '30px', height: '30px' }} svg />
+            <img src={de} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               de-ru
             </div>
           </div>
           <div className="NavSearch__languageListElem">
-            <ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="FR" style={{ width: '30px', height: '30px' }} svg />
+            <img src={fr} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               fr-ru
             </div>
           </div>
           <div className="NavSearch__languageListElem">
-            <ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="ES" style={{ width: '30px', height: '30px' }} svg />
+            <img src={es} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               es-ru
             </div>
           </div>
           <div className="NavSearch__languageListElem">
-            <ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="IT" style={{ width: '30px', height: '30px' }} svg />
+            <img src={it} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               it-ru
             </div>
           </div>
           <div className="NavSearch__languageListElem">
-            <ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="NL" style={{ width: '30px', height: '30px' }} svg />
+            <img src={nl} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               nl-ru
             </div>
           </div>
           <div className="NavSearch__languageListElem">
-            <ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="PL" style={{ width: '30px', height: '30px' }} svg />
+            <img src={pl} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               pl-ru
             </div>
           </div>
           <div className="NavSearch__languageListElem">
-            <ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="BG" style={{ width: '30px', height: '30px' }} svg />
+            <img src={bg} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               bg-ru
             </div>
           </div>
           <div className="NavSearch__languageListElem">
-            <ReactCountryFlag className="NavSearch__languageListElemFlag" countryCode="CZ" style={{ width: '30px', height: '30px' }} svg />
+            <img src={cz} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               cs-ru
             </div>
