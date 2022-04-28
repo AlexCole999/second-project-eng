@@ -16,14 +16,11 @@
     border-radius: 50%;
     min-width: 50px;
     min-height: 50px;
-  }
+    transition: 0.3s all ease;
 
-  &__logInButton {
-    border: none;
-    min-width: 45px;
-    font-style: italic;
-    background-color: rgb(131, 160, 255);
-    color: white;
+    &:hover {
+      background-color: rgb(153, 228, 91);
+    }
   }
 
 }
