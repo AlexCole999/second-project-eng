@@ -1,9 +1,9 @@
-import React from 'react';
 import './NavSearch.scss';
+import React from 'react';
 import { useState, useRef } from 'react';
 import debounce from '../../functions/debounce';
-import yandexDictionaryKey from './../../API/yandexDictionary/yandexDictionaryKey';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
+import yandexDictionaryKey from './../../API/yandexDictionary/yandexDictionaryKey';
 
 import us from './flags/us.svg';
 import de from './flags/de.svg';
