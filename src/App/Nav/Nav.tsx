@@ -36,7 +36,9 @@ export default function Nav({ }: Props) {
               <FiChevronsRight size={25} />
             </div>
           </div>
-          <NavUser />
+          <NavLink to={"/second-project-eng/DeepSearch"} title="Продвинутый поиск">
+            <NavUser />
+          </NavLink>
           <NavSearch />
           <NavLink to={"/second-project-eng/DeepSearch"} title="Продвинутый поиск">
             <div className="Nav__elem">
