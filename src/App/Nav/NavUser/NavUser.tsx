@@ -1,16 +1,12 @@
 import './NavUser.scss'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { initializeApp } from 'firebase/app';
-import firebaseConfig from './../../API/firebase/firebaseConfig';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { FiUserX, FiUserCheck } from 'react-icons/fi';
+import { FiUserX } from 'react-icons/fi';
 
 type Props = {}
 
 export default function NavUser({ }: Props) {
-
-  const app = initializeApp(firebaseConfig);
 
   const dispatch = useDispatch();
 
