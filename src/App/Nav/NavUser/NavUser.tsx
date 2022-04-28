@@ -28,8 +28,7 @@ export default function NavUser({ }: Props) {
 
   return (
     <div className="NavUser">
-      <div
-        className="NavUser__name">
+      <div className="NavUser__body">
         {displayName !== undefined
           ? <div>{displayName}</div>
           : <FiUserX size={25} onClick={singInWithGooglePopup} />}
