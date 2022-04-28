@@ -112,54 +112,63 @@ export default function NavSearch({ }: Props) {
             <div className="NavSearch__languageListElemText">
               en-ru
             </div>
+            <div>123</div>
           </div>
           <div className="NavSearch__languageListElem">
             <img src={de} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               de-ru
             </div>
+            <div>123</div>
           </div>
           <div className="NavSearch__languageListElem">
             <img src={fr} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               fr-ru
             </div>
+            <div>123</div>
           </div>
           <div className="NavSearch__languageListElem">
             <img src={es} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               es-ru
             </div>
+            <div>123</div>
           </div>
           <div className="NavSearch__languageListElem">
             <img src={it} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               it-ru
             </div>
+            <div>123</div>
           </div>
           <div className="NavSearch__languageListElem">
             <img src={nl} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               nl-ru
             </div>
+            <div>123</div>
           </div>
           <div className="NavSearch__languageListElem">
             <img src={pl} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               pl-ru
             </div>
+            <div>123</div>
           </div>
           <div className="NavSearch__languageListElem">
             <img src={bg} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               bg-ru
             </div>
+            <div>123</div>
           </div>
           <div className="NavSearch__languageListElem">
             <img src={cz} alt="" className="NavSearch__languageListElemFlag" />
             <div className="NavSearch__languageListElemText">
               cs-ru
             </div>
+            <div>123</div>
           </div>
         </div>
       </div>

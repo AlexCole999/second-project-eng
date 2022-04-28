@@ -15,8 +15,5 @@
     display: grid;
     grid-template-columns: minmax(60px, max-content) 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: 'Nav Dashboard'
-      'Nav Dashboard'
-      'Nav Dashboard';
   }
 }
