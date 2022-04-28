@@ -2,26 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  margin-bottom: 10px;
-  position: relative;
-
-  &__photo {
-    min-height: 38px;
-    min-width: 38px;
-    border-radius: 50%;
-    border: 2px solid white;
-    transition: 0.3s all ease;
-
-    &:hover {
-      background-color: rgb(160, 0, 0);
-    }
-  }
+  margin-top: 10px;
+  margin-bottom: 15px;
 
   &__name {
-    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    height: 45px;
     color: white;
-    position: absolute;
+  }
+
+  &__logInButton {
+    border: none;
+    min-width: 45px;
+    font-style: italic;
+    background-color: rgb(131, 160, 255);
+    color: white;
   }
 
 }

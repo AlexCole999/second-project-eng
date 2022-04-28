@@ -3,8 +3,8 @@ import getWordsFromFirebaseReducer from './getWordsFromFirebaseReducer';
 import logInUserWithGoogleAuthReducer from './logInUserWithGoogleAuthReducer';
 
 const combinedReducers = combineReducers({
-  wordsFromFirebase: getWordsFromFirebaseReducer,
-  user: logInUserWithGoogleAuthReducer
+  user: logInUserWithGoogleAuthReducer,
+  wordsFromFirebase: getWordsFromFirebaseReducer
 })
 
 export default combinedReducers;

@@ -1,52 +1,47 @@
-import React from 'react'
-import { useState } from 'react'
 import './NavUser.scss'
-// import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-// import { initializeApp } from 'firebase/app';
-
-
-
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { initializeApp } from 'firebase/app';
+import firebaseConfig from './../../API/firebase/firebaseConfig';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { FiUserX, FiUserCheck } from 'react-icons/fi';
 type Props = {}
 
 export default function NavUser({ }: Props) {
 
-  // const [user, setuser] = useState('not loged in');
+  const app = initializeApp(firebaseConfig);
 
-  // const app = initializeApp(firebaseConfig);
+  const dispatch = useDispatch();
 
-  // function somefunc() {
+  const displayName = useSelector(state => state.user?.data?.user?.displayName[0])
 
+  function singInWithGooglePopup() {
 
-  //   const provider = new GoogleAuthProvider();
-  //   const auth = getAuth();
-  //   signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       // This gives you a Google Access Token. You can use it to access the Google API.
-  //       const credential = GoogleAuthProvider.credentialFromResult(result);
-  //       const token = credential.accessToken;
-  //       // The signed-in user info.
-  //       const user = result.user;
-  //       setuser(result.user.email);
-  //       // ...
-  //     }).catch((error) => {
-  //       // Handle Errors here.
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       // The email of the user's account used.
-  //       const email = error.email;
-  //       // The AuthCredential type that was used.
-  //       const credential = GoogleAuthProvider.credentialFromError(error);
-  //       // ...
-  //     });
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result })
+      }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
 
-  // }
+  }
+
   return (
     <div className="NavUser">
-      <div className="NavUser__photo">
-        {/* <button onClick={somefunc}></button> */}
-        {/* <button onClick={() => console.log(user)}></button> */}
+      <div
+        className="NavUser__name">
+        {displayName !== undefined
+          ? <div>{displayName}</div>
+          : <FiUserX size={20} onClick={singInWithGooglePopup} />}
       </div>
-      <div className="NavUser__name">123</div>
     </div>
   )
 }
