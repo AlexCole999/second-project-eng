@@ -104,6 +104,10 @@
     height: 30px;
     transition: 0.2s all ease;
 
+    &_selected img {
+      width: 40px;
+    }
+
     &:hover {
       transform: scale(1.15);
     }

@@ -89,7 +89,7 @@ export default function NavSearch({ }: Props) {
           }} />
       <div className="NavSearch__languages">
         <div className="NavSearch__selectedLanguage">
-          <div>{selectedLanguageFlag}</div>
+          <div className="NavSearch__languageListElemFlag_selected">{selectedLanguageFlag}</div>
           <div>{selectedLanguage}</div>
           <div className="NavSearch__reverseButtonSelectedLanguage"
             onClick={
