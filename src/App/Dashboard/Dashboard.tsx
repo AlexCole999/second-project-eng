@@ -7,7 +7,7 @@ import Learn from './Learn/Learn';
 import MyWords from './MyWords/MyWords';
 import Statistics from './Statistics/Statistics';
 import Settings from './Settings/Settings';
-
+import Profile from './Profile/Profile';
 
 type Props = { name?: string }
 
@@ -16,6 +16,8 @@ export default function Dashboard({ }: Props) {
     <div className='Dashboard'>
       <div className="Dashboard__body">
         <Routes>
+          <Route path="/second-project-eng/Profile" element={<Profile />}>
+          </Route>
           <Route path="/second-project-eng/DeepSearch" element={<DeepSearch />}>
           </Route>
           <Route path="/second-project-eng/MyWords" element={<MyWords />}>
