@@ -2,7 +2,7 @@
   background-color: rgb(38, 45, 110);
   grid-area: Nav;
   max-width: 60px;
-  transition: 1s all ease;
+  transition: 0.3s all ease;
 
   &_opened {
     max-width: 170px;

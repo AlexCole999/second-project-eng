@@ -54,7 +54,7 @@ export default function NavUser({ }: Props) {
         {/* <button onClick={somefunc}></button> */}
         {/* <button onClick={() => console.log(user)}></button> */}
       </div>
-      {/* <div className="NavUser__name">{user}</div> */}
+      <div className="NavUser__name">123</div>
     </div>
   )
 }
