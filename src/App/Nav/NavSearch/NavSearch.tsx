@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import debounce from '../../functions/debounce';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
 import yandexDictionaryKey from './../../API/yandexDictionary/yandexDictionaryKey';
+import axios from 'axios';
 
 import us from './flags/us.svg';
 import de from './flags/de.svg';
@@ -14,7 +15,6 @@ import nl from './flags/nl.svg';
 import pl from './flags/pl.svg';
 import bg from './flags/bg.svg';
 import cz from './flags/cz.svg';
-
 
 type Props = {}
 
@@ -33,16 +33,15 @@ export default function NavSearch({ }: Props) {
 
   function yandexDictionaryRequest(input: string): void {
     if (input.match(/[a-zA-Zа-яА-Я]+$/)) {
-      fetch
-        ('https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
-          + '?key='
-          + yandexDictionaryKey
-          + '&lang='
-          + selectedLanguage
-          + '&text='
-          + input)
-        .then(x => x.json())
-        .then(x => console.log(x));
+
+      axios.get('https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
+        + '?key='
+        + yandexDictionaryKey
+        + '&lang='
+        + selectedLanguage
+        + '&text='
+        + input)
+        .then(response => console.log(response.data))
     }
   }
 
