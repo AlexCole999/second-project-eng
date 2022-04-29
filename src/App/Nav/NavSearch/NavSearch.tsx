@@ -1,10 +1,11 @@
 import './NavSearch.scss';
 import React from 'react';
 import { useState, useRef } from 'react';
-import debounce from '../../functions/debounce';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
 import yandexDictionaryKey from './../../API/yandexDictionary/yandexDictionaryKey';
-import axios from 'axios';
+import debounce from '../../functions/debounce';
 
 import us from './flags/us.svg';
 import de from './flags/de.svg';
@@ -20,6 +21,8 @@ type Props = {}
 
 export default function NavSearch({ }: Props) {
 
+  const dispatch = useDispatch();
+
   const [selectedLanguage, setSelectedLanguage] = useState('en-ru')
   const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
 
@@ -33,7 +36,6 @@ export default function NavSearch({ }: Props) {
 
   function yandexDictionaryRequest(input: string): void {
     if (input.match(/[a-zA-Zа-яА-Я]+$/)) {
-
       axios.get('https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
         + '?key='
         + yandexDictionaryKey
