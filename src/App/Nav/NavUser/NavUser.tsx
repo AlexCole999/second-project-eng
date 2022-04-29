@@ -17,11 +17,8 @@ export default function NavUser({ }: Props) {
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
         dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result })
       }).catch((error) => {
-        const credential = GoogleAuthProvider.credentialFromError(error);
         console.log(error);
       });
   }
