@@ -43,7 +43,10 @@ export default function NavSearch({ }: Props) {
         + selectedLanguage
         + '&text='
         + input)
-        .then(response => console.log(response.data))
+        .then(response => {
+          dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data });
+          console.log(response.data)
+        })
     }
   }
 
