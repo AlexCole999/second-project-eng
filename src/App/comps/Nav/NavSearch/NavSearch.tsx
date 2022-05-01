@@ -4,8 +4,8 @@ import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
-import yandexDictionaryKey from '../../api/yandexDictionary/yandexDictionaryKey';
-import debounce from '../../functions/debounce';
+import yandexDictionaryKey from './../../../api/yandexDictionary/yandexDictionaryKey';
+import debounce from './../../../functions/debounce';
 
 import us from './flags/us.svg';
 import de from './flags/de.svg';
