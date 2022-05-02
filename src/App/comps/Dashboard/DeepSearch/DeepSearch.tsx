@@ -5,12 +5,20 @@ import { useSelector } from 'react-redux';
 type Props = {}
 
 export default function DeepSearch({ }: Props) {
-  const some = useSelector(state => state.yandexDictionaryTranslates.data?.def)
+  const some = useSelector(state => state.yandexDictionaryTranslates.data);
   return (
-    <div onClick={() => some.map(x => console.log(x))}>
+    <div >
 
       DeepSearch
-      {some == undefined ? "none" : some.map(x => x.text)}
+      <button onClick={() => {
+        console.log(some);
+      }
+      }>
+
+      </button>
+      {some == undefined
+        ? "none"
+        : "not none"}
     </div>
   )
 }

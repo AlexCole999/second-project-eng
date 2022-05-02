@@ -44,7 +44,7 @@ export default function NavSearch({ }: Props) {
         + '&text='
         + input)
         .then(response => {
-          dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data });
+          dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
           console.log(response.data)
         })
     }
