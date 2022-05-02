@@ -10,14 +10,14 @@ export default function NavUser({ }: Props) {
 
   const dispatch = useDispatch();
 
-  const displayName = useSelector(state => state.user?.data?.user?.displayName[0])
+  const displayName = useSelector(state => state.user?.data?.displayName)
 
   const singInWithGooglePopup = () => {
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
-        dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result })
+        dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result.user })
       }).catch((error) => {
         console.log(error);
       });
@@ -27,7 +27,7 @@ export default function NavUser({ }: Props) {
     <div className="NavUser">
       <div className="NavUser__body">
         {displayName !== undefined
-          ? <div>{displayName}</div>
+          ? <div>{displayName[0]}</div>
           : <FiUserX size={25} onClick={singInWithGooglePopup} />}
       </div>
     </div>
