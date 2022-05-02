@@ -18,7 +18,11 @@ export default function DeepSearch({ }: Props) {
       </button>
       {some == undefined
         ? "none"
-        : "not none"}
+        : some.map(x =>
+          <div style={{ border: '1px solid black' }}>
+            {x.pos};
+            {x.tr.map(x => <div>{x.text}</div>)}
+          </div>)}
     </div>
   )
 }
