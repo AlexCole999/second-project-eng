@@ -1,8 +1,9 @@
 import './NavUser.scss'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { FiUserX } from 'react-icons/fi';
+import { auth, provider } from '../../../API/firebase/firebaseConfig';
 
 type Props = {}
 
@@ -13,8 +14,6 @@ export default function NavUser({ }: Props) {
   const displayName = useSelector(state => state.user?.data?.displayName)
 
   const singInWithGooglePopup = () => {
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
         dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result.user })

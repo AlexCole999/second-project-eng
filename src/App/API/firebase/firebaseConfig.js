@@ -1,3 +1,7 @@
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCu_dkznKgP8ZxVTwvkNbAnGdTluiIO5eU",
   authDomain: "firstfirebase-04-08-2021.firebaseapp.com",
@@ -8,4 +12,12 @@ const firebaseConfig = {
   measurementId: "G-GDBP4GBHYF"
 };
 
-export default firebaseConfig;
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const provider = new GoogleAuthProvider();
+
+const auth = getAuth();
+
+export { app, db, provider, auth };
