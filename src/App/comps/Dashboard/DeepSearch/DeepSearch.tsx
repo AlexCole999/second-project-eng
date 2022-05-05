@@ -21,14 +21,8 @@ export default function DeepSearch({ }: Props) {
 
   return (
     <div >
-
       DeepSearch
-      <button onClick={() => {
-        console.log(some);
-      }
-      }>
-
-      </button>
+      <button onClick={() => { console.log(some); }}></button>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         {some == undefined
           ? "none"
