@@ -16,7 +16,12 @@ export default function ResultColumn({ pos, translates }: Props) {
           {pos}
         </div>
       </div>
-      {translates.map(translate => <ResultRow text={translate.text} key={translate.text} />)}
+      {
+        translates.map(translate =>
+          <ResultRow
+            translate={translate.text}
+            key={translate.text} />)
+      }
     </div>
   )
 }

@@ -9,21 +9,21 @@ export default function DeepSearch({ }: Props) {
 
   const results = useSelector(state => state.yandexDictionaryTranslates.data);
 
-
-
   return (
     <div className='DeepSearch'>
       DeepSearch
       <div className='DeepSearch__results'>
-        {results == undefined
-          ? "none"
-          : results.map(resultColumn =>
-            <ResultColumn
-              pos={resultColumn.pos}
-              translates={resultColumn.tr}
-              key={resultColumn.pos}
-            />
-          )}
+        {
+          results == undefined
+            ? "none"
+            : results.map(resultColumn =>
+              <ResultColumn
+                pos={resultColumn.pos}
+                translates={resultColumn.tr}
+                key={resultColumn.pos}
+              />
+            )
+        }
       </div>
     </div >
   )
