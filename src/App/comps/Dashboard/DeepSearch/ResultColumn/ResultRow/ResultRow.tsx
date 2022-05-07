@@ -1,6 +1,6 @@
 import React from 'react'
 import './ResultRow.scss'
-import { setDoc, doc } from 'firebase/firestore';
+import { getDoc, setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../API/firebase/firebaseConfig'
 import { useSelector } from 'react-redux';
 
@@ -13,13 +13,20 @@ type Props = {
 export default function ResultRow({ translate }: Props) {
 
   const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
+  const user = useSelector(state => state.user?.data?.email || 'guest');
 
   function setWordToFirebase() {
-    setDoc(doc(database, "users", "user", "appendedwords", 'blabla111'), {
-      word: '2222',
-      translate: '13333'
+    setDoc(doc(database, "users", user), {
+      words: {
+        word: word,
+        translate: translate
+      }
     })
       .then(() => console.log('done'))
+  }
+  function getWordToFirebase() {
+    getDoc(doc(database, "users", user))
+      .then((x) => console.log('done', x.data()))
   }
 
   return (
@@ -29,7 +36,11 @@ export default function ResultRow({ translate }: Props) {
       </div>
       <div>
         <button className='DeepSearch__resultRowAppendButton'
-          onClick={() => console.log(word, translate)}
+          onClick={setWordToFirebase}
+        >
+        </button>
+        <button className='DeepSearch__resultRowAppendButton'
+          onClick={getWordToFirebase}
         >
         </button>
       </div>
