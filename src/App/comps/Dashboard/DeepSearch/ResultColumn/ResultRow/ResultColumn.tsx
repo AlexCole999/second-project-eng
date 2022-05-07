@@ -1,7 +1,7 @@
 import React from 'react'
 import './ResultColumn.scss'
 import { setDoc, doc } from 'firebase/firestore';
-import { db } from '../../../../API/firebase/firebaseConfig'
+import { db } from './../../../../API/firebase/firebaseConfig'
 
 type Props = {
   pos: string
