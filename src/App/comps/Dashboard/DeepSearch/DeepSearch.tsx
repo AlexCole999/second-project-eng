@@ -25,6 +25,7 @@ export default function DeepSearch({ }: Props) {
       DeepSearch
 
       <div className='DeepSearch__results'>
+
         {results == undefined
           ? "none"
           : results.map(resultColumn =>
@@ -34,6 +35,7 @@ export default function DeepSearch({ }: Props) {
                   {resultColumn.pos}
                 </div>
               </div>
+              
               {resultColumn.tr.map(translate =>
                 <div className='DeepSearch__resultRow'>
                   <div onClick={(e) => { setWordToFirebase(e) }}>
