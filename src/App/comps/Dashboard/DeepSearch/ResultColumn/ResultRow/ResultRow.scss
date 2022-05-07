@@ -1,17 +1,5 @@
 .DeepSearch {
 
-  &__resultColumn {
-    border: 1px solid black;
-    margin: 15px;
-    max-width: 250px;
-    padding: 8px;
-  }
-
-  &__resultColumnPos {
-    display: flex;
-    justify-content: center;
-  }
-
   &__resultRow {
     display: flex;
     justify-content: space-between;

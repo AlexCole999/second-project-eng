@@ -18,7 +18,11 @@ export default function DeepSearch({ }: Props) {
         {results == undefined
           ? "none"
           : results.map(resultColumn =>
-            <ResultColumn pos={resultColumn.pos} translates={resultColumn.tr} />
+            <ResultColumn
+              pos={resultColumn.pos}
+              translates={resultColumn.tr}
+              key={resultColumn.pos}
+            />
           )}
       </div>
     </div >

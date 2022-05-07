@@ -1,23 +1,13 @@
 import React from 'react'
 import './ResultColumn.scss'
-import { setDoc, doc } from 'firebase/firestore';
-import { db } from '../../../../API/firebase/firebaseConfig'
+import ResultRow from './ResultRow/ResultRow';
 
 type Props = {
-  pos: string
+  pos: string,
+  translates: Array<any>
 }
 
-let database = db
-
 export default function ResultColumn({ pos, translates }: Props) {
-
-  function setWordToFirebase(e) {
-    setDoc(doc(database, "users", "user", "appendedwords", 'blabla111'), {
-      word: '2222',
-      translate: '13333'
-    })
-      .then(x => console.log('done'))
-  }
 
   return (
     <div className='DeepSearch__resultColumn'>
@@ -26,19 +16,7 @@ export default function ResultColumn({ pos, translates }: Props) {
           {pos}
         </div>
       </div>
-
-      {
-        translates.map(translate =>
-          <div className='DeepSearch__resultRow'>
-            <div onClick={(e) => { setWordToFirebase(e) }}>
-              {translate.text}
-            </div>
-            <div>
-              <button className='DeepSearch__resultRowAppendButton'
-                onClick={() => { console.log('clicked') }}
-              ></button>
-            </div>
-          </div>)}
+      {translates.map(translate => <ResultRow text={translate.text} key={translate.text} />)}
     </div>
   )
 }
