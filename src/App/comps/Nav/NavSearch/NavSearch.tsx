@@ -90,10 +90,20 @@ export default function NavSearch({ }: Props) {
           (e) => {
             debouncedYandexDictionaryRequest(e.target.value);
           }} />
+
+
+      <div style={{ width: '100%', marginLeft: '2px' }}>
+        <div className="NavSearch__progress"></div>
+      </div>
+
       <div className="NavSearch__languages">
         <div className="NavSearch__selectedLanguage">
-          <div className="NavSearch__languageListElemFlag_selected">{selectedLanguageFlag}</div>
-          <div>{selectedLanguage}</div>
+          <div className="NavSearch__languageListElemFlag_selected">
+            {selectedLanguageFlag}
+          </div>
+          <div>
+            {selectedLanguage}
+          </div>
           <div className="NavSearch__reverseButtonSelectedLanguage"
             onClick={
               (e) => {
@@ -104,7 +114,9 @@ export default function NavSearch({ }: Props) {
             <FiRotateCw />
           </div>
         </div>
-        <div className="NavSearch__languagesListTrigger" onClick={openCloseLanguagesTrigger} ref={languageListTrigger}>
+        <div className="NavSearch__languagesListTrigger"
+          onClick={openCloseLanguagesTrigger}
+          ref={languageListTrigger}>
           <FiChevronsRight size={20} />
         </div>
         <div className="NavSearch__languagesList"

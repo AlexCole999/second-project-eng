@@ -6,11 +6,23 @@
   padding: 0px 6px;
   position: relative;
 
+  &__progress {
+    width: 10%;
+    height: 2px;
+    background-color: #fff;
+    transition: 1s all ease;
+
+    &:hover {
+      width: 95%;
+    }
+  }
+
   input {
     width: 90%;
     padding: 7px 0px;
     text-align: center;
     position: relative;
+    outline: none;
   }
 
   &__searchedWords {

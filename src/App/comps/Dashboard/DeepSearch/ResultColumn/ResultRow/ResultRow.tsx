@@ -26,7 +26,7 @@ export default function ResultRow({ translate }: Props) {
   }
   function getWordToFirebase() {
     getDoc(doc(database, "users", user))
-      .then((x) => console.log('done', x.data()))
+      .then((x) => console.log('done', { ...x.data().words }))
   }
 
   return (
