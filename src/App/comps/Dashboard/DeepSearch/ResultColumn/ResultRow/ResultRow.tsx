@@ -16,17 +16,18 @@ export default function ResultRow({ translate }: Props) {
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
   function setWordToFirebase() {
+
+    const words = {}
+    words[word] = { word: word, translate: translate }
+
     setDoc(doc(database, "users", user), {
-      words: {
-        word: word,
-        translate: translate
-      }
+      words
     })
       .then(() => console.log('done'))
   }
   function getWordToFirebase() {
     getDoc(doc(database, "users", user))
-      .then((x) => console.log('done', { ...x.data().words }))
+      .then((x) => console.log(x.data().words[word] ? 'est' : 'net'))
   }
 
   return (
