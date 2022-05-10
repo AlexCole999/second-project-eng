@@ -12,10 +12,7 @@
     "watch": "webpack --mode development --watch",
     "start": "webpack-dev-server --mode development --open"
   },
-  "browserslist": [
-    "last 2 Chrome versions",
-    "last 2 Firefox versions"
-  ],
+  "browserslist": "> 0.25%, not dead",
   "keywords": [
     "webpack"
   ],
@@ -23,6 +20,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.17.2",
+    "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
