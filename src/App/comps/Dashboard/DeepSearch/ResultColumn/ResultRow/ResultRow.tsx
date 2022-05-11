@@ -13,17 +13,25 @@ type Props = {
 
 export default function ResultRow({ translate, fulltranslate }: Props) {
 
+  const selectedLanguage = useSelector(state => state.selectedLanguage)
   const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
   async function setWordToFirebase() {
-    const oldbase = (await getDoc(doc(database, "users", user))).data();
-    let newbase = oldbase;
-    let newbasewords = newbase.words;
 
-    newbasewords[word]
-      ? newbasewords[word]['translates'] = [...new Set([...newbasewords[word]['translates'], translate])]
-      : (newbasewords[word] = {}, newbasewords[word]['word'] = word, newbasewords[word]['translates'] = [translate])
+    let oldbase = (await getDoc(doc(database, "users", user))); // запрашиваем данные
+
+    if (oldbase.data() == undefined) {  // если данных по этому пользователю нет
+      await setDoc(doc(database, "users", user), { words: {} }); //создаем стандартный объект с полем words, устанавливаем его как стандартные данные
+      oldbase = (await getDoc(doc(database, "users", user))); // заново запрашиваем эти данные
+    }
+
+    let newbase = oldbase.data(); // копируем полученные данные в новый объект
+    let newbasewords = newbase['words']; // создаем переменную для доступа к полю words
+
+    newbasewords[word] // если поле не пустое, тогда:
+      ? newbasewords[word]['translates'] = [...new Set([...newbasewords[word]['translates'].filter(x => x.translate !== translate), { language: selectedLanguage, translate: translate }])]
+      : (newbasewords[word] = {}, newbasewords[word]['word'] = word, newbasewords[word]['translates'] = [{ language: selectedLanguage, translate: translate }])
 
     setDoc(doc(database, "users", user), newbase);
     console.log(newbase)
