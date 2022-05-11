@@ -1,7 +1,7 @@
 import './NavSearch.scss';
 import React from 'react';
 import { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
 import yandexDictionaryKey from './../../../api/yandexDictionary/yandexDictionaryKey';
@@ -23,7 +23,7 @@ export default function NavSearch({ }: Props) {
 
   const dispatch = useDispatch();
 
-  const [selectedLanguage, setSelectedLanguage] = useState('en-ru')
+  const selectedLanguage = useSelector(state => state.selectedLanguage)
   const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
 
   const languageListTrigger = useRef(null);
@@ -53,7 +53,7 @@ export default function NavSearch({ }: Props) {
 
   function selectLanguage(e) {
     const language = e.target.parentElement.childNodes[1].outerText;
-    setSelectedLanguage(language);
+    dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: language })
     languageFlagCheck(language)
   }
 
@@ -107,7 +107,7 @@ export default function NavSearch({ }: Props) {
           <div className="NavSearch__reverseButtonSelectedLanguage"
             onClick={
               (e) => {
-                setSelectedLanguage(selectedLanguage.split('-').reverse().join('-'));
+                dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: selectedLanguage.split('-').reverse().join('-') });
                 e.target.parentElement.classList.toggle('NavSearch__reverseButtonSelectedLanguage_reversed');
               }
             }>
