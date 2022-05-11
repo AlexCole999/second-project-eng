@@ -22,11 +22,29 @@ export default function MyWords({ }: Props) {
     dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: data });
 
 
-    console.log(words, Object.keys(words))
+    [...Object.keys(words)].map(x => console.log(words[x]?.word, words[x].translates.map(x => x.translate)));
+
+    setstate([...Object.keys(words)]
+      .map(x =>
+        <div>
+          <div>
+            {words[x]?.word}
+          </div>
+          <div>
+            {words[x].translates
+              .map(x =>
+                <div>
+                  {x.translate} --- {x.language}
+                </div>)
+            }</div>
+        </div>));
+    console.log(state)
+
   }
   return (
     <div>
       MyWords
+      {state}
       <button onClick={somefunc}></button>
     </div>
   )
