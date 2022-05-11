@@ -7,25 +7,31 @@ import { useSelector } from 'react-redux';
 let database = db;
 
 type Props = {
-  translate: string
+  translate: string,
+  fulltranslate: any
 }
 
-export default function ResultRow({ translate }: Props) {
+export default function ResultRow({ translate, fulltranslate }: Props) {
 
   const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
-  function setWordToFirebase() {
-    const oldbase = getDoc(doc(database, "users", user));
-    console.log(oldbase)
-    // setDoc(doc(database, "users", user), {
-    //   words
-    // })
-    //   .then(() => console.log('done'))
+  async function setWordToFirebase() {
+    const oldbase = await getDoc(doc(database, "users", user));
+    let newbase = oldbase.data();
+    let newbasewords = newbase.words;
+
+    newbasewords[word]
+      ? newbasewords[word]['translates'] = [...new Set([...newbasewords[word]['translates'], translate])]
+      : (newbasewords[word] = {}, newbasewords[word]['word'] = word, newbasewords[word]['translates'] = [translate])
+
+    setDoc(doc(database, "users", user), newbase);
+    console.log(newbase)
   }
-  function getWordToFirebase() {
-    getDoc(doc(database, "users", user))
-      .then((x) => console.log(x.data().words[word] ? 'est' : 'net'))
+
+  async function getWordToFirebase() {
+    let data = (await getDoc(doc(database, "users", user))).data()
+    console.log(data)
   }
 
   return (

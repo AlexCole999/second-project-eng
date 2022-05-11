@@ -19,6 +19,7 @@ export default function ResultColumn({ pos, translates }: Props) {
       {
         translates.map(translate =>
           <ResultRow
+            fulltranslate={translate}
             translate={translate.text}
             key={translate.text} />)
       }
