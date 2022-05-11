@@ -17,8 +17,8 @@ export default function ResultRow({ translate, fulltranslate }: Props) {
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
   async function setWordToFirebase() {
-    const oldbase = await getDoc(doc(database, "users", user));
-    let newbase = oldbase.data();
+    const oldbase = (await getDoc(doc(database, "users", user))).data();
+    let newbase = oldbase;
     let newbasewords = newbase.words;
 
     newbasewords[word]
