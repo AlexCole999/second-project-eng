@@ -1,6 +1,8 @@
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from "firebase/firestore";
+import { useSelector } from 'react-redux';
+import { getDoc, setDoc, doc } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCu_dkznKgP8ZxVTwvkNbAnGdTluiIO5eU",
@@ -12,6 +14,8 @@ const firebaseConfig = {
   measurementId: "G-GDBP4GBHYF"
 };
 
+
+
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
@@ -20,4 +24,9 @@ const provider = new GoogleAuthProvider();
 
 const auth = getAuth();
 
-export { app, db, provider, auth };
+async function getDataFromFirebase({ database = db, users = 'users', user = 'guest' }, ...path) {
+  let oldWords = await getDoc(doc(database, users, user, ...path));
+  console.log(oldWords.data())
+}
+
+export { app, db, provider, auth, getDataFromFirebase };

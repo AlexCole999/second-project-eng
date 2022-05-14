@@ -1,7 +1,7 @@
 import React from 'react'
 import './ResultRow.scss'
 import { getDoc, setDoc, doc } from 'firebase/firestore';
-import { db } from '../../../../../API/firebase/firebaseConfig'
+import { db, getDataFromFirebase } from '../../../../../API/firebase/firebaseConfig'
 import { useSelector } from 'react-redux';
 
 let database = db;
@@ -67,6 +67,10 @@ export default function ResultRow({ translate, fulltranslate }: Props) {
         </button>
         <button className='DeepSearch__resultRowAppendButton'
           onClick={getWordToFirebase}
+        >
+        </button>
+        <button className='DeepSearch__resultRowAppendButton'
+          onClick={() => { getDataFromFirebase({ user: user }, 'data', 'words') }}
         >
         </button>
       </div>
