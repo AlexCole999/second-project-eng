@@ -17,14 +17,15 @@ export default function MyWords({ }: Props) {
   const user = useSelector(state => state.user?.data?.email || 'guest');
   const words = useSelector(state => state.wordsFromFirebase);
 
+  console.log(words)
+
   useEffect(firebaseWordsRequest, [])
 
-  async function getBases() {
+  async function getBasesList() {
     const q = collection(db, "users", user, 'bases');
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
     });
   }
@@ -33,24 +34,7 @@ export default function MyWords({ }: Props) {
 
     let data = (await getDoc(doc(db, "users", user, 'data', 'words'))).data();
     dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: data });
-
-    [...Object.keys(words)].map(x => console.log(words[x]?.word, words[x].translates.map(x => x.translate)));
-
-    setstate([...Object.keys(words)]
-      .map(x =>
-        <div>
-          <div>
-            {words[x]?.word}
-          </div>
-          <div>
-            {words[x].translates
-              .map(x =>
-                <span>
-                  {x.translate}<span style={{ fontSize: '8px' }}>{x.language.split('-')[1]}</span> |
-                </span>)
-            }</div>
-        </div>));
-    console.log(state)
+    console.log('requested')
   }
 
   function addNewBase() {
@@ -63,10 +47,36 @@ export default function MyWords({ }: Props) {
       <div>MyWords</div>
       <div><input type="text" onChange={(e) => setinputstate(e.target.value)} /></div>
       <button onClick={addNewBase}>addbase</button>
-      <button onClick={getBases}>baseslist</button>
+      <button onClick={getBasesList}>baseslist</button>
+      {[...Object.keys(words)]
+        .map(x =>
+          <div>
+            <div onClick={() => console.log(words)}>
+              {words[x]?.word}
+            </div>
+            <div>
+              {words[x]?.translates?.map(x => <div>{x.translate}</div>)}
+              <button onClick={() => console.log(words[x]?.translates[0].translate)}></button>
+            </div>
+          </div>)}
 
-      <div>{state}</div>
       <button onClick={firebaseWordsRequest}></button>
     </div>
   )
 }
+
+// {<div>{[...Object.keys(words)]
+//   .map(x =>
+//     <div>
+//       <div>
+//         {words[x]?.word}
+//       </div>
+//       <div>
+//         {words[x].translates
+//           .map(x =>
+//             <span>
+//               {x.translate}<span style={{ fontSize: '8px' }}>{x.language.split('-')[1]}</span> |
+//             </span>)
+//         }</div>
+//     </div>)}
+// </div>}

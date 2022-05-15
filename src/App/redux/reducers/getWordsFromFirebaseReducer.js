@@ -1,4 +1,4 @@
-let defaultstate = { data: [] }
+let defaultstate = { word: { word: 'Загрузка...', translates: [{ language: 'en-ru', translate: '' }] } }
 
 const getWordsFromFirebaseReducer = (state = defaultstate, action) => {
   switch (action.type) {
