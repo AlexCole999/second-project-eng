@@ -48,35 +48,28 @@ export default function MyWords({ }: Props) {
       <div><input type="text" onChange={(e) => setinputstate(e.target.value)} /></div>
       <button onClick={addNewBase}>addbase</button>
       <button onClick={getBasesList}>baseslist</button>
-      {[...Object.keys(words)]
+      {<div>{[...Object.keys(words)]
         .map(x =>
-          <div>
-            <div onClick={() => console.log(words)}>
+          <div style={{ border: '1px solid black', padding: '8px' }}>
+            <div style={{ fontSize: '26px', fontWeight: 'bold' }}>
               {words[x]?.word}
             </div>
-            <div>
-              {words[x]?.translates?.map(x => <div>{x.translate}</div>)}
-              <button onClick={() => console.log(words[x]?.translates[0].translate)}></button>
+            <div style={{}}>
+              {words[x].translates
+                .map(x =>
+                  <div>
+                    <div style={{ fontSize: '20px', fontStyle: 'italic', display: 'inline' }}>{x.translate}</div>
+                    <div style={{ fontSize: '8px', display: 'inline' }}>
+                      {x.language.split('-')[1]}
+                    </div>
+                  </div>)}
             </div>
-          </div>)}
+          </div>
+        )}
+      </div>}
 
       <button onClick={firebaseWordsRequest}></button>
     </div>
   )
 }
 
-// {<div>{[...Object.keys(words)]
-//   .map(x =>
-//     <div>
-//       <div>
-//         {words[x]?.word}
-//       </div>
-//       <div>
-//         {words[x].translates
-//           .map(x =>
-//             <span>
-//               {x.translate}<span style={{ fontSize: '8px' }}>{x.language.split('-')[1]}</span> |
-//             </span>)
-//         }</div>
-//     </div>)}
-// </div>}
