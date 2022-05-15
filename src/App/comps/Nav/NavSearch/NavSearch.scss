@@ -6,17 +6,6 @@
   padding: 0px 6px;
   position: relative;
 
-  &__progress {
-    width: 10%;
-    height: 2px;
-    background-color: #fff;
-    transition: 1s all ease;
-
-    &:hover {
-      width: 95%;
-    }
-  }
-
   input {
     width: 90%;
     padding: 7px 0px;
@@ -25,15 +14,14 @@
     outline: none;
   }
 
-  &__searchedWords {
+  &__searchedMainWord {
     min-width: 100%;
-    min-height: 100%;
-    background-color: rgb(131, 131, 131);
     position: absolute;
-    color: red;
+    color: white;
+    z-index: 10000;
     left: 60px;
-    padding: 15px;
-    display: none;
+    padding: 7px;
+    background-color: rgba(33, 228, 211, 0.493);
   }
 
   &__languages {
@@ -125,6 +113,5 @@
     }
   }
 
-  //   &__languageListElemText {}
 
 }

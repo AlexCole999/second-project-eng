@@ -24,6 +24,7 @@ export default function NavSearch({ }: Props) {
   const dispatch = useDispatch();
 
   const selectedLanguage = useSelector(state => state.selectedLanguage)
+  const mainResult = useSelector(state => state.yandexDictionaryTranslates.data[0])
   const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
 
   const languageListTrigger = useRef(null);
@@ -81,8 +82,8 @@ export default function NavSearch({ }: Props) {
 
   return (
     <div className="NavSearch">
-      <div className="NavSearch__searchedWords">
-        someresults
+      <div className="NavSearch__searchedMainWord">
+        {mainResult?.tr[0]?.text.toUpperCase()}
       </div>
       <input placeholder="..."
         type="input"
@@ -90,11 +91,6 @@ export default function NavSearch({ }: Props) {
           (e) => {
             debouncedYandexDictionaryRequest(e.target.value);
           }} />
-
-
-      <div style={{ width: '100%', marginLeft: '2px' }}>
-        <div className="NavSearch__progress"></div>
-      </div>
 
       <div className="NavSearch__languages">
         <div className="NavSearch__selectedLanguage">
