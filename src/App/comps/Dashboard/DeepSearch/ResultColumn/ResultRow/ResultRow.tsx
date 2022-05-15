@@ -1,7 +1,7 @@
 import React from 'react'
 import './ResultRow.scss'
 import { getDoc, setDoc, doc } from 'firebase/firestore';
-import { db, getDataFromFirebase } from '../../../../../API/firebase/firebaseConfig'
+import { db } from '../../../../../API/firebase/firebaseConfig'
 import { useSelector } from 'react-redux';
 
 let database = db;
@@ -17,7 +17,7 @@ export default function ResultRow({ translate, fulltranslate }: Props) {
   const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
-  async function setWordToFirebase() { // функция добавления слова в базу
+  async function addTranslateToDefaultFirebase() { // функция добавления слова в базу
 
     let oldWords = (await getDoc(doc(database, "users", user, 'data', 'words'))); // запрашиваем данные о словах пользователя с сервера
 
@@ -43,7 +43,7 @@ export default function ResultRow({ translate, fulltranslate }: Props) {
       { language: selectedLanguage, translate: translate } // добавляем в конец отфильтрованного массива объект с нашим новым переводом 
     ]
 
-    setDoc(doc(database, "users", user, 'data', 'words'), newbase); // сформированный и измененный объект newbase отправляем на сервер в качестве новых данных
+    setDoc(doc(database, "users", user, 'data', 'words'), newbase).then(x => console.log('appended')); // сформированный и измененный объект newbase отправляем на сервер в качестве новых данных
 
   }
 
@@ -62,15 +62,11 @@ export default function ResultRow({ translate, fulltranslate }: Props) {
       </div>
       <div>
         <button className='DeepSearch__resultRowAppendButton'
-          onClick={setWordToFirebase}
+          onClick={addTranslateToDefaultFirebase}
         >
         </button>
         <button className='DeepSearch__resultRowAppendButton'
           onClick={getWordToFirebase}
-        >
-        </button>
-        <button className='DeepSearch__resultRowAppendButton'
-          onClick={() => { getDataFromFirebase({ user: user }, 'data', 'words') }}
         >
         </button>
       </div>

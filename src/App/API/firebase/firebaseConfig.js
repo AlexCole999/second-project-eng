@@ -14,8 +14,6 @@ const firebaseConfig = {
   measurementId: "G-GDBP4GBHYF"
 };
 
-
-
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
@@ -24,9 +22,4 @@ const provider = new GoogleAuthProvider();
 
 const auth = getAuth();
 
-async function getDataFromFirebase({ database = db, users = 'users', user = 'guest' }, ...path) {
-  let oldWords = await getDoc(doc(database, users, user, ...path));
-  console.log(oldWords.data())
-}
-
-export { app, db, provider, auth, getDataFromFirebase };
+export { app, db, provider, auth };
