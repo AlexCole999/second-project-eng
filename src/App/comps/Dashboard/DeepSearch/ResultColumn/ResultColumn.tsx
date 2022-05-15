@@ -21,7 +21,12 @@ export default function ResultColumn({ pos, translates }: Props) {
           <ResultRow
             fulltranslate={translate}
             translate={translate.text}
-            key={translate.text} />)
+            examples={translate.ex || []}
+            mean={translate.mean || []}
+            synonym={translate.syn || []}
+            frequency={translate.fr || ''}
+            key={translate.text}
+          />)
       }
     </div>
   )

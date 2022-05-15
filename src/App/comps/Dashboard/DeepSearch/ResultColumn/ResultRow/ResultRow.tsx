@@ -8,10 +8,14 @@ let database = db;
 
 type Props = {
   translate: string,
-  fulltranslate: any
+  fulltranslate: any,
+  examples: any,
+  mean: any,
+  synonym: any,
+  frequency: number
 }
 
-export default function ResultRow({ translate, fulltranslate }: Props) {
+export default function ResultRow({ fulltranslate, translate, examples, mean, synonym, frequency }: Props) {
 
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
@@ -57,8 +61,13 @@ export default function ResultRow({ translate, fulltranslate }: Props) {
 
   return (
     <div className='DeepSearch__resultRow'>
-      <div>
-        {translate}
+      <div style={{ marginBottom: '5px' }}>
+        <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '5px' }}>{`${translate[0].toUpperCase()}${translate.slice(1)}`}</div>
+        <div style={{ marginBottom: '5px' }}>Встречается: {frequency}/10</div>
+        <div style={{ marginBottom: '5px' }}>{synonym.length ? 'Синонимы:' : ''}{synonym.map(x => <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>{x.text}</div>)}</div>
+        <div style={{ marginBottom: '5px' }}>{mean.length ? 'Похожие слова:' : ''}{mean.map(x => <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>{x.text}</div>)}</div>
+        <div>{examples.length ? 'Примеры использования:' : ''}{examples.map(x => <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>{x.text} - {x.tr[0].text}</div>)}</div>
+        <hr />
       </div>
       <div>
         <button className='DeepSearch__resultRowAppendButton'
@@ -67,6 +76,10 @@ export default function ResultRow({ translate, fulltranslate }: Props) {
         </button>
         <button className='DeepSearch__resultRowAppendButton'
           onClick={getWordToFirebase}
+        >
+        </button>
+        <button className='DeepSearch__resultRowAppendButton'
+          onClick={() => console.log(fulltranslate)}
         >
         </button>
       </div>
