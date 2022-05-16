@@ -48,6 +48,9 @@ export default function MyWords({ }: Props) {
       <div><input type="text" onChange={(e) => setinputstate(e.target.value)} /></div>
       <button onClick={addNewBase}>addbase</button>
       <button onClick={getBasesList}>baseslist</button>
+      <input type="text" placeholder='фильтр' onChange={(e) => setstate(new RegExp(e.target.value))} />
+      <button onClick={() => console.log([...Object.keys(words)].filter(x => words[x].word.match(state)))}>display filtered</button>
+      <button onClick={() => console.log(state)}>display filtered</button>
       {<div>{[...Object.keys(words)]
         .map(x =>
           <div style={{ border: '1px solid black', padding: '8px' }}>
