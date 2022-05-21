@@ -41,13 +41,13 @@ export default function Nav({ }: Props) {
           <NavLink to={"/second-project-eng/DeepSearch"} title="Продвинутый поиск">
             <div className="Nav__elem">
               <div className="Nav__elemicon"><FiZoomIn size={40} /></div>
-              <div className="Nav__elemtext">Поиск</div>
+              <div className="Nav__elemtext">Продвинутый поиск</div>
             </div>
           </NavLink>
           <NavLink to={"/second-project-eng/Learn"} title="Учить">
             <div className="Nav__elem">
               <div className="Nav__elemicon"><FiPlay size={40} /></div>
-              <div className="Nav__elemtext">Учить</div>
+              <div className="Nav__elemtext">Играть</div>
             </div>
           </NavLink>
           <NavLink to={"/second-project-eng/MyWords"} title="Добавленные слова">

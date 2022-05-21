@@ -82,15 +82,15 @@ export default function NavSearch({ }: Props) {
 
   return (
     <div className="NavSearch">
-      <div className="NavSearch__searchedMainWord">
-        {mainResult?.tr[0]?.text.toUpperCase()}
-      </div>
       <input placeholder="..."
         type="input"
         onChange={
           (e) => {
             debouncedYandexDictionaryRequest(e.target.value);
           }} />
+      <div className="NavSearch__searchedMainWord">
+        {mainResult?.tr[0]?.text.toUpperCase()}
+      </div>
 
       <div className="NavSearch__languages">
         <div className="NavSearch__selectedLanguage">
