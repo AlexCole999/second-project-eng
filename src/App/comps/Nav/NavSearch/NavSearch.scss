@@ -20,7 +20,11 @@
     color: white;
     font-weight: 600;
     font-style: italic;
-    font-size: 12px;
+    font-size: 14px;
+
+    &_closed {
+      display: none;
+    }
   }
 
   &__languages {
