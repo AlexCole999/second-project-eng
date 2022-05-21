@@ -89,7 +89,7 @@ export default function NavSearch({ }: Props) {
             debouncedYandexDictionaryRequest(e.target.value);
           }} />
       <div className="NavSearch__searchedMainWord">
-        {mainResult?.tr[0]?.text.toUpperCase()}
+        <div>{mainResult?.tr[0]?.text.toUpperCase()}</div>
       </div>
 
       <div className="NavSearch__languages">
