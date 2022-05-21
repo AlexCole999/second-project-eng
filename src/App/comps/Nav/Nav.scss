@@ -1,10 +1,10 @@
 .Nav {
   background-color: rgb(38, 45, 110);
-  max-width: 60px;
+  max-width: 170px;
   transition: 0.3s all ease;
 
-  &_opened {
-    max-width: 170px;
+  &_closed {
+    max-width: 60px;
   }
 
   a {
