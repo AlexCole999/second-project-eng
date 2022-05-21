@@ -23,13 +23,14 @@
     color: rgba(255, 255, 255, 0.5);
     transition: 1s all ease;
     cursor: pointer;
+    transform: rotateY(180deg);
 
     &:hover {
       color: white;
     }
 
-    &_opened {
-      transform: rotateY(180deg);
+    &_closed {
+      transform: rotateY(0deg);
     }
   }
 

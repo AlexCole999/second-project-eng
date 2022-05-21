@@ -22,7 +22,7 @@ export default function Nav({ }: Props) {
 
   function openCloseNavTrigger(): void {
     nav.current.classList.toggle('Nav_closed');
-    navtrigger.current.classList.toggle('Nav__trigger_opened');
+    navtrigger.current.classList.toggle('Nav__trigger_closed');
   }
 
   return (
