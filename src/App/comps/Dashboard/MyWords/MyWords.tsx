@@ -8,7 +8,7 @@ type Props = {}
 
 export default function MyWords({ }: Props) {
 
-
+  let testdata = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]
 
   const [state, setstate] = useState([])
   const [inputstate, setinputstate] = useState('')
@@ -44,35 +44,44 @@ export default function MyWords({ }: Props) {
 
   return (
     <div>
-      <div>MyWords</div>
-      <div><input type="text" onChange={(e) => setinputstate(e.target.value)} /></div>
-      <button onClick={addNewBase}>addbase</button>
-      <button onClick={getBasesList}>baseslist</button>
-      <input type="text" placeholder='фильтр' onChange={(e) => setstate(new RegExp(e.target.value))} />
-      <button onClick={() => console.log([...Object.keys(words)].filter(x => words[x].word.match(state)))}>display filtered</button>
-      <button onClick={() => console.log(state)}>display filtered</button>
-      {<div>{[...Object.keys(words)]
-        .map(x =>
-          <div style={{ border: '1px solid black', padding: '8px' }}>
-            <div style={{ fontSize: '26px', fontWeight: 'bold' }}>
-              {words[x]?.word}
+      <div style={{ marginBottom: '5px' }}>MyWords</div>
+      <div style={{ border: '1px solid black', padding: '5px' }}>
+        <select>{testdata.map(x => <option>{x}</option>)}</select>
+        <div>Bases</div>
+        <input type="text" onChange={(e) => setinputstate(e.target.value)} />
+        <button onClick={addNewBase}>addbase</button>
+        <button onClick={getBasesList}>baseslist</button>
+      </div>
+      <div style={{ border: '1px solid black', padding: '5px', marginTop: "5px" }}>
+        <div>Фильтр</div>
+        <input type="text" placeholder='фильтр' onChange={(e) => setstate(new RegExp(e.target.value))} />
+        <button onClick={() => console.log([...Object.keys(words)].filter(x => words[x].word.match(state)))}>display filtered</button>
+        <button onClick={() => console.log(state)}>display regexp</button>
+      </div >
+      {< div > {
+        [...Object.keys(words)]
+          .map(x =>
+            <div style={{ border: '1px solid black', padding: '8px' }}>
+              <div style={{ fontSize: '26px', fontWeight: 'bold' }}>
+                {words[x]?.word}
+              </div>
+              <div style={{}}>
+                {words[x].translates
+                  .map(x =>
+                    <div>
+                      <div style={{ fontSize: '20px', fontStyle: 'italic', display: 'inline' }}>{x.translate}</div>
+                      <div style={{ fontSize: '8px', display: 'inline' }}>
+                        {x.language.split('-')[1]}
+                      </div>
+                    </div>)}
+              </div>
             </div>
-            <div style={{}}>
-              {words[x].translates
-                .map(x =>
-                  <div>
-                    <div style={{ fontSize: '20px', fontStyle: 'italic', display: 'inline' }}>{x.translate}</div>
-                    <div style={{ fontSize: '8px', display: 'inline' }}>
-                      {x.language.split('-')[1]}
-                    </div>
-                  </div>)}
-            </div>
-          </div>
-        )}
-      </div>}
+          )
+      }
+      </div >}
 
       <button onClick={firebaseWordsRequest}></button>
-    </div>
+    </div >
   )
 }
 
