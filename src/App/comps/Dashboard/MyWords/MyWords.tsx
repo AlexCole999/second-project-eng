@@ -8,51 +8,49 @@ type Props = {}
 
 export default function MyWords({ }: Props) {
 
-  let testdata = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]
+  const dispatch = useDispatch();
 
   const [state, setstate] = useState([])
   const [inputstate, setinputstate] = useState('')
-  const dispatch = useDispatch();
 
   const user = useSelector(state => state.user?.data?.email || 'guest');
   const words = useSelector(state => state.wordsFromFirebase);
+  const basesList = useSelector(state => state.basesList?.data);
 
-  console.log(words)
+  useEffect(async () => {
 
-  useEffect(firebaseWordsRequest, [])
-
-  async function getBasesList() {
-    const q = collection(db, "users", user, 'bases');
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-    });
-  }
-
-  async function firebaseWordsRequest() {
-
-    let data = (await getDoc(doc(db, "users", user, 'data', 'words'))).data();
+    const basesListArray = [];
+    const data = (await getDoc(doc(db, "users", user, 'data', 'words'))).data();
+    const querySnapshot = await getDocs(collection(db, "users", user, 'bases'));
+    querySnapshot.forEach(basename => basesListArray.push(basename.id));
     dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: data });
-    console.log('requested')
-  }
+    dispatch({ type: "GET_BASES_LIST", payload: basesListArray });
 
-  function addNewBase() {
-    setDoc(doc(db, "users", user, 'bases', inputstate), {})
-      .then(x => console.log('done'))
+  }, [])
+
+  async function addNewBase() {
+
+    await setDoc(doc(db, "users", user, 'bases', inputstate), {});
+    const querySnapshot = await getDocs(collection(db, "users", user, 'bases'));
+
+    const basesListArray = [];
+    querySnapshot.forEach(basename => basesListArray.push(basename.id));
+
+    dispatch({ type: "GET_BASES_LIST", payload: basesListArray });
+
   }
 
   return (
     <div>
       <div style={{ marginBottom: '5px' }}>MyWords</div>
       <div style={{ border: '1px solid black', padding: '5px' }}>
-        <select>{testdata.map(x => <option>{x}</option>)}</select>
         <div>Bases</div>
+        <select style={{ width: '150px' }}>{basesList.map(x => <option>{x}</option>)}</select>
         <input type="text" onChange={(e) => setinputstate(e.target.value)} />
         <button onClick={addNewBase}>addbase</button>
-        <button onClick={getBasesList}>baseslist</button>
+        <button onClick={() => console.log(basesList)}>baseslist</button>
       </div>
-      <div style={{ border: '1px solid black', padding: '5px', marginTop: "5px" }}>
+      <div style={{ border: '1px solid black', padding: '5px', margin: "5px 0px" }}>
         <div>Фильтр</div>
         <input type="text" placeholder='фильтр' onChange={(e) => setstate(new RegExp(e.target.value))} />
         <button onClick={() => console.log([...Object.keys(words)].filter(x => words[x].word.match(state)))}>display filtered</button>
@@ -79,8 +77,6 @@ export default function MyWords({ }: Props) {
           )
       }
       </div >}
-
-      <button onClick={firebaseWordsRequest}></button>
     </div >
   )
 }
