@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getDoc, doc, setDoc, collection, query, getDocs } from 'firebase/firestore';
 import { db } from './../../../API/firebase/firebaseConfig'
@@ -13,6 +13,7 @@ export default function MyWords({ }: Props) {
   const [state, setstate] = useState([])
   const [inputstate, setinputstate] = useState('')
 
+  const selectedBase = useRef(null);
   const user = useSelector(state => state.user?.data?.email || 'guest');
   const words = useSelector(state => state.wordsFromFirebase);
   const basesList = useSelector(state => state.basesList?.data);
@@ -45,9 +46,10 @@ export default function MyWords({ }: Props) {
       <div style={{ marginBottom: '5px' }}>MyWords</div>
       <div style={{ border: '1px solid black', padding: '5px' }}>
         <div>Bases</div>
-        <select style={{ width: '150px' }}>{basesList.map(x => <option>{x}</option>)}</select>
+        <select ref={selectedBase} style={{ width: '150px' }}>{basesList.map(x => <option>{x}</option>)}</select>
         <input type="text" onChange={(e) => setinputstate(e.target.value)} />
         <button onClick={addNewBase}>addbase</button>
+        <button onClick={() => console.log(selectedBase.current.selectedOptions[0].text)}>view</button>
         <button onClick={() => console.log(basesList)}>baseslist</button>
       </div>
       <div style={{ border: '1px solid black', padding: '5px', margin: "5px 0px" }}>
