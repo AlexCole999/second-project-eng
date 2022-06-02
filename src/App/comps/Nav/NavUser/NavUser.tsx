@@ -11,7 +11,7 @@ export default function NavUser({ }: Props) {
 
   const dispatch = useDispatch();
 
-  const displayName = useSelector(state => state.user?.data?.displayName)
+  const displayName = useSelector(state => state.user?.data?.photoURL)
 
   const singInWithGooglePopup = () => {
     signInWithPopup(auth, provider)
@@ -27,7 +27,7 @@ export default function NavUser({ }: Props) {
     <div className="NavUser">
       <div className="NavUser__body">
         {displayName !== undefined
-          ? <div>{displayName[0]}</div>
+          ? <img style={{ width: '50px', height: '50px', borderRadius: '50%' }} src={displayName}></img>
           : <FiUserX size={25} onClick={singInWithGooglePopup} />}
       </div>
     </div>
