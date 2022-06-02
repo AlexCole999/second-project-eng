@@ -16,8 +16,9 @@ export default function NavUser({ }: Props) {
   const singInWithGooglePopup = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result.user })
-      }).catch((error) => {
+        dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result.user });
+      })
+      .catch((error) => {
         console.log(error);
       });
   }
