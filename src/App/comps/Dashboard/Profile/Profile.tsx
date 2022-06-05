@@ -10,13 +10,29 @@ export default function Profile({ }: Props) {
   return (
     <div>
       Profile
-      <div>
-        <div><img style={{ width: '52px', height: '52px', borderRadius: '50%' }} src={userdata?.photoURL}></img></div>
-        <div>Имя пользователя:{userdata?.displayName || 'загрузка...'}</div>
-        <div>Email:{userdata?.email || 'загрузка...'}</div>
-        <div>Профиль создан:{userdata?.metadata?.creationTime || 'загрузка...'}</div>
-        <div>Уникальный идендификатор:{userdata?.uid || 'загрузка...'}</div>
-        <button onClick={() => console.log(userdata)}></button>
+      <div><img style={{ width: '52px', height: '52px', borderRadius: '50%' }} src={userdata?.photoURL}></img></div>
+      <div style={{ display: 'flex', flexDirection: 'column', border: '3px solid black', marginTop: '10px', padding: '10px', borderRadius: '8px', maxWidth: '600px' }}>
+
+        <div>
+          <b>Имя пользователя:</b>
+          {userdata?.displayName || 'загрузка...'}
+        </div>
+        <div>
+          <b>Email:</b>
+          {userdata?.email || 'загрузка...'}
+        </div>
+        <div>
+          <b>Профиль создан:</b>
+          {new Date(Number(userdata?.metadata?.createdAt)).toString() || 'загрузка...'}
+        </div>
+        <div>
+          <b>Последний вход:</b>
+          {new Date(Number(userdata?.metadata?.lastLoginAt)).toString() || 'загрузка...'}
+        </div>
+        <div>
+          <b>Уникальный идендификатор:</b>
+          {userdata?.uid || 'загрузка...'}
+        </div>
       </div>
     </div>
   )

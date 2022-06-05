@@ -11,6 +11,7 @@ export default function MyWords({ }: Props) {
   const dispatch = useDispatch();
 
   const [state, setstate] = useState([])
+  const [test, settest] = useState(1)
   const [inputstate, setinputstate] = useState('')
 
   const selectedBase = useRef(null);
@@ -26,7 +27,7 @@ export default function MyWords({ }: Props) {
     querySnapshot.forEach(basename => basesListArray.push(basename.id));
     dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: data });
     dispatch({ type: "GET_BASES_LIST", payload: basesListArray });
-
+    console.log('useEffectDone')
   }, [])
 
   async function addNewBase() {
@@ -44,6 +45,8 @@ export default function MyWords({ }: Props) {
   return (
     <div>
       <div style={{ marginBottom: '5px' }}>MyWords</div>
+      {test}
+      <button onClick={() => settest(test + 1)}></button>
       <div style={{ border: '1px solid black', padding: '5px' }}>
         <div>Bases</div>
         <select ref={selectedBase} style={{ width: '150px' }}>{basesList.map(x => <option>{x}</option>)}</select>
