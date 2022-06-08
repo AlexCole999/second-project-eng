@@ -21,4 +21,13 @@
       display: inline;
     }
 
+    &__elemAppendButton {
+      width: 20px;
+      height: 20px;
+      background-color: green;
+      border-radius: 50%;
+      border: 1px solid black;
+      margin-left: 5px;
+    }
+
   }

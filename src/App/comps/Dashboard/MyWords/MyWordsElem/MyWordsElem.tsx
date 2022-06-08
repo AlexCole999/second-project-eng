@@ -16,15 +16,23 @@ export default function MyWordsElem({ fullWordsList, element }: Props) {
         {
           fullWordsList[element]
             .translates
-            .map(translate =>
-              <div key={translate.translate}>
-                <div className='MyWords__elemTranslateWord'>
-                  {translate.translate}
+            .map(
+              translate =>
+                <div key={translate.translate}>
+                  <div className='MyWords__elemTranslateWord'>
+                    {translate.translate}
+                  </div>
+                  <div className='MyWords__elemTranslateLanguage'>
+                    {translate.language.split('-')[1]}
+                  </div>
+                  <button
+                    className='MyWords__elemAppendButton'
+                    onClick={() => { console.log(fullWordsList[element]?.word, translate.translate) }}
+                  >
+
+                  </button>
                 </div>
-                <div className='MyWords__elemTranslateLanguage'>
-                  {translate.language.split('-')[1]}
-                </div>
-              </div>)
+            )
         }
       </div>
     </div>

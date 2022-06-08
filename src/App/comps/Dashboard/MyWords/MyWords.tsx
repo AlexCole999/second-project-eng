@@ -103,12 +103,13 @@ export default function MyWords({ }: Props) {
       </div >
       {
         filteredWordsArray
-          .map(mainWord =>
-            <MyWordsElem
-              fullWordsList={fullWordsList}
-              element={mainWord}
-              key={mainWord}
-            />
+          .map(
+            mainWord =>
+              <MyWordsElem
+                fullWordsList={fullWordsList}
+                element={mainWord}
+                key={mainWord}
+              />
           )
       }
     </div >
