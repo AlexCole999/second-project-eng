@@ -57,7 +57,6 @@ export default function MyWords({ }: Props) {
       <div className='MyWords__title'>
         MyWords
       </div>
-      <button onClick={() => { console.log(selectedBaseColumn.current.selectedOptions[0].text) }}></button>
       <div
         ref={basemenu}
         className='MyWords__baseMenu'>
