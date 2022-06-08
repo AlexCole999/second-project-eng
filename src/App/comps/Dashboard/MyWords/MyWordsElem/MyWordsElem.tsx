@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 type Props = {
   fullWordsList: any,
   element: any,
-  baseforappend: any
+  selectedbase: any
 }
 
-export default function MyWordsElem({ fullWordsList, element, baseforappend }: Props) {
+export default function MyWordsElem({ fullWordsList, element, selectedbase }: Props) {
 
   const basesList = useSelector(state => state.basesList?.data);
 
@@ -33,7 +33,7 @@ export default function MyWordsElem({ fullWordsList, element, baseforappend }: P
 
                   <button
                     className='MyWords__elemAppendButton'
-                    onClick={() => { console.log(fullWordsList[element]?.word, translate.translate, baseforappend) }}
+                    onClick={() => { console.log(fullWordsList[element]?.word, translate.translate, selectedbase) }}
                   >
                   </button>
                 </div>

@@ -17,8 +17,8 @@ export default function MyWords({ }: Props) {
   const basesList = useSelector(state => state.basesList?.data);
 
   const [regexp, setregexp] = useState([])
+  const [selectedbase, setselectedbase] = useState('')
   const [newbasename, setnewbasename] = useState('')
-  const [baseforappend, setbaseforappend] = useState('')
 
   const basemenu = useRef(null);
   const selectedBaseColumn = useRef(null);
@@ -33,7 +33,7 @@ export default function MyWords({ }: Props) {
     querySnapshot.forEach(basename => basesListArray.push(basename.id));
     dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: data });
     dispatch({ type: "GET_BASES_LIST", payload: basesListArray });
-    setbaseforappend(selectedBaseColumn.current.selectedOptions[0].text)
+    setselectedbase(basesListArray[0]);
     console.log('useEffectDone')
 
   }, [])
@@ -65,11 +65,12 @@ export default function MyWords({ }: Props) {
         </div>
         Добавлять слова в базу:
         <select
+          onChange={(e) => setselectedbase(e.target.value)}
           ref={selectedBaseColumn}>
           {
             basesList
               .map(x =>
-                <option key={x}>
+                <option key={x} value={x}>
                   {x}
                 </option>)
           }
@@ -96,25 +97,27 @@ export default function MyWords({ }: Props) {
         </div>
         <input
           type="text"
-          placeholder='В слове есть буквы...'
+          placeholder='Часть искомого словаююю'
           onChange={
             (e) =>
               setregexp(new RegExp(e.target.value))
           }
         />
       </div >
-      {
-        filteredWordsArray
-          .map(
-            mainWord =>
-              <MyWordsElem
-                fullWordsList={fullWordsList}
-                baseforappend={baseforappend}
-                element={mainWord}
-                key={mainWord}
-              />
-          )
-      }
+      <div className='MyWords__words'>
+        {
+          filteredWordsArray
+            .map(
+              mainWord =>
+                <MyWordsElem
+                  fullWordsList={fullWordsList}
+                  selectedbase={selectedbase}
+                  element={mainWord}
+                  key={mainWord}
+                />
+            )
+        }
+      </div>
     </div >
   )
 }

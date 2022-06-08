@@ -1,6 +1,7 @@
   .MyWords {
 
     &__elem {
+      flex-grow: 1;
       border: 1px solid black;
       padding: 8px;
     }
