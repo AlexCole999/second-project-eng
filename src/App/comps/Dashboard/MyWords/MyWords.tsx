@@ -18,10 +18,10 @@ export default function MyWords({ }: Props) {
   const [regexp, setregexp] = useState([])
   const [newbasename, setnewbasename] = useState('')
 
+  const basemenu = useRef(null);
   const selectedBase = useRef(null);
 
-
-  let filteredWordsArray = [...Object.keys(words).filter(x => words[x].word.match(regexp))];
+  const filteredWordsArray = [...Object.keys(words).filter(x => words[x].word.match(regexp))];
 
   useEffect(async () => {
 
@@ -45,6 +45,8 @@ export default function MyWords({ }: Props) {
 
     dispatch({ type: "GET_BASES_LIST", payload: basesListArray });
 
+    basemenu.current.append(document.createElement("div"), `База ${newbasename} успешно создана`);
+
   }
 
   return (
@@ -52,11 +54,13 @@ export default function MyWords({ }: Props) {
       <div className='MyWords__title'>
         MyWords
       </div>
-      <div className='MyWords__baseMenu'>
+      <div
+        ref={basemenu}
+        className='MyWords__baseMenu'>
         <div>
           Базы слов
         </div>
-        Список баз:
+        Добавлять слова в базу:
         <select
           ref={selectedBase}>
           {
@@ -68,7 +72,7 @@ export default function MyWords({ }: Props) {
           }
         </select>
         <br />
-        Добавить новую базу:
+        Создать новую базу:
         <br />
         <input
           type="text"
@@ -80,7 +84,7 @@ export default function MyWords({ }: Props) {
         />
         <button
           onClick={addNewBase}>
-          addbase
+          Создать
         </button>
       </div>
       <div className='MyWords__wordsFilterMenu'>
