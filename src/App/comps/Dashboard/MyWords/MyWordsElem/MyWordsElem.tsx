@@ -1,7 +1,7 @@
 import React from 'react'
 import './MyWordsElem.scss'
 import { useSelector } from 'react-redux';
-
+import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
 type Props = {
   fullWordsList: any,
   element: any,
@@ -15,7 +15,9 @@ export default function MyWordsElem({ fullWordsList, element, selectedbase }: Pr
   return (
     <div className='MyWords__elem'>
       <div className='MyWords__elemMainWord'>
-        <div>{fullWordsList[element]?.word}</div>
+        <div>
+          {capitalizeFirstLetter(fullWordsList[element]?.word)}
+        </div>
       </div>
       <div>
         {
@@ -26,7 +28,7 @@ export default function MyWordsElem({ fullWordsList, element, selectedbase }: Pr
                 <div className='MyWords__elemTranslateRow' key={translate.translate}>
                   <div>
                     <div className='MyWords__elemTranslateWord'>
-                      {translate.translate}
+                      {capitalizeFirstLetter(translate.translate)}
                     </div>
                     <div className='MyWords__elemTranslateLanguage'>
                       {translate.language.split('-')[1]}
