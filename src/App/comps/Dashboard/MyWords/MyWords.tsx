@@ -11,13 +11,17 @@ export default function MyWords({ }: Props) {
 
   const dispatch = useDispatch();
 
+  const user = useSelector(state => state.user?.data?.email || 'guest');
+  const words = useSelector(state => state.wordsFromFirebase);
+  const basesList = useSelector(state => state.basesList?.data);
+
   const [regexp, setregexp] = useState([])
   const [newbasename, setnewbasename] = useState('')
 
   const selectedBase = useRef(null);
-  const user = useSelector(state => state.user?.data?.email || 'guest');
-  const words = useSelector(state => state.wordsFromFirebase);
-  const basesList = useSelector(state => state.basesList?.data);
+
+
+  let filteredWordsArray = [...Object.keys(words).filter(x => words[x].word.match(regexp))];
 
   useEffect(async () => {
 
@@ -93,28 +97,29 @@ export default function MyWords({ }: Props) {
         />
       </div >
       {
-        < div >
-          {
-            [...Object.keys(words).filter(x => words[x].word.match(regexp))]
-              .map(x =>
-                <div style={{ border: '1px solid black', padding: '8px' }}>
-                  <div style={{ fontSize: '26px', fontWeight: 'bold' }}>
-                    {words[x]?.word}
-                  </div>
-                  <div style={{}}>
-                    {words[x].translates
-                      .map(x =>
-                        <div>
-                          <div style={{ fontSize: '20px', fontStyle: 'italic', display: 'inline' }}>{x.translate}</div>
-                          <div style={{ fontSize: '8px', display: 'inline' }}>
-                            {x.language.split('-')[1]}
-                          </div>
-                        </div>)}
-                  </div>
-                </div>
-              )
-          }
-        </div >
+        filteredWordsArray
+          .map(x =>
+            <div className='MyWords__elem'>
+              <div className='MyWords__elemMainWord'>
+                {words[x]?.word}
+              </div>
+              <div>
+                {
+                  words[x]
+                    .translates
+                    .map(x =>
+                      <div>
+                        <div className='MyWords__elemTranslateWord'>
+                          {x.translate}
+                        </div>
+                        <div className='MyWords__elemTranslateLanguage'>
+                          {x.language.split('-')[1]}
+                        </div>
+                      </div>)
+                }
+              </div>
+            </div>
+          )
       }
     </div >
   )
