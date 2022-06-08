@@ -67,7 +67,7 @@ export default function MyWords({ }: Props) {
           {
             basesList
               .map(x =>
-                <option>
+                <option key={x}>
                   {x}
                 </option>)
           }
@@ -103,27 +103,12 @@ export default function MyWords({ }: Props) {
       </div >
       {
         filteredWordsArray
-          .map(x =>
-            <div className='MyWords__elem'>
-              <div className='MyWords__elemMainWord'>
-                {fullWordsList[x]?.word}
-              </div>
-              <div>
-                {
-                  fullWordsList[x]
-                    .translates
-                    .map(x =>
-                      <div>
-                        <div className='MyWords__elemTranslateWord'>
-                          {x.translate}
-                        </div>
-                        <div className='MyWords__elemTranslateLanguage'>
-                          {x.language.split('-')[1]}
-                        </div>
-                      </div>)
-                }
-              </div>
-            </div>
+          .map(mainWord =>
+            <MyWordsElem
+              fullWordsList={fullWordsList}
+              element={mainWord}
+              key={mainWord}
+            />
           )
       }
     </div >

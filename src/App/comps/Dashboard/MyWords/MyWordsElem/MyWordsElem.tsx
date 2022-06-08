@@ -1,25 +1,28 @@
 import React from 'react'
 import './MyWordsElem.scss'
 
-type Props = {}
+type Props = {
+  fullWordsList: any,
+  element: any
+}
 
-export default function MyWordsElem({ }: Props) {
+export default function MyWordsElem({ fullWordsList, element }: Props) {
   return (
     <div className='MyWords__elem'>
       <div className='MyWords__elemMainWord'>
-        {words[x]?.word}
+        {fullWordsList[element]?.word}
       </div>
       <div>
         {
-          words[x]
+          fullWordsList[element]
             .translates
-            .map(x =>
-              <div>
+            .map(translate =>
+              <div key={translate.translate}>
                 <div className='MyWords__elemTranslateWord'>
-                  {x.translate}
+                  {translate.translate}
                 </div>
                 <div className='MyWords__elemTranslateLanguage'>
-                  {x.language.split('-')[1]}
+                  {translate.language.split('-')[1]}
                 </div>
               </div>)
         }
