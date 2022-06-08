@@ -1,4 +1,5 @@
 import React from 'react'
+import './MyWords.scss'
 import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getDoc, doc, setDoc, collection, query, getDocs } from 'firebase/firestore';
@@ -10,8 +11,7 @@ export default function MyWords({ }: Props) {
 
   const dispatch = useDispatch();
 
-  const [state, setstate] = useState([])
-  const [test, settest] = useState(1)
+  const [regexp, setregexp] = useState([])
   const [inputstate, setinputstate] = useState('')
 
   const selectedBase = useRef(null);
@@ -28,6 +28,7 @@ export default function MyWords({ }: Props) {
     dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: data });
     dispatch({ type: "GET_BASES_LIST", payload: basesListArray });
     console.log('useEffectDone')
+
   }, [])
 
   async function addNewBase() {
@@ -43,13 +44,24 @@ export default function MyWords({ }: Props) {
   }
 
   return (
-    <div>
-      <div style={{ marginBottom: '5px' }}>MyWords</div>
-      {test}
-      <button onClick={() => settest(test + 1)}></button>
-      <div style={{ border: '1px solid black', padding: '5px' }}>
-        <div>Bases</div>
-        <select ref={selectedBase} style={{ width: '150px' }}>{basesList.map(x => <option>{x}</option>)}</select>
+    <div className='MyWords'>
+      <div className='MyWords__title'>
+        MyWords
+      </div>
+      <div className='MyWords__baseMenu'>
+        <div>
+          Bases
+        </div>
+        <select
+          ref={selectedBase}>
+          {
+            basesList
+              .map(x =>
+                <option>
+                  {x}
+                </option>)
+          }
+        </select>
         <input type="text" onChange={(e) => setinputstate(e.target.value)} />
         <button onClick={addNewBase}>addbase</button>
         <button onClick={() => console.log(selectedBase.current.selectedOptions[0].text)}>view</button>
@@ -57,12 +69,11 @@ export default function MyWords({ }: Props) {
       </div>
       <div style={{ border: '1px solid black', padding: '5px', margin: "5px 0px" }}>
         <div>Фильтр</div>
-        <input type="text" placeholder='фильтр' onChange={(e) => setstate(new RegExp(e.target.value))} />
-        <button onClick={() => console.log([...Object.keys(words)].filter(x => words[x].word.match(state)))}>display filtered</button>
-        <button onClick={() => console.log(state)}>display regexp</button>
+        <input type="text" placeholder='фильтр' onChange={(e) => setregexp(new RegExp(e.target.value))} />
+        <button onClick={() => console.log([...Object.keys(words)].filter(x => words[x].word.match(regexp)))}>display filtered</button>
       </div >
       {< div > {
-        [...Object.keys(words)]
+        [...Object.keys(words).filter(x => words[x].word.match(regexp))]
           .map(x =>
             <div style={{ border: '1px solid black', padding: '8px' }}>
               <div style={{ fontSize: '26px', fontWeight: 'bold' }}>

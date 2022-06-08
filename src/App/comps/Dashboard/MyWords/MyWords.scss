@@ -1,0 +1,14 @@
+.MyWords {
+  &__title {
+    margin-bottom: 5px;
+  }
+
+  &__baseMenu {
+    border: 1px solid black;
+    padding: 5px;
+
+    select {
+      width: 150px;
+    }
+  }
+}
