@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getDoc, doc, setDoc, collection, query, getDocs } from 'firebase/firestore';
 import { db } from './../../../API/firebase/firebaseConfig'
+import MyWordsElem from './MyWordsElem/MyWordsElem';
 
 type Props = {}
 
@@ -12,7 +13,7 @@ export default function MyWords({ }: Props) {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.user?.data?.email || 'guest');
-  const words = useSelector(state => state.wordsFromFirebase);
+  const fullWordsList = useSelector(state => state.wordsFromFirebase);
   const basesList = useSelector(state => state.basesList?.data);
 
   const [regexp, setregexp] = useState([])
@@ -21,7 +22,7 @@ export default function MyWords({ }: Props) {
   const basemenu = useRef(null);
   const selectedBase = useRef(null);
 
-  const filteredWordsArray = [...Object.keys(words).filter(x => words[x].word.match(regexp))];
+  const filteredWordsArray = [...Object.keys(fullWordsList).filter(x => fullWordsList[x].word.match(regexp))];
 
   useEffect(async () => {
 
@@ -105,11 +106,11 @@ export default function MyWords({ }: Props) {
           .map(x =>
             <div className='MyWords__elem'>
               <div className='MyWords__elemMainWord'>
-                {words[x]?.word}
+                {fullWordsList[x]?.word}
               </div>
               <div>
                 {
-                  words[x]
+                  fullWordsList[x]
                     .translates
                     .map(x =>
                       <div>
