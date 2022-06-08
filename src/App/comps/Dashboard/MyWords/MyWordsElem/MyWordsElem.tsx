@@ -3,10 +3,11 @@ import './MyWordsElem.scss'
 
 type Props = {
   fullWordsList: any,
-  element: any
+  element: any,
+  baseforappend: any
 }
 
-export default function MyWordsElem({ fullWordsList, element }: Props) {
+export default function MyWordsElem({ fullWordsList, element, baseforappend }: Props) {
   return (
     <div className='MyWords__elem'>
       <div className='MyWords__elemMainWord'>
@@ -27,7 +28,7 @@ export default function MyWordsElem({ fullWordsList, element }: Props) {
                   </div>
                   <button
                     className='MyWords__elemAppendButton'
-                    onClick={() => { console.log(fullWordsList[element]?.word, translate.translate) }}
+                    onClick={() => { console.log(fullWordsList[element]?.word, translate.translate, baseforappend) }}
                   >
 
                   </button>

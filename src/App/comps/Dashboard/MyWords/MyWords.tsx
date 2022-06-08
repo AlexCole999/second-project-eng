@@ -18,11 +18,12 @@ export default function MyWords({ }: Props) {
 
   const [regexp, setregexp] = useState([])
   const [newbasename, setnewbasename] = useState('')
+  const [baseforappend, setbaseforappend] = useState('')
 
   const basemenu = useRef(null);
-  const selectedBase = useRef(null);
+  const selectedBaseColumn = useRef(null);
 
-  const filteredWordsArray = [...Object.keys(fullWordsList).filter(x => fullWordsList[x].word.match(regexp))];
+  const filteredWordsArray = [...Object.keys(fullWordsList).filter(x => fullWordsList[x].word.toLowerCase().match(regexp))];
 
   useEffect(async () => {
 
@@ -32,6 +33,7 @@ export default function MyWords({ }: Props) {
     querySnapshot.forEach(basename => basesListArray.push(basename.id));
     dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: data });
     dispatch({ type: "GET_BASES_LIST", payload: basesListArray });
+    setbaseforappend(selectedBaseColumn.current.selectedOptions[0].text)
     console.log('useEffectDone')
 
   }, [])
@@ -55,6 +57,7 @@ export default function MyWords({ }: Props) {
       <div className='MyWords__title'>
         MyWords
       </div>
+      <button onClick={() => { console.log(selectedBaseColumn.current.selectedOptions[0].text) }}></button>
       <div
         ref={basemenu}
         className='MyWords__baseMenu'>
@@ -63,7 +66,7 @@ export default function MyWords({ }: Props) {
         </div>
         Добавлять слова в базу:
         <select
-          ref={selectedBase}>
+          ref={selectedBaseColumn}>
           {
             basesList
               .map(x =>
@@ -94,7 +97,7 @@ export default function MyWords({ }: Props) {
         </div>
         <input
           type="text"
-          placeholder='В слове есть буква...'
+          placeholder='В слове есть буквы...'
           onChange={
             (e) =>
               setregexp(new RegExp(e.target.value))
@@ -107,6 +110,7 @@ export default function MyWords({ }: Props) {
             mainWord =>
               <MyWordsElem
                 fullWordsList={fullWordsList}
+                baseforappend={baseforappend}
                 element={mainWord}
                 key={mainWord}
               />
