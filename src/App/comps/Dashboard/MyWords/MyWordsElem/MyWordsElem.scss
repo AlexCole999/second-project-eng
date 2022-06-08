@@ -7,8 +7,15 @@
     }
 
     &__elemMainWord {
+      margin: 3px 0px 10px 0px;
+      text-align: center;
       font-size: 26px;
       font-weight: bold;
+    }
+
+    &__elemTranslateRow {
+      display: flex;
+      justify-content: space-between;
     }
 
     &__elemTranslateWord {
