@@ -13,6 +13,7 @@
     border-radius: 30%;
 
     &:hover {
+      cursor: pointer;
       transform: scale(1.4);
       color: rgb(10, 241, 10);
     }
