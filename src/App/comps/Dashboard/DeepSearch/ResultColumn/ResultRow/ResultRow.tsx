@@ -3,6 +3,8 @@ import './ResultRow.scss'
 import { getDoc, setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../API/firebase/firebaseConfig'
 import { useSelector } from 'react-redux';
+import { FiFolderPlus } from "react-icons/fi";
+
 
 type Props = {
   translate: string,
@@ -69,10 +71,10 @@ export default function ResultRow({ translate, examples, mean, synonym, frequenc
         <hr />
       </div>
       <div>
-        <button className='DeepSearch__resultRowAppendButton'
+        <FiFolderPlus className='DeepSearch__resultRowAppendButton'
           onClick={addTranslateToFirebase}
         >
-        </button>
+        </FiFolderPlus>
       </div>
     </div>
   )

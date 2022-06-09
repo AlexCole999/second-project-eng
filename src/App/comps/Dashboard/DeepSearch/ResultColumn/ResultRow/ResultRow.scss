@@ -6,10 +6,16 @@
   }
 
   &__resultRowAppendButton {
-    margin-left: 5px;
     width: 25px;
-    height: 15px;
-    background-color: green;
+    height: 25px;
+    color: rgb(96, 202, 96);
+    transition: 0.3s all ease;
+    border-radius: 30%;
+
+    &:hover {
+      transform: scale(1.4);
+      color: rgb(10, 241, 10);
+    }
   }
 
 }
