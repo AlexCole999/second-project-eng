@@ -14,7 +14,7 @@ export default function MyWords({ }: Props) {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.user?.data?.email || 'guest');
-  const fullWordsList = useSelector(state => state.wordsFromFirebase);
+  const fullWordsList = useSelector(state => state.allWordsFromFirebase);
 
   const [regexp, setregexp] = useState([])
 

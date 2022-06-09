@@ -6,20 +6,19 @@ import { useSelector } from 'react-redux';
 
 type Props = {
   translate: string,
-  fulltranslate: any,
   examples: any,
   mean: any,
   synonym: any,
   frequency: number
 }
 
-export default function ResultRow({ fulltranslate, translate, examples, mean, synonym, frequency }: Props) {
+export default function ResultRow({ translate, examples, mean, synonym, frequency }: Props) {
 
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
-  async function addTranslateToDefaultFirebase() { // функция добавления слова в базу
+  async function addTranslateToFirebase() { // функция добавления слова в базу
 
     let oldWords = (await getDoc(doc(db, "users", user, 'data', 'words'))); // запрашиваем данные о словах пользователя с сервера
 
@@ -49,35 +48,36 @@ export default function ResultRow({ fulltranslate, translate, examples, mean, sy
 
   }
 
-  async function getWordToFirebase() {
-
-    let data = (await getDoc(doc(db, "users", user, 'data', 'words'))).data();
-
-    console.log(data);
-
-  }
-
   return (
     <div className='DeepSearch__resultRow'>
       <div style={{ marginBottom: '5px' }}>
-        <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '5px' }}>{`${translate[0].toUpperCase()}${translate.slice(1)}`}</div>
-        <div style={{ marginBottom: '5px' }}>Встречается: {frequency}/10</div>
-        <div style={{ marginBottom: '5px' }}>{synonym.length ? 'Синонимы:' : ''}{synonym.map(x => <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>{x.text}</div>)}</div>
-        <div style={{ marginBottom: '5px' }}>{mean.length ? 'Похожие слова:' : ''}{mean.map(x => <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>{x.text}</div>)}</div>
-        <div>{examples.length ? 'Примеры использования:' : ''}{examples.map(x => <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>{x.text} - {x.tr[0].text}</div>)}</div>
+        <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '5px' }}>
+          {`${translate[0].toUpperCase()}${translate.slice(1)}`}
+        </div>
+        <div style={{ marginBottom: '5px' }}>Встречается: {frequency}/10
+        </div>
+        <div style={{ marginBottom: '5px' }}>
+          {synonym.length ? 'Синонимы:' : ''}
+          {synonym.map(x =>
+            <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>
+              {x.text}
+            </div>)}
+        </div>
+        <div style={{ marginBottom: '5px' }}>{mean.length ? 'Похожие слова:' : ''}
+          {mean.map(x => <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>
+            {x.text}
+          </div>)}
+        </div>
+        <div>
+          {examples.length ? 'Примеры использования:' : ''}
+          {examples.map(x => <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>
+            {x.text} - {x.tr[0].text}</div>)}
+        </div>
         <hr />
       </div>
       <div>
         <button className='DeepSearch__resultRowAppendButton'
-          onClick={addTranslateToDefaultFirebase}
-        >
-        </button>
-        <button className='DeepSearch__resultRowAppendButton'
-          onClick={getWordToFirebase}
-        >
-        </button>
-        <button className='DeepSearch__resultRowAppendButton'
-          onClick={() => console.log(fulltranslate)}
+          onClick={addTranslateToFirebase}
         >
         </button>
       </div>

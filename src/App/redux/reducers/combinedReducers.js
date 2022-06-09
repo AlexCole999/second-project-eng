@@ -8,7 +8,7 @@ const combinedReducers = combineReducers({
   user: logInUserWithGoogleAuthReducer,
   selectedLanguage: changeSelectedLanguageReducer,
   yandexDictionaryTranslates: getTranslatesFromYandexDictionaryReducer,
-  wordsFromFirebase: getWordsFromFirebaseReducer
+  allWordsFromFirebase: getWordsFromFirebaseReducer
 })
 
 export default combinedReducers;
