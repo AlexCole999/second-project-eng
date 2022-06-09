@@ -2,6 +2,7 @@ import React from 'react'
 import './MyWordsElem.scss'
 import { useSelector } from 'react-redux';
 import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
+
 type Props = {
   fullWordsList: any,
   element: any,
@@ -9,8 +10,6 @@ type Props = {
 }
 
 export default function MyWordsElem({ fullWordsList, element, selectedbase }: Props) {
-
-  const basesList = useSelector(state => state.basesList?.data);
 
   return (
     <div className='MyWords__elem'>

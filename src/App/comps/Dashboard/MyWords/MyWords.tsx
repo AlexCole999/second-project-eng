@@ -48,7 +48,7 @@ export default function MyWords({ }: Props) {
 
     dispatch({ type: "GET_BASES_LIST", payload: basesListArray });
 
-    basemenu.current.append(document.createElement("div"), `База ${newbasename} успешно создана`);
+    basemenu.current.append(document.createElement("div"), `База "${newbasename}" успешно создана`);
 
   }
 
@@ -97,7 +97,7 @@ export default function MyWords({ }: Props) {
         </div>
         <input
           type="text"
-          placeholder='Часть искомого словаююю'
+          placeholder='Часть искомого слова...'
           onChange={
             (e) =>
               setregexp(new RegExp(e.target.value))
