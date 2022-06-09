@@ -2,9 +2,9 @@
 
   &__resultColumn {
     border: 1px solid black;
-    margin: 15px;
-    max-width: 450px;
+    min-width: 200px;
     padding: 8px;
+    flex-grow: 1;
   }
 
   &__resultColumnPos {
