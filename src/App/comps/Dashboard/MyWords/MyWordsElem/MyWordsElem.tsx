@@ -1,6 +1,7 @@
 import React from 'react'
 import './MyWordsElem.scss'
 import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
+import { FiX } from "react-icons/fi";
 
 type Props = {
   fullWordsList: any,
@@ -31,11 +32,11 @@ export default function MyWordsElem({ fullWordsList, element }: Props) {
                       {translate.language.split('-')[1]}
                     </div>
                   </div>
-                  <button
+                  <FiX
                     className='MyWords__elemAppendButton'
                     onClick={() => console.log('someaction')}
                   >
-                  </button>
+                  </FiX>
                 </div>
             )
         }

@@ -30,12 +30,16 @@
     }
 
     &__elemAppendButton {
-      width: 20px;
-      height: 20px;
-      background-color: green;
-      border-radius: 50%;
-      border: 1px solid black;
-      margin-left: 5px;
+      cursor: pointer;
+      color: rgb(216, 93, 93);
+      width: 14px;
+      height: 14px;
+      transition: 0.3s all ease;
+
+      &:hover {
+        transform: scale(2);
+        color: rgb(228, 25, 25);
+      }
     }
 
   }

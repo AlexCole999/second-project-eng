@@ -25,7 +25,6 @@ export default function DeepSearch({ }: Props) {
             )
         }
       </div>
-      <button onClick={() => console.log(results)}></button>
     </div >
   )
 }
