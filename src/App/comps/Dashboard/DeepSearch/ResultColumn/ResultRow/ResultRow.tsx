@@ -4,8 +4,6 @@ import { getDoc, setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../API/firebase/firebaseConfig'
 import { useSelector } from 'react-redux';
 
-let database = db;
-
 type Props = {
   translate: string,
   fulltranslate: any,
@@ -23,11 +21,11 @@ export default function ResultRow({ fulltranslate, translate, examples, mean, sy
 
   async function addTranslateToDefaultFirebase() { // функция добавления слова в базу
 
-    let oldWords = (await getDoc(doc(database, "users", user, 'data', 'words'))); // запрашиваем данные о словах пользователя с сервера
+    let oldWords = (await getDoc(doc(db, "users", user, 'data', 'words'))); // запрашиваем данные о словах пользователя с сервера
 
     if (oldWords.data() == undefined) {  // если добавленных слов по этому пользователю нет
-      await setDoc(doc(database, "users", user, 'data', 'words'), {}); //создаем пустой объект по этому пути
-      oldWords = (await getDoc(doc(database, "users", user, 'data', 'words'))); // заново запрашиваем отправленные данные с сервера
+      await setDoc(doc(db, "users", user, 'data', 'words'), {}); //создаем пустой объект по этому пути
+      oldWords = (await getDoc(doc(db, "users", user, 'data', 'words'))); // заново запрашиваем отправленные данные с сервера
     }
 
     let newbase = oldWords.data(); // копируем полученные данные в новый объект, его мы будем изменять для отправки изменений на сервер
@@ -47,13 +45,13 @@ export default function ResultRow({ fulltranslate, translate, examples, mean, sy
       { language: selectedLanguage, translate: translate } // добавляем в конец отфильтрованного массива объект с нашим новым переводом 
     ]
 
-    setDoc(doc(database, "users", user, 'data', 'words'), newbase).then(x => console.log('appended')); // сформированный и измененный объект newbase отправляем на сервер в качестве новых данных
+    setDoc(doc(db, "users", user, 'data', 'words'), newbase).then(x => console.log('appended')); // сформированный и измененный объект newbase отправляем на сервер в качестве новых данных
 
   }
 
   async function getWordToFirebase() {
 
-    let data = (await getDoc(doc(database, "users", user, 'data', 'words'))).data();
+    let data = (await getDoc(doc(db, "users", user, 'data', 'words'))).data();
 
     console.log(data);
 
