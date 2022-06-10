@@ -3,7 +3,8 @@ import './ResultRow.scss'
 import { getDoc, setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../API/firebase/firebaseConfig'
 import { useSelector } from 'react-redux';
-import { FiFolderPlus } from "react-icons/fi";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { AiFillPlayCircle } from "react-icons/ai";
 import capitalizeFirstLetter from './../../../../../functions/capitalizeFirstLetter';
 
 
@@ -88,11 +89,15 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         </div>
         <hr />
       </div>
-      <div>
-        <FiFolderPlus className='DeepSearch__resultRowAppendButton'
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <AiFillCheckCircle className='DeepSearch__resultRowAppendButton'
           onClick={addTranslateToFirebase}
         >
-        </FiFolderPlus>
+        </AiFillCheckCircle>
+        <AiFillPlayCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_play'
+          onClick={() => { console.log('game word appended') }}
+        >
+        </AiFillPlayCircle>
       </div>
     </div>
   )

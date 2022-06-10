@@ -41,16 +41,24 @@
   }
 
   &__resultRowAppendButton {
-    width: 25px;
-    height: 25px;
-    color: rgb(96, 202, 96);
-    transition: 0.3s all ease;
+    width: 28px;
+    height: 28px;
+    color: rgba(168, 168, 168, 0.644);
+    transition: 0.6s all ease;
     border-radius: 30%;
 
     &:hover {
       cursor: pointer;
-      transform: scale(1.4);
-      color: rgb(10, 241, 10);
+      transform: scale(1.2);
+      color: rgb(0, 252, 0);
+    }
+
+    &_play {
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        color: rgb(228, 63, 206);
+      }
     }
   }
 
