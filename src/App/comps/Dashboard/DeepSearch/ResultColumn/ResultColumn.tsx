@@ -1,6 +1,7 @@
 import React from 'react'
 import './ResultColumn.scss'
 import ResultRow from './ResultRow/ResultRow';
+import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
 
 type Props = {
   pos: string,
@@ -13,17 +14,16 @@ export default function ResultColumn({ pos, translates }: Props) {
     <div className='DeepSearch__resultColumn'>
       <div className='DeepSearch__resultColumnPos'>
         <div>
-          {pos}
+          {capitalizeFirstLetter(pos)}
         </div>
       </div>
       {
         translates.map(translate =>
           <ResultRow
-            fulltranslate={translate}
             translate={translate.text}
             examples={translate.ex || []}
-            mean={translate.mean || []}
-            synonym={translate.syn || []}
+            sameWords={translate.mean || []}
+            synonyms={translate.syn || []}
             frequency={translate.fr || ''}
             key={translate.text}
           />)

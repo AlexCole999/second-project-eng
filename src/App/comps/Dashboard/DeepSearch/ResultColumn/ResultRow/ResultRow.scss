@@ -5,6 +5,41 @@
     justify-content: space-between;
   }
 
+  &__resultRowMainWord {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  &__resultRowFrequency {
+    margin-bottom: 5px;
+  }
+
+  &__resultRowSynonymsList {
+    margin-bottom: 5px;
+  }
+
+  &__resultRowSynonymsListElem {
+    font-style: italic;
+    font-size: 13px;
+  }
+
+  &__resultRowSameWordsList {
+    margin-bottom: 5px;
+  }
+
+  &__resultRowSameWordsListElem {
+    font-style: italic;
+    font-size: 13px;
+  }
+
+  &__resultRowExamplesList {}
+
+  &__resultRowExamplesListElem {
+    font-style: italic;
+    font-size: 13px;
+  }
+
   &__resultRowAppendButton {
     width: 25px;
     height: 25px;

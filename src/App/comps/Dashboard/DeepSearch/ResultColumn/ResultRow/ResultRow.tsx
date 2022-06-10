@@ -4,17 +4,18 @@ import { getDoc, setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../API/firebase/firebaseConfig'
 import { useSelector } from 'react-redux';
 import { FiFolderPlus } from "react-icons/fi";
+import capitalizeFirstLetter from './../../../../../functions/capitalizeFirstLetter';
 
 
 type Props = {
   translate: string,
   examples: any,
-  mean: any,
-  synonym: any,
+  sameWords: any,
+  synonyms: any,
   frequency: number
 }
 
-export default function ResultRow({ translate, examples, mean, synonym, frequency }: Props) {
+export default function ResultRow({ translate, examples, sameWords, synonyms, frequency }: Props) {
 
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
@@ -45,28 +46,45 @@ export default function ResultRow({ translate, examples, mean, synonym, frequenc
 
   return (
     <div className='DeepSearch__resultRow'>
-      <div style={{ marginBottom: '5px' }}>
-        <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '5px' }}>
-          {`${translate[0].toUpperCase()}${translate.slice(1)}`}
+      <div>
+        <div className='DeepSearch__resultRowMainWord'>
+          {capitalizeFirstLetter(translate)}
         </div>
-        <div style={{ marginBottom: '5px' }}>Встречается: {frequency}/10
+        <div className='DeepSearch__resultRowFrequency'>
+          Встречается: {frequency}/10
         </div>
-        <div style={{ marginBottom: '5px' }}>
-          {synonym.length ? 'Синонимы:' : ''}
-          {synonym.map(x =>
-            <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>
-              {x.text}
-            </div>)}
+        <div className='DeepSearch__resultRowSynonymsList'>
+          {synonyms.length ? 'Синонимы:' : ''}
+          {
+            synonyms
+              .map(
+                synonym =>
+                  <div className='DeepSearch__resultRowSynonymsListElem'>
+                    {synonym.text}
+                  </div>)
+          }
         </div>
-        <div style={{ marginBottom: '5px' }}>{mean.length ? 'Похожие слова:' : ''}
-          {mean.map(x => <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>
-            {x.text}
-          </div>)}
+        <div className='DeepSearch__resultRowSameWordsList'>
+          {sameWords.length ? 'Похожие слова:' : ''}
+          {
+            sameWords
+              .map(
+                sameWord =>
+                  <div className='DeepSearch__resultRowSameWordsListElem'>
+                    {sameWord.text}
+                  </div>)
+          }
         </div>
-        <div>
+        <div className='DeepSearch__resultRowExamplesList'>
           {examples.length ? 'Примеры использования:' : ''}
-          {examples.map(x => <div style={{ fontStyle: 'italic', fontSize: '0.8em' }}>
-            {x.text} - {x.tr[0].text}</div>)}
+          {
+            examples
+              .map(
+                example =>
+                  <div className='DeepSearch__resultRowExamplesListElem'>
+                    {example.text} - {example.tr[0].text}
+                  </div>)
+          }
         </div>
         <hr />
       </div>
