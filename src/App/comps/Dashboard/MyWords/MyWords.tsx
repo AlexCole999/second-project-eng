@@ -39,7 +39,6 @@ export default function MyWords({ }: Props) {
           Фильтр
         </div>
         <div>
-          Слово:
           <input
             type="text"
             placeholder='Часть искомого слова...'

@@ -45,6 +45,12 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
     setDoc(doc(db, "users", user, 'data', 'words'), newbase).then(x => console.log('appended')); // сформированный и измененный объект newbase отправляем на сервер в качестве новых данных
   }
 
+  async function setWordGame() {
+    let allWords = await getDoc(doc(db, "users", user, 'data', 'words'));
+    allWords = allWords.data()
+    console.log({ ...allWords[word], game: translate })
+  }
+
   return (
     <div className='DeepSearch__resultRow'>
       <div>
@@ -94,8 +100,8 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
           onClick={addTranslateToFirebase}
         >
         </AiFillCheckCircle>
-        <AiFillPlayCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_play'
-          onClick={() => { console.log('game word appended') }}
+        <AiFillPlayCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
+          onClick={setWordGame}
         >
         </AiFillPlayCircle>
       </div>
