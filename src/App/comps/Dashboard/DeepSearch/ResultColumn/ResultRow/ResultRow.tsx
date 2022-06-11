@@ -82,49 +82,63 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
   return (
     <div className='DeepSearch__resultRow'>
+
       <div>
+
         <div className='DeepSearch__resultRowMainWord'>
           {capitalizeFirstLetter(translate)}
         </div>
+
         <div className='DeepSearch__resultRowFrequency'>
           Встречается: {frequency}/10
         </div>
+
         <div className='DeepSearch__resultRowSynonymsList'>
+
           {synonyms.length ? 'Синонимы:' : ''}
-          {
-            synonyms
-              .map(
-                synonym =>
-                  <div className='DeepSearch__resultRowSynonymsListElem'>
-                    {synonym.text}
-                  </div>)
+          {synonyms
+            .map(
+              synonym =>
+                <div className='DeepSearch__resultRowSynonymsListElem'>
+                  {capitalizeFirstLetter(synonym.text)}
+                </div>
+            )
           }
+
         </div>
+
         <div className='DeepSearch__resultRowSameWordsList'>
+
           {sameWords.length ? 'Похожие слова:' : ''}
-          {
-            sameWords
-              .map(
-                sameWord =>
-                  <div className='DeepSearch__resultRowSameWordsListElem'>
-                    {sameWord.text}
-                  </div>)
+          {sameWords
+            .map(
+              sameWord =>
+                <div className='DeepSearch__resultRowSameWordsListElem'>
+                  {capitalizeFirstLetter(sameWord.text)}
+                </div>)
           }
+
         </div>
+
         <div className='DeepSearch__resultRowExamplesList'>
+
           {examples.length ? 'Примеры использования:' : ''}
-          {
-            examples
-              .map(
-                example =>
-                  <div className='DeepSearch__resultRowExamplesListElem'>
-                    {example.text} - {example.tr[0].text}
-                  </div>)
+          {examples
+            .map(
+              example =>
+                <div className='DeepSearch__resultRowExamplesListElem'>
+                  {capitalizeFirstLetter(example.text)} - {example.tr[0].text}
+                </div>)
           }
+
         </div>
+
         <hr />
+
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+
+      <div className='DeepSearch__resultRowButtonMenu'>
+
         {
           isAppendedTranslate
             ? <AiFillCheckCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
@@ -148,7 +162,9 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
             >
             </AiFillPlayCircle>
         }
+
       </div>
+
     </div>
   )
 }

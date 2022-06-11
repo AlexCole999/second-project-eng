@@ -40,6 +40,11 @@
     font-size: 13px;
   }
 
+  &__resultRowButtonMenu {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__resultRowAppendButton {
     width: 28px;
     height: 28px;
