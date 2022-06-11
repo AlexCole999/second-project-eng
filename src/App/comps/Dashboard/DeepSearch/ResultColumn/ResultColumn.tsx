@@ -11,12 +11,17 @@ type Props = {
 export default function ResultColumn({ pos, translates }: Props) {
 
   return (
+
     <div className='DeepSearch__resultColumn'>
+
       <div className='DeepSearch__resultColumnPos'>
+
         <div>
           {capitalizeFirstLetter(pos)}
         </div>
+
       </div>
+
       {
         translates.map(translate =>
           <ResultRow
@@ -28,6 +33,8 @@ export default function ResultColumn({ pos, translates }: Props) {
             key={translate.text}
           />)
       }
+
     </div>
+
   )
 }

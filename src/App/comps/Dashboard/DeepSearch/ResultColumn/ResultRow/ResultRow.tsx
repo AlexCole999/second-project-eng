@@ -97,6 +97,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         <div className='DeepSearch__resultRowSynonymsList'>
 
           {synonyms.length ? 'Синонимы:' : ''}
+
           {synonyms
             .map(
               synonym =>
@@ -111,6 +112,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         <div className='DeepSearch__resultRowSameWordsList'>
 
           {sameWords.length ? 'Похожие слова:' : ''}
+
           {sameWords
             .map(
               sameWord =>
@@ -124,6 +126,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         <div className='DeepSearch__resultRowExamplesList'>
 
           {examples.length ? 'Примеры использования:' : ''}
+
           {examples
             .map(
               example =>

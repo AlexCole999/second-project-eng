@@ -13,8 +13,10 @@ export default function App({ }: Props) {
     <div className="App">
 
       <div className="App__body">
+
         <Nav />
         <Dashboard />
+
       </div>
 
     </div>
