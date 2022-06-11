@@ -18,15 +18,14 @@ type Props = {
 
 export default function ResultRow({ translate, examples, sameWords, synonyms, frequency }: Props) {
 
-
   const dispatch = useDispatch()
-  console.log('resultrowrendered')
-  const selectedLanguage = useSelector(state => state.selectedLanguage)
-  const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
+
   const user = useSelector(state => state.user?.data?.email || 'guest');
+  const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
+  const selectedLanguage = useSelector(state => state.selectedLanguage)
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase || []);
 
-  const appendedTranslate = allWordsFromFirebase[word]?.translates.some(x => x.translate == translate);
+  const isAppendedTranslate = allWordsFromFirebase[word]?.translates.some(x => x.translate == translate);
   const isGameWord = allWordsFromFirebase[word]?.gameword == translate;
 
 
@@ -60,26 +59,24 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
   }
 
-  async function setWordGame() {
+  async function setGameWord() {
 
-    let newbasewords = (await (getDoc(doc(db, "users", user, 'data', 'words')))).data();
+    let currentBaseWords = (await (getDoc(doc(db, "users", user, 'data', 'words')))).data();
 
-    let wordForAppend = {}
-
-    wordForAppend = newbasewords[word]
-      ? newbasewords[word]
+    let newWord = currentBaseWords[word]
+      ? currentBaseWords[word]
       : { word: word, translates: [{ language: selectedLanguage, translate: translate }] };
 
-    wordForAppend['gameword'] = translate
+    newWord['gameword'] = translate
 
-    newbasewords[word] = wordForAppend
+    currentBaseWords[word] = newWord
 
-    setDoc(doc(db, "users", user, 'data', 'words'), newbasewords)
+    setDoc(doc(db, "users", user, 'data', 'words'), currentBaseWords)
       .then(() =>
-        console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" 
-      во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`));
+        console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`)
+      );
 
-    dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newbasewords })
+    dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: currentBaseWords })
 
   }
 
@@ -129,7 +126,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         {
-          appendedTranslate
+          isAppendedTranslate
             ? <AiFillCheckCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
               onClick={addTranslateToFirebase}
             >
@@ -143,11 +140,11 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         {
           isGameWord
             ? <AiFillPlayCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
-              onClick={setWordGame}
+              onClick={setGameWord}
             >
             </AiFillPlayCircle>
             : <AiFillPlayCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
-              onClick={setWordGame}
+              onClick={setGameWord}
             >
             </AiFillPlayCircle>
         }
