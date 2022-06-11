@@ -26,9 +26,13 @@ export default function DeepSearch({ }: Props) {
   }, [])
 
   return (
+
     <div className='DeepSearch'>
+
       DeepSearch
+
       <div className='DeepSearch__results'>
+
         {
           results == undefined
             ? "none"
@@ -40,7 +44,9 @@ export default function DeepSearch({ }: Props) {
               />
             )
         }
+
       </div>
+
     </div >
   )
 }

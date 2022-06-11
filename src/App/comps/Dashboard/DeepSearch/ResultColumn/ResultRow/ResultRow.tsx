@@ -81,6 +81,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
   }
 
   return (
+
     <div className='DeepSearch__resultRow'>
 
       <div>
@@ -166,5 +167,6 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
       </div>
 
     </div>
+
   )
 }

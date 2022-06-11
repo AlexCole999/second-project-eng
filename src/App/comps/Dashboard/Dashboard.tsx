@@ -12,9 +12,13 @@ import Profile from './Profile/Profile';
 type Props = { name?: string }
 
 export default function Dashboard({ }: Props) {
+
   return (
+
     <div className='Dashboard'>
+
       <div className="Dashboard__body">
+
         <Routes>
           <Route path="/second-project-eng/Profile" element={<Profile />}></Route>
           <Route path="/second-project-eng/DeepSearch" element={<DeepSearch />}></Route>
@@ -24,7 +28,10 @@ export default function Dashboard({ }: Props) {
           <Route path="/second-project-eng/Settings" element={<Settings />}></Route>
           <Route path='*' element={<Instruction />}></Route>
         </Routes>
+
       </div>
+
     </div>
+
   )
 }

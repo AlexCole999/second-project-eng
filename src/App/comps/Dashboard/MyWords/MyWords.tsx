@@ -30,15 +30,21 @@ export default function MyWords({ }: Props) {
   )
 
   return (
+
     <div className='MyWords'>
+
       <div className='MyWords__title'>
         MyWords
       </div>
+
       <div className='MyWords__wordsFilterMenu'>
+
         <div>
           Фильтр
         </div>
+
         <div>
+
           <input
             type="text"
             placeholder='Часть искомого слова...'
@@ -47,10 +53,13 @@ export default function MyWords({ }: Props) {
                 setregexp(new RegExp(e.target.value))
             }
           />
+
         </div>
+
       </div >
 
       <div className='MyWords__words'>
+
         {
           filteredWordsArray
             .map(
@@ -62,8 +71,11 @@ export default function MyWords({ }: Props) {
                 />
             )
         }
+
       </div>
+
     </div >
+
   )
 }
 
