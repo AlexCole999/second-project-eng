@@ -19,17 +19,7 @@ type Props = {
 
 export default function ResultRow({ translate, examples, sameWords, synonyms, frequency }: Props) {
 
-  const dispatch = useDispatch()
-
-  useEffect(
-    async () => {
-      const data = (await getDoc(doc(db, "users", user, 'data', 'words'))).data();
-      dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: data });
-      console.log('useEffectDone')
-    },
-    []
-  )
-
+  console.log('resultrowrendered')
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
   const user = useSelector(state => state.user?.data?.email || 'guest');
@@ -37,6 +27,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
   const appendedTranslate = allWordsFromFirebase[word]?.translates.some(x => x.translate == translate);
   const isGameWord = allWordsFromFirebase[word]?.gameword == translate;
+
 
   async function addTranslateToFirebase() { // функция добавления слова в базу
 
