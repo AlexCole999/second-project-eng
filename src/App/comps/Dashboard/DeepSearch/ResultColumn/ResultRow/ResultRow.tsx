@@ -1,8 +1,9 @@
 import React from 'react'
+import { useEffect } from 'react'
 import './ResultRow.scss'
 import { getDoc, setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../API/firebase/firebaseConfig'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { AiFillCheckCircle } from "react-icons/ai";
 import { AiFillPlayCircle } from "react-icons/ai";
 import capitalizeFirstLetter from './../../../../../functions/capitalizeFirstLetter';
@@ -18,9 +19,24 @@ type Props = {
 
 export default function ResultRow({ translate, examples, sameWords, synonyms, frequency }: Props) {
 
+  const dispatch = useDispatch()
+
+  useEffect(
+    async () => {
+      const data = (await getDoc(doc(db, "users", user, 'data', 'words'))).data();
+      dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: data });
+      console.log('useEffectDone')
+    },
+    []
+  )
+
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
   const user = useSelector(state => state.user?.data?.email || 'guest');
+  const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase || []);
+
+  const appendedTranslate = allWordsFromFirebase[word]?.translates.some(x => x.translate == translate);
+  const isGameWord = allWordsFromFirebase[word]?.gameword == translate;
 
   async function addTranslateToFirebase() { // функция добавления слова в базу
 
@@ -43,25 +59,36 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
     { language: selectedLanguage, translate: translate } // добавляем в конец отфильтрованного массива объект с нашим новым переводом 
     ]
 
-    setDoc(
-      doc(
-        db, "users", user, 'data', 'words'),
-      newbasewords)
-      .then(
-        x => console.log('appended')
-      ); // сформированный и измененный объект newbase отправляем на сервер в качестве новых данных
+    setDoc(doc(db, "users", user, 'data', 'words'), newbasewords)
+      .then(() =>
+        console.log(`Слово "${capitalizeFirstLetter(translate)}" 
+      добавлено в переводы слова "${capitalizeFirstLetter(word)}"`)); // сформированный и измененный объект newbase отправляем на сервер в качестве новых данных
+
+    dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newbasewords })
 
   }
 
   async function setWordGame() {
 
-    const allWords = await getDoc(doc(db, "users", user, 'data', 'words'));
-    allWords = allWords.data();
+    let newbasewords = await getDoc(doc(db, "users", user, 'data', 'words'));
+    newbasewords = newbasewords.data();
 
-    const theword = allWords[word];
-    theword['game'] = translate
+    let wordForAppend = {}
 
-    console.log({ ...allWords, theword })
+    wordForAppend = newbasewords[word]
+      ? newbasewords[word]
+      : { word: word, translates: [{ language: selectedLanguage, translate: translate }] };
+
+    wordForAppend['gameword'] = translate
+
+    newbasewords[word] = wordForAppend
+
+    setDoc(doc(db, "users", user, 'data', 'words'), newbasewords)
+      .then(() =>
+        console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" 
+      во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`));
+
+    dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newbasewords })
 
   }
 
@@ -110,14 +137,29 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         <hr />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <AiFillCheckCircle className='DeepSearch__resultRowAppendButton'
-          onClick={addTranslateToFirebase}
-        >
-        </AiFillCheckCircle>
-        <AiFillPlayCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
-          onClick={setWordGame}
-        >
-        </AiFillPlayCircle>
+        {
+          appendedTranslate
+            ? <AiFillCheckCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
+              onClick={addTranslateToFirebase}
+            >
+            </AiFillCheckCircle>
+            : <AiFillCheckCircle className='DeepSearch__resultRowAppendButton'
+              onClick={addTranslateToFirebase}
+            >
+            </AiFillCheckCircle>
+        }
+
+        {
+          isGameWord
+            ? <AiFillPlayCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
+              onClick={setWordGame}
+            >
+            </AiFillPlayCircle>
+            : <AiFillPlayCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
+              onClick={setWordGame}
+            >
+            </AiFillPlayCircle>
+        }
       </div>
     </div>
   )
