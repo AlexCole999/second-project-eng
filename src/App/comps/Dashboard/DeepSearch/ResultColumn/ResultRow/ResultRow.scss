@@ -66,6 +66,11 @@
     }
 
     &_playbaseAppended {
+      &:hover {
+        color: rgb(228, 36, 36);
+        transform: scale(0.7);
+      }
+
       color: rgb(228, 63, 206)
     }
   }

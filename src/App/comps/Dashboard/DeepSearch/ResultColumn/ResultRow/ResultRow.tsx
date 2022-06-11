@@ -8,7 +8,6 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { AiFillPlayCircle } from "react-icons/ai";
 import capitalizeFirstLetter from './../../../../../functions/capitalizeFirstLetter';
 
-
 type Props = {
   translate: string,
   examples: any,
@@ -19,6 +18,8 @@ type Props = {
 
 export default function ResultRow({ translate, examples, sameWords, synonyms, frequency }: Props) {
 
+
+  const dispatch = useDispatch()
   console.log('resultrowrendered')
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const word = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text);
@@ -61,8 +62,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
   async function setWordGame() {
 
-    let newbasewords = await getDoc(doc(db, "users", user, 'data', 'words'));
-    newbasewords = newbasewords.data();
+    let newbasewords = (await (getDoc(doc(db, "users", user, 'data', 'words')))).data();
 
     let wordForAppend = {}
 
