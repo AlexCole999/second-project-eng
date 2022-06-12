@@ -14,6 +14,7 @@ export default function NavUser({ }: Props) {
   const userImg = useSelector(state => state.user?.data?.photoURL)
 
   function singInWithGooglePopup() {
+
     signInWithPopup(auth, provider)
       .then((result) => {
         dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result.user });
@@ -21,6 +22,7 @@ export default function NavUser({ }: Props) {
       .catch((error) => {
         console.log(error);
       });
+
   }
 
   return (
