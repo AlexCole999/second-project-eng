@@ -11,9 +11,10 @@ export default function NavUser({ }: Props) {
 
   const dispatch = useDispatch();
 
-  const displayName = useSelector(state => state.user?.data?.photoURL)
+  const userImg = useSelector(state => state.user?.data?.photoURL)
 
   const singInWithGooglePopup = () => {
+
     signInWithPopup(auth, provider)
       .then((result) => {
         dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result.user });
@@ -21,6 +22,7 @@ export default function NavUser({ }: Props) {
       .catch((error) => {
         console.log(error);
       });
+
   }
 
   return (
@@ -30,8 +32,8 @@ export default function NavUser({ }: Props) {
       <div className="NavUser__body">
 
         {
-          displayName !== undefined
-            ? <img className="NavUser__userImg" src={displayName}></img>
+          userImg !== undefined
+            ? <img className="NavUser__userImg" src={userImg}></img>
             : <FiUserX size={25} onClick={singInWithGooglePopup} />
         }
 
