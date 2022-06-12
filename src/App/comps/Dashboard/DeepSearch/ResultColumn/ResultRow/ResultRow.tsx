@@ -81,8 +81,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
       .then(() => {
         console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`);
         dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
-      }
-      );
+      });
 
   }
 
