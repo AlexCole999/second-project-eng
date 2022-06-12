@@ -31,7 +31,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
   function addTranslateToFirebase() {
 
-    let currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
+    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
     let newBaseWords = currentBaseWords;
 
     newBaseWords[word] = currentBaseWords[word]
@@ -54,7 +54,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
   function setGameWord() {
 
-    let currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
+    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
     let newBaseWords = currentBaseWords;
 
     newBaseWords[word] = currentBaseWords[word]

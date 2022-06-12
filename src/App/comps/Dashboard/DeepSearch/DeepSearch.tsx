@@ -16,13 +16,12 @@ export default function DeepSearch({ }: Props) {
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
   useEffect(() => {
-    getDoc(doc(db, "users", user, 'data', 'words'))
-      .then(data => {
-        dispatch({
-          type: "ADD_DATA_FROM_FIREBASE",
-          payload: data.data()
-        });
+    getDoc(doc(db, "users", user, 'data', 'words')).then(data => {
+      dispatch({
+        type: "ADD_DATA_FROM_FIREBASE",
+        payload: data.data()
       });
+    });
   }, [])
 
   return (
