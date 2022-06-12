@@ -60,7 +60,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
   }
 
-  async function setGameWord() {
+  function setGameWord() {
 
     let currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
     let newBaseWords = currentBaseWords;
