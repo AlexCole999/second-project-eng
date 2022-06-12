@@ -29,9 +29,11 @@ export default function NavUser({ }: Props) {
 
       <div className="NavUser__body">
 
-        {displayName !== undefined
-          ? <img className="NavUser__userImg" src={displayName}></img>
-          : <FiUserX size={25} onClick={singInWithGooglePopup} />}
+        {
+          displayName !== undefined
+            ? <img className="NavUser__userImg" src={displayName}></img>
+            : <FiUserX size={25} onClick={singInWithGooglePopup} />
+        }
 
       </div>
 
