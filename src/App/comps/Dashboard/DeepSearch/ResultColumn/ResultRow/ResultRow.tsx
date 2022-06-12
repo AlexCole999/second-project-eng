@@ -61,22 +61,28 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
   async function setGameWord() {
 
-    let currentBaseWords = (await (getDoc(doc(db, "users", user, 'data', 'words')))).data();
+    let currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
+    let newBaseWords = currentBaseWords;
 
     let newWord = currentBaseWords[word]
-      ? currentBaseWords[word]
-      : { word: word, translates: [{ language: selectedLanguage, translate: translate }] };
+      ? {
+        ...currentBaseWords[word],
+        gameword: translate
+      }
+      : {
+        word: word,
+        translates: [{ language: selectedLanguage, translate: translate }],
+        gameword: translate
+      };
 
-    newWord['gameword'] = translate
+    newBaseWords[word] = newWord
 
-    currentBaseWords[word] = newWord
-
-    setDoc(doc(db, "users", user, 'data', 'words'), currentBaseWords)
-      .then(() =>
-        console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`)
+    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+      .then(() => {
+        console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`);
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+      }
       );
-
-    dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: currentBaseWords })
 
   }
 
