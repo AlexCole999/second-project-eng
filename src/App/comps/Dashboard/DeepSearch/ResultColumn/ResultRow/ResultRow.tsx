@@ -29,34 +29,26 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
   const isGameWord = allWordsFromFirebase[word]?.gameword == translate;
 
 
-  async function addTranslateToFirebase() { // функция добавления слова в базу
+  function addTranslateToFirebase() {
 
-    let oldWords = (await getDoc(doc(db, "users", user, 'data', 'words'))); // запрашиваем данные о словах пользователя с сервера
-    if (oldWords.data() == undefined) {  // если добавленных слов по этому пользователю нет
-      await setDoc(doc(db, "users", user, 'data', 'words'), {}); //создаем пустой объект по этому пути
-      oldWords = (await getDoc(doc(db, "users", user, 'data', 'words'))); // заново запрашиваем отправленные данные с сервера
-    }
+    let currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
+    let newBaseWords = currentBaseWords;
 
-    let newbasewords = oldWords.data(); // копируем полученные данные в новый объект, его мы будем изменять для отправки изменений на сервер
-    if (!newbasewords[word]) { // если объект не содержит нашего слова, тогда:
-      newbasewords[word] = {} // создаем новое поле, называем его словом, которое переводим, закидываем туда пустой объект 
-      newbasewords[word]['word'] = word // в новосозданном пустом объекте создаем поле с названием 'word', закидываем туда слово, которое переводим
-      newbasewords[word]['translates'] = [{ language: selectedLanguage, translate: translate }] // в новосозданном пустом объекте создаем поле с названием 'translates', закидываем туда новый массив, в массив кидаем новый объект, в объекте прокидываем поле с языковой парой перевода и поле со значение перевода
-    }
-    newbasewords[word]['translates'] = [...newbasewords[word]['translates'] // разворачиваем все старые объекты с переводами в начало нового массива, при этом --->>>
-      .filter(
-        x => x.translate !== translate   // --->>> фильтруем старые переводы, выкидывая из них тот, который хотим добавить (это нужно для устранения дубликатов объектов с одинаковыми переводами)
-      ),
-    { language: selectedLanguage, translate: translate } // добавляем в конец отфильтрованного массива объект с нашим новым переводом 
-    ]
+    newBaseWords[word] = currentBaseWords[word]
+      ? {
+        ...currentBaseWords[word],
+        translates: [...currentBaseWords[word]['translates'].filter(x => x.translate !== translate), { language: selectedLanguage, translate: translate }]
+      }
+      : {
+        word: word,
+        translates: [{ language: selectedLanguage, translate: translate }]
+      };
 
-    setDoc(doc(db, "users", user, 'data', 'words'), newbasewords)
+    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
       .then(() => {
         console.log(`Слово "${capitalizeFirstLetter(translate)}" добавлено в переводы слова "${capitalizeFirstLetter(word)}"`);
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newbasewords });
-      }); // сформированный и измененный объект newbase отправляем на сервер в качестве новых данных
-
-
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+      });
 
   }
 
@@ -65,7 +57,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
     let currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
     let newBaseWords = currentBaseWords;
 
-    let newWord = currentBaseWords[word]
+    newBaseWords[word] = currentBaseWords[word]
       ? {
         ...currentBaseWords[word],
         gameword: translate
@@ -76,7 +68,6 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         gameword: translate
       };
 
-    newBaseWords[word] = newWord
 
     setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
       .then(() => {
