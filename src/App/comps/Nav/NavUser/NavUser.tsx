@@ -24,12 +24,17 @@ export default function NavUser({ }: Props) {
   }
 
   return (
+
     <div className="NavUser">
+
       <div className="NavUser__body">
+
         {displayName !== undefined
-          ? <img style={{ width: '50px', height: '50px', borderRadius: '50%' }} src={displayName}></img>
+          ? <img className="NavUser__userImg" src={displayName}></img>
           : <FiUserX size={25} onClick={singInWithGooglePopup} />}
+
       </div>
+
     </div>
   )
 }
