@@ -51,11 +51,12 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
     ]
 
     setDoc(doc(db, "users", user, 'data', 'words'), newbasewords)
-      .then(() =>
-        console.log(`Слово "${capitalizeFirstLetter(translate)}" 
-      добавлено в переводы слова "${capitalizeFirstLetter(word)}"`)); // сформированный и измененный объект newbase отправляем на сервер в качестве новых данных
+      .then(() => {
+        console.log(`Слово "${capitalizeFirstLetter(translate)}" добавлено в переводы слова "${capitalizeFirstLetter(word)}"`);
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newbasewords });
+      }); // сформированный и измененный объект newbase отправляем на сервер в качестве новых данных
 
-    dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newbasewords })
+
 
   }
 
