@@ -28,8 +28,6 @@ export default function DeepSearch({ }: Props) {
 
     <div className='DeepSearch'>
 
-      DeepSearch
-
       <div className='DeepSearch__results'>
 
         {
