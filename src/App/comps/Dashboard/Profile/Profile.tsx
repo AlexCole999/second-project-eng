@@ -14,7 +14,7 @@ export default function Profile({ }: Props) {
 
       <div className='Profile__userData'>
 
-        <div className='Profile__userDataElem'>
+        <div>
           <img src={userdata?.photoURL}></img>
         </div>
 
@@ -69,7 +69,7 @@ export default function Profile({ }: Props) {
         <div className='Profile__userDataElem'>
 
           <div className='Profile__userDataElemTitle'>
-            Уникальный идендификатор:
+            Уникальный идентификатор:
           </div>
 
           <div className='Profile__userDataElemText'>
