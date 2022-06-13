@@ -4,26 +4,30 @@
     margin-bottom: 5px;
   }
 
-  &__baseMenu {
-    border: 1px solid black;
-    padding: 5px;
+  &__filterMenu {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 0px 0px 15px 0px;
 
-    select {
-      min-width: 100px;
+    input {
+      border: 1px solid rgb(107, 201, 255);
+      padding: 8px;
+      border-radius: 15px;
+      font-style: italic;
+      width: 180px;
     }
 
   }
 
-  &__wordsFilterMenu {
-    border: 1px solid black;
-    padding: 5px;
-    margin: 5px 0px;
+  &__filterMenuTitle {
+    margin-bottom: 15px;
   }
 
   &__words {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 10px 8px;
     min-height: 88vh;
   }
 

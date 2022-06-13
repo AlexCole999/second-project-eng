@@ -42,10 +42,10 @@ export default function MyWords({ }: Props) {
 
       </div>
 
-      <div className='MyWords__wordsFilterMenu'>
+      <div className='MyWords__filterMenu'>
 
-        <div>
-          Фильтр
+        <div className='MyWords__filterMenuTitle'>
+          Фильтрация
         </div>
 
         <div>
