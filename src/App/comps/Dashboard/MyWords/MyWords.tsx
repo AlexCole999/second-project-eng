@@ -39,7 +39,7 @@ export default function MyWords({ }: Props) {
     <div className='MyWords'>
 
       <div className='MyWords__title'>
-        MyWords
+
       </div>
 
       <div className='MyWords__wordsFilterMenu'>

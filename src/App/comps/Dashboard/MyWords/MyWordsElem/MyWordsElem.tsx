@@ -53,7 +53,7 @@ export default function MyWordsElem({ fullWordsList, element }: Props) {
                   </div>
 
                   <FiX
-                    className='MyWords__elemAppendButton'
+                    className='MyWords__elemDeleteButton'
                     onClick={() => console.log('someaction')}
                   >
                   </FiX>
