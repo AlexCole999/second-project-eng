@@ -1,6 +1,6 @@
 import React from 'react'
 import './MyWordsElem.scss'
-import { FiX } from "react-icons/fi";
+import { FaTimesCircle } from "react-icons/fa";
 import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
 
 type Props = {
@@ -52,11 +52,11 @@ export default function MyWordsElem({ fullWordsList, element }: Props) {
 
                   </div>
 
-                  <FiX
+                  <FaTimesCircle
                     className='MyWords__elemDeleteButton'
                     onClick={() => console.log('someaction')}
                   >
-                  </FiX>
+                  </FaTimesCircle>
 
                 </div>
 
