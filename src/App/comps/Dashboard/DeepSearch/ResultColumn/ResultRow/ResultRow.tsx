@@ -1,7 +1,6 @@
 import React from 'react'
-import { useEffect } from 'react'
 import './ResultRow.scss'
-import { getDoc, setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../API/firebase/firebaseConfig'
 import { useSelector, useDispatch } from 'react-redux';
 import { AiFillCheckCircle } from "react-icons/ai";

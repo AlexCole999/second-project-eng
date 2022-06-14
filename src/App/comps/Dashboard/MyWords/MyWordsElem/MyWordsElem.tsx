@@ -1,16 +1,39 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import './MyWordsElem.scss'
+import { useSelector, useDispatch } from 'react-redux'
 import { FaTimesCircle } from "react-icons/fa";
 import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
+import { db } from '../../../../API/firebase/firebaseConfig'
+import { setDoc, doc } from 'firebase/firestore';
 
 type Props = {
-  element: any
+  word: any
 }
 
-export default function MyWordsElem({ element }: Props) {
+export default function MyWordsElem({ word }: Props) {
 
-  const fullWordsList = useSelector(state => state.allWordsFromFirebase);
+  const dispatch = useDispatch()
+
+  const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase);
+  const user = useSelector(state => state.user?.data?.email || 'guest');
+
+  function deleteTranslateFromFirebase(translate) {
+
+    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
+    let newBaseWords = currentBaseWords;
+
+    newBaseWords[word] = {
+      ...currentBaseWords[word],
+      translates: currentBaseWords[word]['translates'].filter(x => x.translate !== translate)
+    }
+
+    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+      .then(() => {
+        console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено изв переводов слова "${capitalizeFirstLetter(word)}"`);
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+      });
+
+  }
 
   return (
 
@@ -19,7 +42,7 @@ export default function MyWordsElem({ element }: Props) {
       <div className='MyWords__elemMainWord'>
 
         <div>
-          {capitalizeFirstLetter(fullWordsList[element]?.word)}
+          {capitalizeFirstLetter(allWordsFromFirebase[word]?.word)}
         </div>
 
       </div>
@@ -27,7 +50,7 @@ export default function MyWordsElem({ element }: Props) {
       <div>
 
         {
-          fullWordsList[element]
+          allWordsFromFirebase[word]
             .translates
             .map(
               translate =>
@@ -37,7 +60,7 @@ export default function MyWordsElem({ element }: Props) {
                   <div>
 
                     {
-                      fullWordsList[element]?.gameword == translate.translate
+                      allWordsFromFirebase[word]?.gameword == translate.translate
                         ?
                         <div className='MyWords__elemTranslateWord MyWords__elemTranslateWord_gameword'>
                           {capitalizeFirstLetter(translate.translate)}
@@ -56,7 +79,11 @@ export default function MyWordsElem({ element }: Props) {
 
                   <FaTimesCircle
                     className='MyWords__elemDeleteButton'
-                    onClick={() => console.log('someaction')}
+                    onClick={
+                      () => {
+                        deleteTranslateFromFirebase(translate.translate)
+                      }
+                    }
                   >
                   </FaTimesCircle>
 
