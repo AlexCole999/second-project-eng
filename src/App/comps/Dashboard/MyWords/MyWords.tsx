@@ -70,7 +70,6 @@ export default function MyWords({ }: Props) {
             .map(
               mainWord =>
                 <MyWordsElem
-                  fullWordsList={fullWordsList}
                   element={mainWord}
                   key={mainWord}
                 />

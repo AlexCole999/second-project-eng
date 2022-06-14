@@ -1,14 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import './MyWordsElem.scss'
 import { FaTimesCircle } from "react-icons/fa";
 import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
 
 type Props = {
-  fullWordsList: any,
   element: any
 }
 
-export default function MyWordsElem({ fullWordsList, element }: Props) {
+export default function MyWordsElem({ element }: Props) {
+
+  const fullWordsList = useSelector(state => state.allWordsFromFirebase);
 
   return (
 
