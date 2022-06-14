@@ -22,16 +22,34 @@ export default function MyWordsElem({ word }: Props) {
     const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
     let newBaseWords = currentBaseWords;
 
-    newBaseWords[word] = {
-      ...currentBaseWords[word],
-      translates: currentBaseWords[word]['translates'].filter(x => x.translate !== translate)
+    let translatesArrayLength = currentBaseWords[word]['translates'].length
+
+    if (translatesArrayLength > 1) {
+
+      newBaseWords[word] = {
+        ...currentBaseWords[word],
+        translates: currentBaseWords[word]['translates'].filter(x => x.translate !== translate)
+      }
+
+      setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+        .then(() => {
+          console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено из переводов слова "${capitalizeFirstLetter(word)}"`);
+          dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+        });
+
     }
 
-    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
-      .then(() => {
-        console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено изв переводов слова "${capitalizeFirstLetter(word)}"`);
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
-      });
+    if (translatesArrayLength == 1) {
+
+      delete newBaseWords[word];
+
+      setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+        .then(() => {
+          console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено из базы слов"`);
+          dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+        });
+
+    }
 
   }
 
@@ -53,26 +71,26 @@ export default function MyWordsElem({ word }: Props) {
           allWordsFromFirebase[word]
             .translates
             .map(
-              translate =>
+              translateElem =>
 
-                <div className='MyWords__elemTranslateRow' key={translate.translate}>
+                <div className='MyWords__elemTranslateRow' key={translateElem.translate}>
 
                   <div>
 
                     {
-                      allWordsFromFirebase[word]?.gameword == translate.translate
+                      allWordsFromFirebase[word]?.gameword == translateElem.translate
                         ?
                         <div className='MyWords__elemTranslateWord MyWords__elemTranslateWord_gameword'>
-                          {capitalizeFirstLetter(translate.translate)}
+                          {capitalizeFirstLetter(translateElem.translate)}
                         </div>
                         :
                         <div className='MyWords__elemTranslateWord'>
-                          {capitalizeFirstLetter(translate.translate)}
+                          {capitalizeFirstLetter(translateElem.translate)}
                         </div>
                     }
 
                     <div className='MyWords__elemTranslateLanguage'>
-                      {translate.language.split('-')[1]}
+                      {translateElem.language.split('-')[1]}
                     </div>
 
                   </div>
@@ -81,7 +99,7 @@ export default function MyWordsElem({ word }: Props) {
                     className='MyWords__elemDeleteButton'
                     onClick={
                       () => {
-                        deleteTranslateFromFirebase(translate.translate)
+                        deleteTranslateFromFirebase(translateElem.translate)
                       }
                     }
                   >
