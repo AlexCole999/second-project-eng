@@ -33,12 +33,12 @@ export default function NavUser({ }: Props) {
 
       {
         userImg !== undefined
-
-          ? <div className="NavUser__body">
+          ?
+          <div className="NavUser__body">
             <img className="NavUser__userImg" src={userImg}></img>
           </div>
-
-          : <div className="NavUser__body" onClick={singInWithGooglePopup} >
+          :
+          <div className="NavUser__body" onClick={singInWithGooglePopup} >
             <FiUserX size={25} />
           </div>
       }

@@ -83,6 +83,9 @@ export default function MyWordsElem({ word }: Props) {
       <div className='MyWords__elemMainWord'>
         <div>
           {capitalizeFirstLetter(allWordsFromFirebase[word]?.word)}
+          <div className='MyWords__elemTranslateLanguage'>
+            {allWordsFromFirebase[word].translates[0].language.split('-')[0]}
+          </div>
         </div>
 
       </div>

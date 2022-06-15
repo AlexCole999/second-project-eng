@@ -103,7 +103,9 @@ export default function NavSearch({ }: Props) {
           }} />
 
       <div className="NavSearch__searchedMainWord">
-        <div>{mainResult?.tr[0]?.text.toUpperCase()}</div>
+        <div>
+          {mainResult?.tr[0]?.text.toUpperCase()}
+        </div>
       </div>
 
       <div className="NavSearch__languages">
