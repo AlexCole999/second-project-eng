@@ -2,6 +2,7 @@ import React from 'react'
 import './MyWordsElem.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaTimesCircle } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
 import { db } from '../../../../API/firebase/firebaseConfig'
 import { setDoc, doc } from 'firebase/firestore';
@@ -16,6 +17,21 @@ export default function MyWordsElem({ word }: Props) {
 
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase);
   const user = useSelector(state => state.user?.data?.email || 'guest');
+
+  // function deleteAllTranslatesFromFirebase() {
+
+  //   const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
+  //   let newBaseWords = currentBaseWords;
+
+  //   delete newBaseWords[word];
+
+  //   setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+  //     .then(() => {
+  //       console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено из базы слов"`);
+  //       dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+  //     });
+
+  // }
 
   function deleteTranslateFromFirebase(translate) {
 
@@ -57,8 +73,11 @@ export default function MyWordsElem({ word }: Props) {
 
     <div className='MyWords__elem'>
 
-      <div className='MyWords__elemMainWord'>
+      <div className='MyWords__elemDeleteAllButtonBody'>
+        <FaTimes className='MyWords__elemDeleteAllButton' />
+      </div>
 
+      <div className='MyWords__elemMainWord'>
         <div>
           {capitalizeFirstLetter(allWordsFromFirebase[word]?.word)}
         </div>
