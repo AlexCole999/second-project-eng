@@ -18,20 +18,20 @@ export default function MyWordsElem({ word }: Props) {
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase);
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
-  // function deleteAllTranslatesFromFirebase() {
+  function deleteAllTranslatesFromFirebase() {
 
-  //   const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
-  //   let newBaseWords = currentBaseWords;
+    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
+    let newBaseWords = currentBaseWords;
 
-  //   delete newBaseWords[word];
+    delete newBaseWords[word];
 
-  //   setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
-  //     .then(() => {
-  //       console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено из базы слов"`);
-  //       dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
-  //     });
+    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+      .then(() => {
+        console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`);
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+      });
 
-  // }
+  }
 
   function deleteTranslateFromFirebase(translate) {
 
@@ -61,7 +61,7 @@ export default function MyWordsElem({ word }: Props) {
 
       setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
         .then(() => {
-          console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено из базы слов"`);
+          console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`);
           dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
         });
 
@@ -74,7 +74,10 @@ export default function MyWordsElem({ word }: Props) {
     <div className='MyWords__elem'>
 
       <div className='MyWords__elemDeleteAllButtonBody'>
-        <FaTimes className='MyWords__elemDeleteAllButton' />
+        <FaTimes
+          className='MyWords__elemDeleteAllButton'
+          onClick={deleteAllTranslatesFromFirebase}
+        />
       </div>
 
       <div className='MyWords__elemMainWord'>
