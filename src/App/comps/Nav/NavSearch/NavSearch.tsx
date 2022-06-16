@@ -7,7 +7,9 @@ import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
 import yandexDictionaryKey from './../../../api/yandexDictionary/yandexDictionaryKey';
 import debounce from './../../../functions/debounce';
 import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
-
+import capitalizeFirstLetter from './../../../functions/capitalizeFirstLetter';
+import { setDoc, doc } from 'firebase/firestore';
+import { db } from '../../../API/firebase/firebaseConfig'
 
 import us from './flags/us.svg';
 import de from './flags/de.svg';
@@ -27,6 +29,7 @@ export default function NavSearch({ }: Props) {
 
   const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
 
+  const user = useSelector(state => state.user?.data?.email || 'guest');
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const mainResult = useSelector(state => state.yandexDictionaryTranslates.data[0])
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
@@ -96,6 +99,31 @@ export default function NavSearch({ }: Props) {
 
   }
 
+  function setGameWord() {
+
+    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
+    let newBaseWords = currentBaseWords;
+
+    newBaseWords[mainResult?.text] = currentBaseWords[mainResult?.text]
+      ? {
+        ...currentBaseWords[mainResult?.text],
+        gameword: mainResult?.tr[0]?.text
+      }
+      : {
+        word: mainResult?.text,
+        translates: [{ language: selectedLanguage, translate: mainResult?.tr[0]?.text }],
+        gameword: mainResult?.tr[0]?.text
+      };
+
+
+    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+      .then(() => {
+        console.log(`Теперь в слове "${capitalizeFirstLetter(mainResult?.text)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(mainResult?.tr[0]?.text)}"`);
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+      });
+
+  }
+
   return (
 
     <div className="NavSearch">
@@ -109,7 +137,9 @@ export default function NavSearch({ }: Props) {
 
       <div className="NavSearch__searchedMainWord">
 
-        <div>{mainResult?.tr[0]?.text.toUpperCase()}</div>
+        <div>
+          {mainResult?.tr[0]?.text.toUpperCase()}
+        </div>
 
         <div>
 
@@ -135,11 +165,11 @@ export default function NavSearch({ }: Props) {
               ? (
                 allWordsFromFirebase[mainResult?.text]?.gameword == mainResult?.tr[0]?.text && allWordsFromFirebase[mainResult?.text]?.gameword !== undefined
                   ? <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
-
+                    onClick={setGameWord}
                   >
                   </AiFillPlayCircle>
                   : <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
-
+                    onClick={setGameWord}
                   >
                   </AiFillPlayCircle>
               )
