@@ -31,7 +31,6 @@ export default function NavSearch({ }: Props) {
 
   const user = useSelector(state => state.user?.data?.email || 'guest');
   const selectedLanguage = useSelector(state => state.selectedLanguage)
-  const mainResult = useSelector(state => state.yandexDictionaryTranslates.data[0])
   const mainWord = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text)
   const mainTranslate = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.tr[0]?.text)
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
@@ -105,19 +104,19 @@ export default function NavSearch({ }: Props) {
     const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
     let newBaseWords = currentBaseWords;
 
-    newBaseWords[mainResult?.text] = currentBaseWords[mainResult?.text]
+    newBaseWords[mainWord] = currentBaseWords[mainWord]
       ? {
-        ...currentBaseWords[mainResult?.text],
-        translates: [...currentBaseWords[mainResult?.text]['translates'].filter(x => x.translate !== mainResult?.tr[0]?.text), { language: selectedLanguage, translate: mainResult?.tr[0]?.text }]
+        ...currentBaseWords[mainWord],
+        translates: [...currentBaseWords[mainWord]['translates'].filter(x => x.translate !== mainTranslate), { language: selectedLanguage, translate: mainTranslate }]
       }
       : {
-        word: mainResult?.text,
-        translates: [{ language: selectedLanguage, translate: mainResult?.tr[0]?.text }]
+        word: mainWord,
+        translates: [{ language: selectedLanguage, translate: mainTranslate }]
       };
 
     setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
       .then(() => {
-        console.log(`Слово "${capitalizeFirstLetter(mainResult?.tr[0]?.text)}" добавлено в переводы слова "${capitalizeFirstLetter(mainResult?.text)}"`);
+        console.log(`Слово "${capitalizeFirstLetter(mainTranslate)}" добавлено в переводы слова "${capitalizeFirstLetter(mainWord)}"`);
         dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
       });
 
@@ -127,21 +126,21 @@ export default function NavSearch({ }: Props) {
     const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
     let newBaseWords = currentBaseWords;
 
-    newBaseWords[mainResult?.text] = currentBaseWords[mainResult?.text]
+    newBaseWords[mainWord] = currentBaseWords[mainWord]
       ? {
-        ...currentBaseWords[mainResult?.text],
-        gameword: mainResult?.tr[0]?.text
+        ...currentBaseWords[mainWord],
+        gameword: mainTranslate
       }
       : {
-        word: mainResult?.text,
-        translates: [{ language: selectedLanguage, translate: mainResult?.tr[0]?.text }],
-        gameword: mainResult?.tr[0]?.text
+        word: mainWord,
+        translates: [{ language: selectedLanguage, translate: mainTranslate }],
+        gameword: mainTranslate
       };
 
 
     setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
       .then(() => {
-        console.log(`Теперь в слове "${capitalizeFirstLetter(mainResult?.text)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(mainResult?.tr[0]?.text)}"`);
+        console.log(`Теперь в слове "${capitalizeFirstLetter(mainWord)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(mainTranslate)}"`);
         dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
       });
 
@@ -161,7 +160,7 @@ export default function NavSearch({ }: Props) {
       <div className="NavSearch__searchedMainWord">
 
         <div>
-          {mainResult?.tr[0]?.text.toUpperCase()}
+          {mainTranslate ? mainTranslate.toUpperCase() : ""}
         </div>
 
         <div>
@@ -169,7 +168,7 @@ export default function NavSearch({ }: Props) {
           {
             wordsFromYandexDictionary.length
               ? (
-                allWordsFromFirebase[mainResult?.text]
+                allWordsFromFirebase[mainWord]
                   ?
                   <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
                     onClick={addTranslateToFirebase}
@@ -186,7 +185,7 @@ export default function NavSearch({ }: Props) {
           {
             wordsFromYandexDictionary.length
               ? (
-                allWordsFromFirebase[mainResult?.text]?.gameword == mainResult?.tr[0]?.text && allWordsFromFirebase[mainResult?.text]?.gameword !== undefined
+                allWordsFromFirebase[mainWord]?.gameword == mainTranslate && allWordsFromFirebase[mainWord]?.gameword !== undefined
                   ? <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
                     onClick={setGameWord}
                   >

@@ -96,7 +96,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
           {synonyms
             .map(
               synonym =>
-                <div className='DeepSearch__resultRowSynonymsListElem'>
+                <div key={synonym.text} className='DeepSearch__resultRowSynonymsListElem'>
                   {capitalizeFirstLetter(synonym.text)}
                 </div>
             )
@@ -111,7 +111,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
           {sameWords
             .map(
               sameWord =>
-                <div className='DeepSearch__resultRowSameWordsListElem'>
+                <div key={sameWord.text} className='DeepSearch__resultRowSameWordsListElem'>
                   {capitalizeFirstLetter(sameWord.text)}
                 </div>)
           }
@@ -125,7 +125,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
           {examples
             .map(
               example =>
-                <div className='DeepSearch__resultRowExamplesListElem'>
+                <div key={example.text} className='DeepSearch__resultRowExamplesListElem'>
                   {capitalizeFirstLetter(example.text)} - {example.tr[0].text}
                 </div>)
           }
