@@ -2,6 +2,7 @@ import React from 'react'
 import './ResultColumn.scss'
 import ResultRow from './ResultRow/ResultRow';
 import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
+import translatePartOfSpeech from './../../../../functions/translatePartOfSpeech';
 
 type Props = {
   pos: string,
@@ -17,7 +18,7 @@ export default function ResultColumn({ pos, translates }: Props) {
       <div className='DeepSearch__resultColumnPos'>
 
         <div>
-          {capitalizeFirstLetter(pos)}
+          {capitalizeFirstLetter(translatePartOfSpeech(pos))}
         </div>
 
       </div>
