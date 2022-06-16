@@ -43,9 +43,14 @@
     }
 
     &__elemTranslateWord {
+      cursor: pointer;
       font-size: 20px;
       font-style: italic;
       display: inline;
+
+      &:hover {
+        color: rgb(228, 63, 206);
+      }
 
       &_gameword {
         font-weight: bold;

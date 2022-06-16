@@ -16,6 +16,7 @@ export default function MyWordsElem({ word }: Props) {
   const dispatch = useDispatch()
 
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase);
+  const selectedLanguage = useSelector(state => state.selectedLanguage);
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
   function deleteAllTranslatesFromFirebase() {
@@ -28,6 +29,31 @@ export default function MyWordsElem({ word }: Props) {
     setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
       .then(() => {
         console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`);
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+      });
+
+  }
+
+  function setGameWord(translate) {
+
+    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
+    let newBaseWords = currentBaseWords;
+
+    newBaseWords[word] = currentBaseWords[word]
+      ? {
+        ...currentBaseWords[word],
+        gameword: translate
+      }
+      : {
+        word: word,
+        translates: [{ language: selectedLanguage, translate: translate }],
+        gameword: translate
+      };
+
+
+    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+      .then(() => {
+        console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`);
         dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
       });
 
@@ -109,7 +135,9 @@ export default function MyWordsElem({ word }: Props) {
                           {capitalizeFirstLetter(translateElem.translate)}
                         </div>
                         :
-                        <div className='MyWords__elemTranslateWord'>
+                        <div className='MyWords__elemTranslateWord'
+                          onClick={() => setGameWord(translateElem.translate)}
+                        >
                           {capitalizeFirstLetter(translateElem.translate)}
                         </div>
                     }
