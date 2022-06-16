@@ -36,6 +36,7 @@ export default function NavSearch({ }: Props) {
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
   const wordsFromYandexDictionary = useSelector(state => state.yandexDictionaryTranslates.data)
 
+  const inputsearch = useRef(null);
   const languageListTrigger = useRef(null);
   const languagesList = useRef(null);
 
@@ -152,9 +153,11 @@ export default function NavSearch({ }: Props) {
 
       <input placeholder="..."
         type="input"
+        ref={inputsearch}
         onChange={
           (e) => {
             debouncedYandexDictionaryRequest(e.target.value);
+            console.log(inputsearch.current.value)
           }} />
 
       <div className="NavSearch__searchedMainWord">
