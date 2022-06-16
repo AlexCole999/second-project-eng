@@ -29,7 +29,7 @@ export default function NavSearch({ }: Props) {
 
   const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
 
-  const user = useSelector(state => state.user?.data?.email || 'guest');
+  const user = useSelector(state => state.user?.data?.email || 'guest')
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const mainWord = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text)
   const mainTranslate = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.tr[0]?.text)
@@ -69,11 +69,23 @@ export default function NavSearch({ }: Props) {
 
   function selectLanguage(e) {
 
-    const language = e.target.parentElement.childNodes[1].outerText;
+    const newLanguage = e.target.parentElement.childNodes[1].outerText;
 
-    dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: language })
+    dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage })
 
-    languageFlagCheck(language)
+    languageFlagCheck(newLanguage)
+
+    axios.get(
+      'https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
+      + '?key='
+      + yandexDictionaryKey
+      + '&lang='
+      + newLanguage
+      + '&text='
+      + inputsearch.current.value)
+      .then(response => {
+        dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
+      })
 
   }
 
@@ -220,8 +232,20 @@ export default function NavSearch({ }: Props) {
           <div className="NavSearch__reverseButtonSelectedLanguage"
             onClick={
               (e) => {
-                dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: selectedLanguage.split('-').reverse().join('-') });
+                let newLanguage = selectedLanguage.split('-').reverse().join('-')
+                dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
                 e.target.parentElement.classList.toggle('NavSearch__reverseButtonSelectedLanguage_reversed');
+                axios.get(
+                  'https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
+                  + '?key='
+                  + yandexDictionaryKey
+                  + '&lang='
+                  + newLanguage
+                  + '&text='
+                  + inputsearch.current.value)
+                  .then(response => {
+                    dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
+                  })
               }
             }>
             <FiRotateCw />
