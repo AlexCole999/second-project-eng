@@ -17,16 +17,24 @@ export default function NavUser({ }: Props) {
   function singInWithGooglePopup() {
 
     signInWithPopup(auth, provider)
+
       .then((result) => {
+
         dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result.user });
+
         getDoc(doc(db, "users", result.user.email, 'data', 'words'))
+
           .then(data => {
+
             dispatch({
               type: "ADD_DATA_FROM_FIREBASE",
               payload: data.data()
             })
+
           })
+
       })
+
       .catch((error) => {
         console.log(error);
       });
@@ -36,8 +44,6 @@ export default function NavUser({ }: Props) {
   return (
 
     <div className="NavUser">
-
-
 
       {
         userImg !== undefined
@@ -50,8 +56,6 @@ export default function NavUser({ }: Props) {
             <FiUserX size={25} />
           </div>
       }
-
-
 
     </div>
   )

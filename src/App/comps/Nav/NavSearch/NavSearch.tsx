@@ -23,9 +23,14 @@ export default function NavSearch({ }: Props) {
 
   const dispatch = useDispatch();
 
+  const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
+
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const mainResult = useSelector(state => state.yandexDictionaryTranslates.data[0])
-  const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
+  const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase);
+
+  // const isAppendedTranslate = allWordsFromFirebase[mainResult.text]?.translates.some(x => x.translate == translate);
+  // const isGameWord = allWordsFromFirebase[mainResult.text]?.gameword == translate;
 
   const languageListTrigger = useRef(null);
   const languagesList = useRef(null);
@@ -105,6 +110,10 @@ export default function NavSearch({ }: Props) {
       <div className="NavSearch__searchedMainWord">
         <div>
           {mainResult?.tr[0]?.text.toUpperCase()}
+          <button onClick={() => console.log(allWordsFromFirebase[mainResult?.text])}></button>
+          {
+            allWordsFromFirebase[mainResult?.text] ? "2" : "1"
+          }
         </div>
       </div>
 
