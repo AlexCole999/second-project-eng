@@ -6,6 +6,8 @@ import axios from 'axios';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
 import yandexDictionaryKey from './../../../api/yandexDictionary/yandexDictionaryKey';
 import debounce from './../../../functions/debounce';
+import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
+
 
 import us from './flags/us.svg';
 import de from './flags/de.svg';
@@ -108,13 +110,35 @@ export default function NavSearch({ }: Props) {
           }} />
 
       <div className="NavSearch__searchedMainWord">
+
+        {mainResult?.tr[0]?.text.toUpperCase()}
+
         <div>
-          {mainResult?.tr[0]?.text.toUpperCase()}
-          <button onClick={() => console.log(allWordsFromFirebase[mainResult?.text])}></button>
           {
-            allWordsFromFirebase[mainResult?.text] ? "2" : "1"
+            allWordsFromFirebase[mainResult?.text]
+              ?
+              <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
+
+              >
+              </AiFillCheckCircle>
+              : <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton'
+
+              >
+              </AiFillCheckCircle>
+          }
+          {
+            allWordsFromFirebase[mainResult?.text]?.gameword == mainResult?.tr[0]?.text && allWordsFromFirebase[mainResult?.text]?.gameword !== undefined
+              ? <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
+
+              >
+              </AiFillPlayCircle>
+              : <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
+
+              >
+              </AiFillPlayCircle>
           }
         </div>
+
       </div>
 
       <div className="NavSearch__languages">

@@ -15,6 +15,8 @@
   }
 
   &__searchedMainWord {
+    display: flex;
+    align-items: center;
     text-align: center;
     margin-top: 5px;
     color: white;

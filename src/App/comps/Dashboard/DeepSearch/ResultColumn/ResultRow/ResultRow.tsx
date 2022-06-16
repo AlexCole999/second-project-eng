@@ -3,8 +3,7 @@ import './ResultRow.scss'
 import { setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../API/firebase/firebaseConfig'
 import { useSelector, useDispatch } from 'react-redux';
-import { AiFillCheckCircle } from "react-icons/ai";
-import { AiFillPlayCircle } from "react-icons/ai";
+import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
 import capitalizeFirstLetter from './../../../../../functions/capitalizeFirstLetter';
 
 type Props = {
