@@ -32,6 +32,8 @@ export default function NavSearch({ }: Props) {
   const user = useSelector(state => state.user?.data?.email || 'guest');
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const mainResult = useSelector(state => state.yandexDictionaryTranslates.data[0])
+  const mainWord = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text)
+  const mainTranslate = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.tr[0]?.text)
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
   const wordsFromYandexDictionary = useSelector(state => state.yandexDictionaryTranslates.data)
 
@@ -98,7 +100,28 @@ export default function NavSearch({ }: Props) {
                       : ""
 
   }
+  function addTranslateToFirebase() {
 
+    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
+    let newBaseWords = currentBaseWords;
+
+    newBaseWords[mainResult?.text] = currentBaseWords[mainResult?.text]
+      ? {
+        ...currentBaseWords[mainResult?.text],
+        translates: [...currentBaseWords[mainResult?.text]['translates'].filter(x => x.translate !== mainResult?.tr[0]?.text), { language: selectedLanguage, translate: mainResult?.tr[0]?.text }]
+      }
+      : {
+        word: mainResult?.text,
+        translates: [{ language: selectedLanguage, translate: mainResult?.tr[0]?.text }]
+      };
+
+    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+      .then(() => {
+        console.log(`Слово "${capitalizeFirstLetter(mainResult?.tr[0]?.text)}" добавлено в переводы слова "${capitalizeFirstLetter(mainResult?.text)}"`);
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+      });
+
+  }
   function setGameWord() {
 
     const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
@@ -149,11 +172,11 @@ export default function NavSearch({ }: Props) {
                 allWordsFromFirebase[mainResult?.text]
                   ?
                   <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
-
+                    onClick={addTranslateToFirebase}
                   >
                   </AiFillCheckCircle>
                   : <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton'
-
+                    onClick={addTranslateToFirebase}
                   >
                   </AiFillCheckCircle>
               )
