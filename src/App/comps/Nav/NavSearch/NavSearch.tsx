@@ -32,10 +32,6 @@ export default function NavSearch({ }: Props) {
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
   const wordsFromYandexDictionary = useSelector(state => state.yandexDictionaryTranslates.data)
 
-
-  // const isAppendedTranslate = allWordsFromFirebase[mainResult.text]?.translates.some(x => x.translate == translate);
-  // const isGameWord = allWordsFromFirebase[mainResult.text]?.gameword == translate;
-
   const languageListTrigger = useRef(null);
   const languagesList = useRef(null);
 
