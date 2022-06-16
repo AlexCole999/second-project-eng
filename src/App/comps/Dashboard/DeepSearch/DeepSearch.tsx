@@ -12,7 +12,7 @@ export default function DeepSearch({ }: Props) {
 
   const dispatch = useDispatch()
 
-  const results = useSelector(state => state.yandexDictionaryTranslates.data);
+  const wordsFromYandexDictionary = useSelector(state => state.yandexDictionaryTranslates.data);
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
   useEffect(() => {
@@ -31,9 +31,9 @@ export default function DeepSearch({ }: Props) {
       <div className='DeepSearch__results'>
 
         {
-          results == undefined
+          wordsFromYandexDictionary == undefined
             ? "none"
-            : results.map(resultColumn =>
+            : wordsFromYandexDictionary.map(resultColumn =>
               <ResultColumn
                 pos={resultColumn.pos}
                 translates={resultColumn.tr}

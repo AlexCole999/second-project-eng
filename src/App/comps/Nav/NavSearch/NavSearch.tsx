@@ -29,7 +29,9 @@ export default function NavSearch({ }: Props) {
 
   const selectedLanguage = useSelector(state => state.selectedLanguage)
   const mainResult = useSelector(state => state.yandexDictionaryTranslates.data[0])
-  const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase);
+  const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
+  const wordsFromYandexDictionary = useSelector(state => state.yandexDictionaryTranslates.data)
+
 
   // const isAppendedTranslate = allWordsFromFirebase[mainResult.text]?.translates.some(x => x.translate == translate);
   // const isGameWord = allWordsFromFirebase[mainResult.text]?.gameword == translate;
@@ -111,32 +113,43 @@ export default function NavSearch({ }: Props) {
 
       <div className="NavSearch__searchedMainWord">
 
-        {mainResult?.tr[0]?.text.toUpperCase()}
+        <div>{mainResult?.tr[0]?.text.toUpperCase()}</div>
 
         <div>
+
           {
-            allWordsFromFirebase[mainResult?.text]
-              ?
-              <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
+            wordsFromYandexDictionary.length
+              ? (
+                allWordsFromFirebase[mainResult?.text]
+                  ?
+                  <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
 
-              >
-              </AiFillCheckCircle>
-              : <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton'
+                  >
+                  </AiFillCheckCircle>
+                  : <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton'
 
-              >
-              </AiFillCheckCircle>
+                  >
+                  </AiFillCheckCircle>
+              )
+              : ""
           }
+
           {
-            allWordsFromFirebase[mainResult?.text]?.gameword == mainResult?.tr[0]?.text && allWordsFromFirebase[mainResult?.text]?.gameword !== undefined
-              ? <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
+            wordsFromYandexDictionary.length
+              ? (
+                allWordsFromFirebase[mainResult?.text]?.gameword == mainResult?.tr[0]?.text && allWordsFromFirebase[mainResult?.text]?.gameword !== undefined
+                  ? <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
 
-              >
-              </AiFillPlayCircle>
-              : <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
+                  >
+                  </AiFillPlayCircle>
+                  : <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
 
-              >
-              </AiFillPlayCircle>
+                  >
+                  </AiFillPlayCircle>
+              )
+              : ""
           }
+
         </div>
 
       </div>
