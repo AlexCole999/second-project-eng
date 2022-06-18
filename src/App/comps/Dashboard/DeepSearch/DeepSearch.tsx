@@ -19,7 +19,7 @@ export default function DeepSearch({ }: Props) {
   const wordsFromYandexDictionary = useSelector(state => state.yandexDictionaryTranslates.data);
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
   const user = useSelector(state => state.user?.data?.email || 'guest');
-
+  console.log(params)
   useEffect(() => {
     getDoc(doc(db, "users", user, 'data', 'words')).then(data => {
       dispatch({
@@ -28,15 +28,17 @@ export default function DeepSearch({ }: Props) {
       });
     });
     if (params) {
+      let yandexDictionaryKey = '\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943'
       let requestLanguage = allWordsFromFirebase[params?.word]?.translates[0]?.language || 'en-ru'
+      let requestWord = params?.word !== undefined ? params?.word : 0
       axios.get(
         'https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
         + '?key='
-        + '\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943'
+        + yandexDictionaryKey
         + '&lang='
         + requestLanguage
         + '&text='
-        + params?.word)
+        + requestWord)
         .then(response => {
           dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
         })
@@ -50,15 +52,20 @@ export default function DeepSearch({ }: Props) {
       <div className='DeepSearch__results'>
 
         {
-          wordsFromYandexDictionary == undefined
-            ? "none"
-            : wordsFromYandexDictionary.map(resultColumn =>
-              <ResultColumn
-                pos={resultColumn.pos}
-                translates={resultColumn.tr}
-                key={resultColumn.pos}
-              />
-            )
+          wordsFromYandexDictionary.length
+            ? (wordsFromYandexDictionary == undefined
+              ? "none"
+              : wordsFromYandexDictionary.map(resultColumn =>
+                <ResultColumn
+                  pos={resultColumn.pos}
+                  translates={resultColumn.tr}
+                  key={resultColumn.pos}
+                />
+              ))
+            :
+            <div className='DeepSearch__noresultstext'>
+              Слово не найдено или строка поиска пуста
+            </div>
         }
 
       </div>

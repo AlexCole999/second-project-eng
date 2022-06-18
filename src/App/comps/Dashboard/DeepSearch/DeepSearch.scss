@@ -8,4 +8,13 @@
     min-height: 97vh;
   }
 
+  &__noresultstext {
+    width: 100%;
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 15px;
+    font-style: italic;
+    font-size: 25px;
+  }
+
 }
