@@ -28,12 +28,13 @@ export default function DeepSearch({ }: Props) {
       });
     });
     if (params) {
+      let requestLanguage = allWordsFromFirebase[params?.word]?.translates[0]?.language || 'en-ru'
       axios.get(
         'https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
         + '?key='
         + '\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943'
         + '&lang='
-        + allWordsFromFirebase[params?.word].translates[0].language
+        + requestLanguage
         + '&text='
         + params?.word)
         .then(response => {
