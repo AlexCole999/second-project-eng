@@ -21,7 +21,8 @@ export default function Dashboard({ }: Props) {
 
         <Routes>
           <Route path="/second-project-eng/Profile" element={<Profile />}></Route>
-          <Route path="/second-project-eng/DeepSearch" element={<DeepSearch />}></Route>
+          <Route exact path="/second-project-eng/DeepSearch" element={<DeepSearch />}></Route>
+          <Route exact path="/second-project-eng/DeepSearch/:word" element={<DeepSearch />}></Route>
           <Route path="/second-project-eng/MyWords" element={<MyWords />}></Route>
           <Route path="/second-project-eng/Learn" element={<Learn />}></Route>
           <Route path="/second-project-eng/Statistics" element={<Statistics />}></Route>
