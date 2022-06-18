@@ -6,7 +6,7 @@ import { FaTimes } from "react-icons/fa";
 import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
 import { db } from '../../../../API/firebase/firebaseConfig'
 import { setDoc, doc } from 'firebase/firestore';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   word: any
@@ -110,12 +110,15 @@ export default function MyWordsElem({ word }: Props) {
       </div>
 
       <div className='MyWords__elemMainWord'>
-        <div onClick={() => history(`../second-project-eng/DeepSearch/${allWordsFromFirebase[word]?.word}`)}>
-          {/* <button onClick={() => history(`../second-project-eng/DeepSearch/${allWordsFromFirebase[word]?.word}`)}></button> */}
+        <div
+          onClick={() => history(`../second-project-eng/DeepSearch/${allWordsFromFirebase[word]?.word}`)}>
+
           {capitalizeFirstLetter(allWordsFromFirebase[word]?.word)}
+
           <div className='MyWords__elemTranslateLanguage'>
             {allWordsFromFirebase[word].translates[0].language.split('-')[0]}
           </div>
+
         </div>
 
       </div>
