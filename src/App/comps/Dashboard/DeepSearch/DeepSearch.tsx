@@ -19,7 +19,6 @@ export default function DeepSearch({ }: Props) {
   const wordsFromYandexDictionary = useSelector(state => state.yandexDictionaryTranslates.data);
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
   const user = useSelector(state => state.user?.data?.email || 'guest');
-  const selectedLanguage = useSelector(state => state.selectedLanguage);
 
   useEffect(() => {
     getDoc(doc(db, "users", user, 'data', 'words')).then(data => {
