@@ -110,12 +110,8 @@ export default function MyWordsElem({ word }: Props) {
       </div>
 
       <div className='MyWords__elemMainWord'>
-        <div>
-          {/* <NavLink
-            to={"/second-project-eng/DeepSearch"}
-            title="Продвинутый поиск"> */}
-          <button onClick={() => history(`../second-project-eng/DeepSearch/${allWordsFromFirebase[word]?.word}`)}></button>
-          {/* </NavLink> */}
+        <div onClick={() => history(`../second-project-eng/DeepSearch/${allWordsFromFirebase[word]?.word}`)}>
+          {/* <button onClick={() => history(`../second-project-eng/DeepSearch/${allWordsFromFirebase[word]?.word}`)}></button> */}
           {capitalizeFirstLetter(allWordsFromFirebase[word]?.word)}
           <div className='MyWords__elemTranslateLanguage'>
             {allWordsFromFirebase[word].translates[0].language.split('-')[0]}

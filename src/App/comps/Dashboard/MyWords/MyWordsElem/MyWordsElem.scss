@@ -29,10 +29,18 @@
     }
 
     &__elemMainWord {
+      cursor: pointer;
       margin-bottom: 10px;
       text-align: center;
       font-size: 26px;
       font-weight: bold;
+      transition: 0.2s all ease;
+
+      &:hover {
+        color: rgb(228, 63, 206);
+        transform: scale(1.2);
+      }
+
     }
 
     &__elemTranslateRow {
@@ -47,6 +55,7 @@
       font-size: 20px;
       font-style: italic;
       display: inline;
+      transition: 0.2s all ease;
 
       &:hover {
         color: rgb(228, 63, 206);
