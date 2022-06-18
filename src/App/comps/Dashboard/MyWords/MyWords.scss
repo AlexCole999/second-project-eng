@@ -11,7 +11,7 @@
     margin: 0px 0px 15px 0px;
 
     input {
-      border: 1px solid rgb(107, 201, 255);
+      border: 2px solid rgb(107, 201, 255);
       padding: 8px;
       border-radius: 15px;
       font-style: italic;
@@ -22,6 +22,8 @@
 
   &__filterMenuTitle {
     margin-bottom: 15px;
+    font-style: italic;
+    font-weight: bold;
   }
 
   &__words {

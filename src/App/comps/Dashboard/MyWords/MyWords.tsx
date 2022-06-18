@@ -20,6 +20,7 @@ export default function MyWords({ }: Props) {
 
   const filteredWordsArray = [
     ...Object.keys(fullWordsList)
+      .sort()
       .filter(x =>
         fullWordsList[x].word.toLowerCase().match(regexp)
       )
@@ -45,7 +46,7 @@ export default function MyWords({ }: Props) {
       <div className='MyWords__filterMenu'>
 
         <div className='MyWords__filterMenuTitle'>
-          Фильтрация
+          Быстрый поиск
         </div>
 
         <div>
