@@ -19,7 +19,7 @@ export default function DeepSearch({ }: Props) {
   const wordsFromYandexDictionary = useSelector(state => state.yandexDictionaryTranslates.data);
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
   const user = useSelector(state => state.user?.data?.email || 'guest');
-  console.log(params)
+
   useEffect(() => {
     getDoc(doc(db, "users", user, 'data', 'words')).then(data => {
       dispatch({
@@ -27,7 +27,8 @@ export default function DeepSearch({ }: Props) {
         payload: data.data()
       });
     });
-    if (params) {
+    console.log(params)
+    if (params.word) {
       let yandexDictionaryKey = '\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943'
       let requestLanguage = allWordsFromFirebase[params?.word]?.translates[0]?.language || 'en-ru'
       let requestWord = params?.word !== undefined ? params?.word : 0
