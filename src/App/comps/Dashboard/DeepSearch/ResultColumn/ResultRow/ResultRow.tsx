@@ -28,14 +28,13 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
   const isGameWord = allWordsFromFirebase[word]?.gameword == translate;
 
   function yandexDictionaryRequest(word) {
-    let yandexDictionaryKey = '\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943'
-    let requestLanguage = 'en-ru'
+    const yandexDictionaryKey = '\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943'
     return axios.get(
       'https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
       + '?key='
       + yandexDictionaryKey
       + '&lang='
-      + requestLanguage
+      + selectedLanguage
       + '&text='
       + word)
   }
