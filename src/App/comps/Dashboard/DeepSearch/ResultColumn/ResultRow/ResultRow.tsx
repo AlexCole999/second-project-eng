@@ -4,6 +4,7 @@ import { setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../API/firebase/firebaseConfig'
 import { useSelector, useDispatch } from 'react-redux';
 import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
+import axios from 'axios';
 import capitalizeFirstLetter from './../../../../../functions/capitalizeFirstLetter';
 
 type Props = {
@@ -26,6 +27,18 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
   const isAppendedTranslate = allWordsFromFirebase[word]?.translates.some(x => x.translate == translate);
   const isGameWord = allWordsFromFirebase[word]?.gameword == translate;
 
+  function yandexDictionaryRequest(word) {
+    let yandexDictionaryKey = '\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943'
+    let requestLanguage = 'en-ru'
+    return axios.get(
+      'https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
+      + '?key='
+      + yandexDictionaryKey
+      + '&lang='
+      + requestLanguage
+      + '&text='
+      + word)
+  }
 
   function addTranslateToFirebase() {
 
@@ -111,7 +124,14 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
           {sameWords
             .map(
               sameWord =>
-                <div key={sameWord.text} className='DeepSearch__resultRowSameWordsListElem'>
+                <div key={sameWord.text} className='DeepSearch__resultRowSameWordsListElem'
+                  onClick={
+                    () => {
+                      yandexDictionaryRequest(sameWord.text)
+                        .then(response => {
+                          dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
+                        })
+                    }}>
                   {capitalizeFirstLetter(sameWord.text)}
                 </div>)
           }

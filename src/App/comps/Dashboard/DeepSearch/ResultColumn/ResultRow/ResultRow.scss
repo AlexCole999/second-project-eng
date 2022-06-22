@@ -6,38 +6,50 @@
   }
 
   &__resultRowMainWord {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
   }
 
   &__resultRowFrequency {
-    margin-bottom: 5px;
+    font-size: 16px;
+    margin-bottom: 8px;
   }
 
   &__resultRowSynonymsList {
-    margin-bottom: 5px;
+    font-size: 16px;
+    margin-bottom: 8px;
   }
 
   &__resultRowSynonymsListElem {
     font-style: italic;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   &__resultRowSameWordsList {
-    margin-bottom: 5px;
+    font-size: 16px;
+    margin-bottom: 8px;
   }
 
   &__resultRowSameWordsListElem {
+    font-size: 14px;
     font-style: italic;
-    font-size: 13px;
+    transition: 0.3s all ease;
+
+    &:hover {
+      cursor: pointer;
+      color: rgb(228, 63, 206);
+      transform: scale(1.2);
+    }
   }
 
-  &__resultRowExamplesList {}
+  &__resultRowExamplesList {
+    font-size: 16px;
+  }
 
   &__resultRowExamplesListElem {
     font-style: italic;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   &__resultRowButtonMenu {
