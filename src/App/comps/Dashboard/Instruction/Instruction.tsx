@@ -4,6 +4,6 @@ type Props = {}
 
 export default function Instruction({ }: Props) {
   return (
-    <div>Instruction</div>
+    <div style={{ color: 'red' }}>Instruction</div>
   )
 }
