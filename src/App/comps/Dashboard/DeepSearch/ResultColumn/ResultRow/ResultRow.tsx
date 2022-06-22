@@ -131,7 +131,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
                         .then(response => {
                           dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
                         })
-                    }}>
+                    }}             >
                   {capitalizeFirstLetter(sameWord.text)}
                 </div>)
           }
