@@ -28,7 +28,6 @@ export default function DeepSearch({ }: Props) {
         payload: data.data()
       });
     });
-    console.log(params)
     if (params.word) {
       let yandexDictionaryKey = '\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943'
       let requestLanguage = allWordsFromFirebase[params?.word]?.translates[0]?.language || 'en-ru'
