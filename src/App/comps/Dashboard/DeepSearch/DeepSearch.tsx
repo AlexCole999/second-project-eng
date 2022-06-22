@@ -52,7 +52,11 @@ export default function DeepSearch({ }: Props) {
     <div className='DeepSearch'>
 
       <div className='DeepSearch__mainword'>
-        {capitalizeFirstLetter(wordsFromYandexDictionary[0]?.text)}
+        {
+          wordsFromYandexDictionary[0]?.text
+            ? capitalizeFirstLetter(wordsFromYandexDictionary[0]?.text)
+            : 'Нет слова'
+        }
       </div>
 
       <div className='DeepSearch__results'>
