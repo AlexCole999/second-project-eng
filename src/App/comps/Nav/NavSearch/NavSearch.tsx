@@ -169,7 +169,6 @@ export default function NavSearch({ }: Props) {
         onChange={
           (e) => {
             debouncedYandexDictionaryRequest(e.target.value);
-            console.log(inputsearch.current.value)
           }} />
 
       <div className="NavSearch__searchedMainWord">
