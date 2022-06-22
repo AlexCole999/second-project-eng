@@ -1,5 +1,15 @@
 .DeepSearch {
 
+  &__mainword {
+    border-radius: 15px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 15px;
+    font-size: 38px;
+    font-weight: bold;
+  }
+
   &__results {
     color: black;
     display: flex;

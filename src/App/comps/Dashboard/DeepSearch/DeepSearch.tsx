@@ -7,6 +7,7 @@ import { db } from '../../../API/firebase/firebaseConfig'
 import './DeepSearch.scss';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import capitalizeFirstLetter from './../../../functions/capitalizeFirstLetter';
 
 type Props = {}
 
@@ -49,6 +50,10 @@ export default function DeepSearch({ }: Props) {
   return (
 
     <div className='DeepSearch'>
+
+      <div className='DeepSearch__mainword'>
+        {capitalizeFirstLetter(wordsFromYandexDictionary[0]?.text)}
+      </div>
 
       <div className='DeepSearch__results'>
 
