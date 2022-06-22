@@ -134,6 +134,7 @@ export default function NavSearch({ }: Props) {
       });
 
   }
+
   function setGameWord() {
 
     const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
