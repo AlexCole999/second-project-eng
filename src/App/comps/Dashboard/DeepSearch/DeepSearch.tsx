@@ -8,6 +8,7 @@ import './DeepSearch.scss';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import capitalizeFirstLetter from './../../../functions/capitalizeFirstLetter';
+import yandexDictionaryRequest from './../../../Api/yandexDictionary/yandexDictionaryRequest';
 
 type Props = {}
 
