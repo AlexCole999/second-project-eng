@@ -73,7 +73,7 @@ export default function NavSearch({ }: Props) {
 
     dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage })
 
-    languageFlagCheck(newLanguage)
+    setSelectedLanguageFlag(languageFlagCheck(newLanguage))
 
     axios.get(
       'https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
@@ -91,24 +91,24 @@ export default function NavSearch({ }: Props) {
 
   const languageFlagCheck = (language) => {
 
-    language == 'de-ru'
-      ? setSelectedLanguageFlag(<img src={de} alt="" className="NavSearch__languageListElemFlag" />)
+    return language == 'de-ru'
+      ? (<img src={de} alt="" className="NavSearch__languageListElemFlag" />)
       : language == 'fr-ru'
-        ? setSelectedLanguageFlag(<img src={fr} alt="" className="NavSearch__languageListElemFlag" />)
+        ? (<img src={fr} alt="" className="NavSearch__languageListElemFlag" />)
         : language == 'es-ru'
-          ? setSelectedLanguageFlag(<img src={es} alt="" className="NavSearch__languageListElemFlag" />)
+          ? (<img src={es} alt="" className="NavSearch__languageListElemFlag" />)
           : language == 'it-ru'
-            ? setSelectedLanguageFlag(<img src={it} alt="" className="NavSearch__languageListElemFlag" />)
+            ? (<img src={it} alt="" className="NavSearch__languageListElemFlag" />)
             : language == 'nl-ru'
-              ? setSelectedLanguageFlag(<img src={nl} alt="" className="NavSearch__languageListElemFlag" />)
+              ? (<img src={nl} alt="" className="NavSearch__languageListElemFlag" />)
               : language == 'pl-ru'
-                ? setSelectedLanguageFlag(<img src={pl} alt="" className="NavSearch__languageListElemFlag" />)
+                ? (<img src={pl} alt="" className="NavSearch__languageListElemFlag" />)
                 : language == 'bg-ru'
-                  ? setSelectedLanguageFlag(<img src={bg} alt="" className="NavSearch__languageListElemFlag" />)
+                  ? (<img src={bg} alt="" className="NavSearch__languageListElemFlag" />)
                   : language == 'cs-ru'
-                    ? setSelectedLanguageFlag(<img src={cz} alt="" className="NavSearch__languageListElemFlag" />)
+                    ? (<img src={cz} alt="" className="NavSearch__languageListElemFlag" />)
                     : language == 'en-ru'
-                      ? setSelectedLanguageFlag(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
+                      ? (<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
                       : ""
 
   }
