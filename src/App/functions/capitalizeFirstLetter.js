@@ -9,4 +9,5 @@ const capitalizeFirstLetter = (string) => {
   }
 
 }
+
 export default capitalizeFirstLetter;

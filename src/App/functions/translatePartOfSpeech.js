@@ -1,5 +1,6 @@
 const translatePartOfSpeech = (string) => {
-  let translatedPartOfSpeech =
+
+  return (
     string === "noun" ? "Существительное"
       : string === "verb" ? "Глагол"
         : string === "adjective" ? "Прилагательное"
@@ -15,7 +16,8 @@ const translatePartOfSpeech = (string) => {
                             : string === "conjunction" ? "Союз"
                               : string === "parenthetic" ? "Вводное"
                                 : string
-  return translatedPartOfSpeech
+  )
+
 }
 
 export default translatePartOfSpeech;
