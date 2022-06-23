@@ -89,7 +89,7 @@ export default function NavSearch({ }: Props) {
 
   }
 
-  function languageFlagCheck(language) {
+  const languageFlagCheck = (language) => {
 
     language == 'de-ru'
       ? setSelectedLanguageFlag(<img src={de} alt="" className="NavSearch__languageListElemFlag" />)
