@@ -99,7 +99,7 @@ export default function NavSearch({ }: Props) {
 
   function addTranslateToFirebase() {
 
-    const newBase = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, mainWord, mainTranslate)
+    const newBase = createNewBase.baseWithNewTranslateForWord(allWordsFromFirebase, selectedLanguage, mainWord, mainTranslate)
 
     setDoc(doc(db, "users", user, 'data', 'words'), newBase)
       .then(() => {
