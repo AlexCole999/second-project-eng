@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
 import axios from 'axios';
 import capitalizeFirstLetter from './../../../../../functions/capitalizeFirstLetter';
+import createNewBase from './../../../../../functions/createNewBase';
+import yandexDictionaryRequest from './../../../../../Api/yandexDictionary/yandexDictionaryRequest';
+
 
 type Props = {
   translate: string,
@@ -27,64 +30,26 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
   const isAppendedTranslate = allWordsFromFirebase[word]?.translates.some(x => x.translate == translate);
   const isGameWord = allWordsFromFirebase[word]?.gameword == translate;
 
-  function yandexDictionaryRequest(word) {
-    const yandexDictionaryKey = '\dict.1.1.20210811T164421Z.dc92c34aa55f8bde.11d283af044e951db1e180d89d183eafd3dac943'
-    return axios.get(
-      'https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
-      + '?key='
-      + yandexDictionaryKey
-      + '&lang='
-      + selectedLanguage
-      + '&text='
-      + word)
-  }
-
   function addTranslateToFirebase() {
 
-    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
-    let newBaseWords = currentBaseWords;
+    const newBase = createNewBase.baseWithNewTranslateForWord(allWordsFromFirebase, selectedLanguage, word, translate)
 
-    newBaseWords[word] = currentBaseWords[word]
-      ? {
-        ...currentBaseWords[word],
-        translates: [...currentBaseWords[word]['translates'].filter(x => x.translate !== translate), { language: selectedLanguage, translate: translate }]
-      }
-      : {
-        word: word,
-        translates: [{ language: selectedLanguage, translate: translate }]
-      };
-
-    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
       .then(() => {
         console.log(`Слово "${capitalizeFirstLetter(translate)}" добавлено в переводы слова "${capitalizeFirstLetter(word)}"`);
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
       });
-
   }
 
   function setGameWord() {
 
-    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
-    let newBaseWords = currentBaseWords;
+    const newBase = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, word, translate);
 
-    newBaseWords[word] = currentBaseWords[word]
-      ? {
-        ...currentBaseWords[word],
-        gameword: translate
-      }
-      : {
-        word: word,
-        translates: [{ language: selectedLanguage, translate: translate }],
-        gameword: translate
-      };
-
-
-    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
       .then(() => {
         console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`);
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
       });
-
   }
 
   return (
@@ -126,7 +91,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
                 <div key={sameWord.text} className='DeepSearch__resultRowSameWordsListElem'
                   onClick={
                     () => {
-                      yandexDictionaryRequest(sameWord.text)
+                      yandexDictionaryRequest(selectedLanguage, sameWord.text)
                         .then(response => {
                           dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
                         })
