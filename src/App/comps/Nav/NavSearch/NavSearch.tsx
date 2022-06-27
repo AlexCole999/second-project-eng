@@ -139,7 +139,7 @@ export default function NavSearch({ }: Props) {
 
         {inputstate
           ? (<div className='NavSearch__inputDeleteButton'
-            onClick={() => inputsearch.current.value = ""}
+            onClick={() => { inputsearch.current.value = ""; setinputstate('') }}
           >
             <AiOutlineClose className='NavSearch__inputDeleteButtonIcon' />
           </div>)
