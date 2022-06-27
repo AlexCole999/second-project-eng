@@ -30,6 +30,7 @@ export default function NavSearch({ }: Props) {
 
   const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
   const [reversedTranslateDirection, setReversedTranslateDirection] = useState(false)
+  const [inputstate, setinputstate] = useState('')
 
   const user = useSelector(state => state.user?.data?.email || 'guest')
   const selectedLanguage = useSelector(state => state.selectedLanguage)
@@ -127,18 +128,23 @@ export default function NavSearch({ }: Props) {
     <div className="NavSearch">
 
       <div className='NavSearch__inputElem'>
-        <input placeholder="..."
-          type="input"
+        <input placeholder="..." type="input"
           ref={inputsearch}
-          onChange={
-            (e) => {
-              if (e.target.value.match(/[a-zA-Zа-яА-Я]+$/)) {
-                debouncedYandexDictionaryInputRequest();
-              }
-            }} />
-        <div className='NavSearch__inputDeleteButton'>
-          <AiOutlineClose className='NavSearch__inputDeleteButtonIcon' />
-        </div>
+          onChange={(e) => {
+            setinputstate(e.target.value)
+            if (e.target.value.match(/[a-zA-Zа-яА-Я]+$/)) {
+              debouncedYandexDictionaryInputRequest();
+            }
+          }} />
+
+        {inputstate
+          ? (<div className='NavSearch__inputDeleteButton'
+            onClick={() => inputsearch.current.value = ""}
+          >
+            <AiOutlineClose className='NavSearch__inputDeleteButtonIcon' />
+          </div>)
+          : ''}
+
       </div>
 
       <div className="NavSearch__searchedMainWord">
