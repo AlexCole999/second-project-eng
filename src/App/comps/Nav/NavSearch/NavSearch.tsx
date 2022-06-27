@@ -1,6 +1,5 @@
 import './NavSearch.scss';
 import React from 'react';
-import axios from 'axios';
 import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
@@ -11,7 +10,7 @@ import debounce from './../../../functions/debounce';
 import { db } from '../../../API/firebase/firebaseConfig'
 import yandexDictionaryRequest from './../../../Api/yandexDictionary/yandexDictionaryRequest';
 
-import us from '../../pictures/flags/us.svg';
+import us from '../../../source/flags/us.svg';
 import de from './flags/de.svg';
 import fr from './flags/fr.svg';
 import es from './flags/es.svg';
