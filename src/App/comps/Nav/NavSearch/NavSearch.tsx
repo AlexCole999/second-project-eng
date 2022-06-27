@@ -11,7 +11,7 @@ import debounce from './../../../functions/debounce';
 import { db } from '../../../API/firebase/firebaseConfig'
 import yandexDictionaryRequest from './../../../Api/yandexDictionary/yandexDictionaryRequest';
 
-import us from './flags/us.svg';
+import us from '../../pictures/flags/us.svg';
 import de from './flags/de.svg';
 import fr from './flags/fr.svg';
 import es from './flags/es.svg';
