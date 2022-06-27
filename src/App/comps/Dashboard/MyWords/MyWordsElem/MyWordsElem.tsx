@@ -49,37 +49,15 @@ export default function MyWordsElem({ word }: Props) {
 
   function deleteTranslateFromFirebase(translate) {
 
-    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
-    let newBaseWords = currentBaseWords;
+    const newBase = createNewBase.baseWithDeletedTranslateForWord(allWordsFromFirebase, word, translate)
 
-    let translatesArrayLength = currentBaseWords[word]['translates'].length
-
-    if (translatesArrayLength > 1) {
-
-      newBaseWords[word] = {
-        ...currentBaseWords[word],
-        translates: currentBaseWords[word]['translates'].filter(x => x.translate !== translate)
-      }
-
-      setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
-        .then(() => {
-          console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено из переводов слова "${capitalizeFirstLetter(word)}"`);
-          dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
-        });
-
-    }
-
-    if (translatesArrayLength == 1) {
-
-      delete newBaseWords[word];
-
-      setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
-        .then(() => {
-          console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`);
-          dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
-        });
-
-    }
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
+      .then(() => {
+        allWordsFromFirebase[word]['translates'].length > 1
+          ? console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено из переводов слова "${capitalizeFirstLetter(word)}"`)
+          : console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`)
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
+      });
 
   }
 

@@ -1,9 +1,5 @@
 class CreateNewBase {
 
-
-  console() { console.log('it works') }
-
-
   baseWithNewGameWord(oldbase, selectedLanguage, wordForGame, newGameWord) {
 
     const currentBaseWords = JSON.parse(JSON.stringify(oldbase));
@@ -24,7 +20,6 @@ class CreateNewBase {
 
   }
 
-
   baseWithNewTranslateForWord(oldbase, selectedLanguage, wordForTranslateAppend, newTranslate) {
 
     const currentBaseWords = JSON.parse(JSON.stringify(oldbase));
@@ -39,17 +34,6 @@ class CreateNewBase {
         word: wordForTranslateAppend,
         translates: [{ language: selectedLanguage, translate: newTranslate }]
       };
-
-    return newBaseWords
-
-  }
-
-  baseWithDeletedWord(oldbase, word) {
-
-    const currentBaseWords = JSON.parse(JSON.stringify(oldbase));
-    let newBaseWords = currentBaseWords;
-
-    delete newBaseWords[word];
 
     return newBaseWords
 
@@ -77,7 +61,19 @@ class CreateNewBase {
 
   }
 
+  baseWithDeletedWord(oldbase, word) {
+
+    const currentBaseWords = JSON.parse(JSON.stringify(oldbase));
+    let newBaseWords = currentBaseWords;
+
+    delete newBaseWords[word];
+
+    return newBaseWords
+
+  }
+
 }
+
 const createNewBase = new CreateNewBase();
 
 export default createNewBase;
