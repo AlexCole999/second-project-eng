@@ -6,12 +6,37 @@
   padding: 0px 6px;
   position: relative;
 
+  &__inputElem {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
   input {
     width: 90%;
     padding: 7px 0px;
     text-align: center;
     position: relative;
     outline: none;
+  }
+
+  &__inputDeleteButton {
+    position: absolute;
+    right: 8%;
+    bottom: 20%;
+  }
+
+  &__inputDeleteButtonIcon {
+    width: 12px;
+    height: 12px;
+    color: grey;
+    transition: 0.3s all ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+      color: red;
+    }
   }
 
   &__searchedMainWord {
