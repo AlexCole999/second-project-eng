@@ -122,20 +122,7 @@ export default function NavSearch({ }: Props) {
 
   function setGameWord() {
 
-    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
-    let newBaseWords = currentBaseWords;
-
-    newBaseWords[mainWord] = currentBaseWords[mainWord]
-      ? {
-        ...currentBaseWords[mainWord],
-        gameword: mainTranslate
-      }
-      : {
-        word: mainWord,
-        translates: [{ language: selectedLanguage, translate: mainTranslate }],
-        gameword: mainTranslate
-      };
-
+    const newBaseWords = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, mainWord, mainTranslate);
 
     setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
       .then(() => {
@@ -238,7 +225,7 @@ export default function NavSearch({ }: Props) {
           ref={languageListTrigger}>
           <FiChevronsRight size={20} />
         </div>
-        <button onClick={() => { createNewBase.console() }}></button>
+        <button onClick={() => { console.log(createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, mainWord, mainTranslate)) }}></button>
         <div className="NavSearch__languagesList"
           ref={languagesList}
           onClick={selectLanguage}>
