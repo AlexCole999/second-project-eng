@@ -25,15 +25,12 @@ export default function MyWordsElem({ word }: Props) {
 
   function deleteAllTranslatesFromFirebase() {
 
-    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
-    let newBaseWords = currentBaseWords;
+    const newBase = createNewBase.baseWithDeletedWord(allWordsFromFirebase, word);
 
-    delete newBaseWords[word];
-
-    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
       .then(() => {
         console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`);
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
       });
 
   }

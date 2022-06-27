@@ -44,8 +44,40 @@ class CreateNewBase {
 
   }
 
-}
+  baseWithDeletedWord(oldbase, word) {
 
+    const currentBaseWords = JSON.parse(JSON.stringify(oldbase));
+    let newBaseWords = currentBaseWords;
+
+    delete newBaseWords[word];
+
+    return newBaseWords
+
+  }
+
+  baseWithDeletedTranslateForWord(oldbase, word, translateForDelete) {
+
+    const currentBaseWords = JSON.parse(JSON.stringify(oldbase));
+    let newBaseWords = currentBaseWords;
+
+    let translatesArrayLength = currentBaseWords[word]['translates'].length
+
+    if (translatesArrayLength > 1) {
+      newBaseWords[word] = {
+        ...currentBaseWords[word],
+        translates: currentBaseWords[word]['translates'].filter(x => x.translate !== translateForDelete)
+      }
+    }
+
+    if (translatesArrayLength == 1) {
+      delete newBaseWords[word];
+    }
+
+    return newBaseWords
+
+  }
+
+}
 const createNewBase = new CreateNewBase();
 
 export default createNewBase;
