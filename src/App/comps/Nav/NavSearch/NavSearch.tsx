@@ -99,35 +99,24 @@ export default function NavSearch({ }: Props) {
 
   function addTranslateToFirebase() {
 
-    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
-    let newBaseWords = currentBaseWords;
+    const newBase = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, mainWord, mainTranslate)
 
-    newBaseWords[mainWord] = currentBaseWords[mainWord]
-      ? {
-        ...currentBaseWords[mainWord],
-        translates: [...currentBaseWords[mainWord]['translates'].filter(x => x.translate !== mainTranslate), { language: selectedLanguage, translate: mainTranslate }]
-      }
-      : {
-        word: mainWord,
-        translates: [{ language: selectedLanguage, translate: mainTranslate }]
-      };
-
-    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
       .then(() => {
         console.log(`Слово "${capitalizeFirstLetter(mainTranslate)}" добавлено в переводы слова "${capitalizeFirstLetter(mainWord)}"`);
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
       });
 
   }
 
   function setGameWord() {
 
-    const newBaseWords = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, mainWord, mainTranslate);
+    const newBase = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, mainWord, mainTranslate);
 
-    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
       .then(() => {
         console.log(`Теперь в слове "${capitalizeFirstLetter(mainWord)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(mainTranslate)}"`);
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
       });
 
   }
