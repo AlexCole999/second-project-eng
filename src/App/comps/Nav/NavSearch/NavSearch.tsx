@@ -56,15 +56,14 @@ export default function NavSearch({ }: Props) {
 
   function selectLanguage(e) {
 
+    const flagCheckString = e.target.parentElement.childNodes[1].outerText;
+    setSelectedLanguageFlag(languageFlagCheck(flagCheckString))
+
     const newLanguage = reversedTranslateDirection
       ? e.target.parentElement.childNodes[1].outerText.split('-').reverse().join('-')
       : e.target.parentElement.childNodes[1].outerText;
 
-    const flagCheckString = e.target.parentElement.childNodes[1].outerText;
-
     dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage })
-
-    setSelectedLanguageFlag(languageFlagCheck(flagCheckString))
 
     yandexDictionaryRequest(newLanguage, inputsearch.current.value)
       .then(response => {
