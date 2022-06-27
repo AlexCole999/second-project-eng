@@ -39,6 +39,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         console.log(`Слово "${capitalizeFirstLetter(translate)}" добавлено в переводы слова "${capitalizeFirstLetter(word)}"`);
         dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
       });
+
   }
 
   function setGameWord() {
@@ -50,6 +51,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`);
         dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
       });
+
   }
 
   return (
