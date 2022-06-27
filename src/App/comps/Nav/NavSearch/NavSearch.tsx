@@ -9,6 +9,7 @@ import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
 import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
 import capitalizeFirstLetter from './../../../functions/capitalizeFirstLetter';
 import yandexDictionaryRequest from './../../../Api/yandexDictionary/yandexDictionaryRequest';
+import createNewBase from '../../../functions/createNewBase';
 
 import us from '../../../source/flags/us.svg';
 import de from '../../../source/flags/de.svg';
@@ -237,7 +238,7 @@ export default function NavSearch({ }: Props) {
           ref={languageListTrigger}>
           <FiChevronsRight size={20} />
         </div>
-
+        <button onClick={() => { createNewBase.console() }}></button>
         <div className="NavSearch__languagesList"
           ref={languagesList}
           onClick={selectLanguage}>
