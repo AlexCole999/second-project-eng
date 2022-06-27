@@ -1,7 +1,7 @@
 import yandexDictionaryKey from './yandexDictionaryKey';
 import axios from 'axios';
 
-const yandexDictionaryRequest2 = (language, word) => {
+const yandexDictionaryRequest = (language, word) => {
 
   return (
     axios.get(
@@ -16,4 +16,4 @@ const yandexDictionaryRequest2 = (language, word) => {
 
 }
 
-export default yandexDictionaryRequest2;
+export default yandexDictionaryRequest;

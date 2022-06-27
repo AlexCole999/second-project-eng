@@ -4,7 +4,6 @@ import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
-import yandexDictionaryKey from './../../../api/yandexDictionary/yandexDictionaryKey';
 import debounce from './../../../functions/debounce';
 import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
 import capitalizeFirstLetter from './../../../functions/capitalizeFirstLetter';
@@ -20,6 +19,7 @@ import nl from './flags/nl.svg';
 import pl from './flags/pl.svg';
 import bg from './flags/bg.svg';
 import cz from './flags/cz.svg';
+import yandexDictionaryRequest from './../../../Api/yandexDictionary/yandexDictionaryRequest';
 
 type Props = {}
 
@@ -45,27 +45,16 @@ export default function NavSearch({ }: Props) {
     languageListTrigger.current.classList.toggle('NavSearch__languagesListTrigger_opened');
   }
 
-  function yandexDictionaryRequest(input: string): void {
-
+  function yandexDictionaryInputRequest(input: string): void {
     if (input.match(/[a-zA-Zа-яА-Я]+$/)) {
-
-      axios.get(
-        'https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
-        + '?key='
-        + yandexDictionaryKey
-        + '&lang='
-        + selectedLanguage
-        + '&text='
-        + input)
+      yandexDictionaryRequest(selectedLanguage, input)
         .then(response => {
           dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
         })
-
     }
-
   }
 
-  const debouncedYandexDictionaryRequest = debounce(yandexDictionaryRequest, 500)
+  const debouncedYandexDictionaryInputRequest = debounce(yandexDictionaryInputRequest, 500)
 
   function selectLanguage(e) {
 
@@ -75,14 +64,7 @@ export default function NavSearch({ }: Props) {
 
     setSelectedLanguageFlag(languageFlagCheck(newLanguage))
 
-    axios.get(
-      'https://dictionary.yandex.net/api/v1/dicservice.json/lookup'
-      + '?key='
-      + yandexDictionaryKey
-      + '&lang='
-      + newLanguage
-      + '&text='
-      + inputsearch.current.value)
+    yandexDictionaryRequest(newLanguage, inputsearch.current.value)
       .then(response => {
         dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
       })
@@ -112,6 +94,7 @@ export default function NavSearch({ }: Props) {
                       : ""
 
   }
+
   function addTranslateToFirebase() {
 
     const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
@@ -169,7 +152,7 @@ export default function NavSearch({ }: Props) {
         ref={inputsearch}
         onChange={
           (e) => {
-            debouncedYandexDictionaryRequest(e.target.value);
+            debouncedYandexDictionaryInputRequest(e.target.value);
           }} />
 
       <div className="NavSearch__searchedMainWord">
