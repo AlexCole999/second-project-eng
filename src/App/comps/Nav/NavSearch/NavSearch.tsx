@@ -28,6 +28,7 @@ export default function NavSearch({ }: Props) {
   const dispatch = useDispatch();
 
   const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
+  const [reversedTranslateDirection, setReversedTranslateDirection] = useState(false)
 
   const user = useSelector(state => state.user?.data?.email || 'guest')
   const selectedLanguage = useSelector(state => state.selectedLanguage)
@@ -56,10 +57,15 @@ export default function NavSearch({ }: Props) {
 
   function selectLanguage(e) {
 
-    const newLanguage = e.target.parentElement.childNodes[1].outerText;
+    const newLanguage = reversedTranslateDirection
+      ? e.target.parentElement.childNodes[1].outerText.split('-').reverse().join('-')
+      : e.target.parentElement.childNodes[1].outerText;
+
+    const flagCheckString = e.target.parentElement.childNodes[1].outerText;
 
     dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage })
-    setSelectedLanguageFlag(languageFlagCheck(newLanguage))
+
+    setSelectedLanguageFlag(languageFlagCheck(flagCheckString))
 
     yandexDictionaryRequest(newLanguage, inputsearch.current.value)
       .then(response => {
@@ -213,7 +219,9 @@ export default function NavSearch({ }: Props) {
 
           <div className="NavSearch__reverseButtonSelectedLanguage"
             onClick={(e) => {
+
               let newLanguage = selectedLanguage.split('-').reverse().join('-')
+              setReversedTranslateDirection(!reversedTranslateDirection)
               dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
               e.target.parentElement.classList.toggle('NavSearch__reverseButtonSelectedLanguage_reversed');
               yandexDictionaryRequest(newLanguage, inputsearch.current.value)
