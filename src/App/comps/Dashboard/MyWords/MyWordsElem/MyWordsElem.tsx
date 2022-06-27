@@ -7,6 +7,7 @@ import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter
 import { db } from '../../../../API/firebase/firebaseConfig'
 import { setDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import createNewBase from './../../../../functions/createNewBase';
 
 type Props = {
   word: any
@@ -39,25 +40,12 @@ export default function MyWordsElem({ word }: Props) {
 
   function setGameWord(translate) {
 
-    const currentBaseWords = JSON.parse(JSON.stringify(allWordsFromFirebase));
-    let newBaseWords = currentBaseWords;
+    const newBase = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, word, translate);
 
-    newBaseWords[word] = currentBaseWords[word]
-      ? {
-        ...currentBaseWords[word],
-        gameword: translate
-      }
-      : {
-        word: word,
-        translates: [{ language: selectedLanguage, translate: translate }],
-        gameword: translate
-      };
-
-
-    setDoc(doc(db, "users", user, 'data', 'words'), newBaseWords)
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
       .then(() => {
         console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`);
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBaseWords });
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
       });
 
   }
