@@ -40,7 +40,7 @@ export default function NavSearch({ }: Props) {
   const languageListTrigger = useRef(null);
   const languagesList = useRef(null);
 
-  function openCloseLanguagesTrigger(): void {
+  function openCloseLanguagesListTrigger(): void {
     languagesList.current.classList.toggle('NavSearch__languagesList_opened');
     languageListTrigger.current.classList.toggle('NavSearch__languagesListTrigger_opened');
   }
@@ -212,28 +212,22 @@ export default function NavSearch({ }: Props) {
           </div>
 
           <div className="NavSearch__reverseButtonSelectedLanguage"
-            onClick={
-              (e) => {
-
-                let newLanguage = selectedLanguage.split('-').reverse().join('-')
-                dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
-
-                e.target.parentElement.classList.toggle('NavSearch__reverseButtonSelectedLanguage_reversed');
-
-                yandexDictionaryRequest(newLanguage, inputsearch.current.value)
-                  .then(response => {
-                    dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
-                  })
-
-              }
-            }>
+            onClick={(e) => {
+              let newLanguage = selectedLanguage.split('-').reverse().join('-')
+              dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
+              e.target.parentElement.classList.toggle('NavSearch__reverseButtonSelectedLanguage_reversed');
+              yandexDictionaryRequest(newLanguage, inputsearch.current.value)
+                .then(response => {
+                  dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
+                })
+            }}>
             <FiRotateCw />
           </div>
 
         </div>
 
         <div className="NavSearch__languagesListTrigger"
-          onClick={openCloseLanguagesTrigger}
+          onClick={openCloseLanguagesListTrigger}
           ref={languageListTrigger}>
           <FiChevronsRight size={20} />
         </div>
