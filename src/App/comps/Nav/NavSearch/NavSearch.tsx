@@ -1,24 +1,24 @@
 import './NavSearch.scss';
 import React from 'react';
 import { useState, useRef } from 'react';
+import { setDoc, doc } from 'firebase/firestore';
+import debounce from './../../../functions/debounce';
 import { useDispatch, useSelector } from 'react-redux';
+import { db } from '../../../API/firebase/firebaseConfig'
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
 import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
-import { setDoc, doc } from 'firebase/firestore';
 import capitalizeFirstLetter from './../../../functions/capitalizeFirstLetter';
-import debounce from './../../../functions/debounce';
-import { db } from '../../../API/firebase/firebaseConfig'
 import yandexDictionaryRequest from './../../../Api/yandexDictionary/yandexDictionaryRequest';
 
 import us from '../../../source/flags/us.svg';
-import de from './flags/de.svg';
-import fr from './flags/fr.svg';
-import es from './flags/es.svg';
-import it from './flags/it.svg';
-import nl from './flags/nl.svg';
-import pl from './flags/pl.svg';
-import bg from './flags/bg.svg';
-import cz from './flags/cz.svg';
+import de from '../../../source/flags/de.svg';
+import fr from '../../../source/flags/fr.svg';
+import es from '../../../source/flags/es.svg';
+import it from '../../../source/flags/it.svg';
+import nl from '../../../source/flags/nl.svg';
+import pl from '../../../source/flags/pl.svg';
+import bg from '../../../source/flags/bg.svg';
+import cz from '../../../source/flags/cz.svg';
 
 type Props = {}
 
