@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signInWithPopup } from "firebase/auth";
 import { FiUserX } from 'react-icons/fi';
 import { auth, db, provider } from '../../../API/firebase/firebaseConfig';
-import { getDoc, doc } from 'firebase/firestore';
+import { setDoc, getDoc, doc } from 'firebase/firestore';
 
 type Props = {}
 
@@ -22,12 +22,25 @@ export default function NavUser({ }: Props) {
 
         getDoc(doc(db, "users", result.user.email, 'data', 'words'))
           .then(data => {
+
+            if (data.data() == undefined) {
+              setDoc(doc(db, "users", result.user.email, 'data', 'words'), {})
+                .then(() =>
+                  dispatch({
+                    type: "ADD_DATA_FROM_FIREBASE",
+                    payload: {}
+                  })
+                )
+            }
+
             dispatch({
               type: "ADD_DATA_FROM_FIREBASE",
               payload: data.data()
-            })
+            });
+
           })
       })
+
       .catch((error) => {
         console.log(error);
       });
