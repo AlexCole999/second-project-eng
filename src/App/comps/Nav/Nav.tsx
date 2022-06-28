@@ -17,6 +17,8 @@ type Props = {}
 
 export default function Nav({ }: Props) {
 
+  let navIsClosed = localStorage.getItem('navIsClosed');
+
   const nav = useRef();
   const navtrigger = useRef(null)
 
@@ -28,16 +30,24 @@ export default function Nav({ }: Props) {
     nav.current.classList.toggle('Nav_closed');
     navtrigger.current.classList.toggle('Nav__trigger_closed');
 
+    navIsClosed =
+      navIsClosed == null
+        ? 'true'
+        : navIsClosed == 'true'
+          ? 'false'
+          : 'true'
+    localStorage.setItem('navIsClosed', navIsClosed)
+
   }
 
   return (
-    <div className='Nav' ref={nav}>
+    <div className={`Nav ${navIsClosed ? 'Nav_closed' : ''}`} ref={nav} >
 
       <div className="Nav__body">
 
         <div className="Nav__top">
 
-          <div className="Nav__trigger" ref={navtrigger} onClick={openCloseNavTrigger}>
+          <div className={`Nav__trigger ${navIsClosed ? 'Nav__trigger_closed' : ''}`} ref={navtrigger} onClick={openCloseNavTrigger}>
 
             <div >
               <FiChevronsRight size={25} />
