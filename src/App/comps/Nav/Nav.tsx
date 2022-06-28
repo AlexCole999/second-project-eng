@@ -41,13 +41,13 @@ export default function Nav({ }: Props) {
   }
 
   return (
-    <div className={`Nav ${navIsClosed ? 'Nav_closed' : ''}`} ref={nav} >
+    <div className={`Nav ${navIsClosed == 'true' ? 'Nav_closed' : ''}`} ref={nav} >
 
       <div className="Nav__body">
 
         <div className="Nav__top">
 
-          <div className={`Nav__trigger ${navIsClosed ? 'Nav__trigger_closed' : ''}`} ref={navtrigger} onClick={openCloseNavTrigger}>
+          <div className={`Nav__trigger ${navIsClosed == 'true' ? 'Nav__trigger_closed' : ''}`} ref={navtrigger} onClick={openCloseNavTrigger}>
 
             <div >
               <FiChevronsRight size={25} />

@@ -26,6 +26,8 @@ type Props = {}
 
 export default function NavSearch({ }: Props) {
 
+  let navIsClosed = localStorage.getItem('navIsClosed');
+
   const dispatch = useDispatch();
 
   const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
@@ -147,7 +149,8 @@ export default function NavSearch({ }: Props) {
 
       </div>
 
-      <div className="NavSearch__searchedMainWord">
+      <div
+        className={`NavSearch__searchedMainWord ${navIsClosed == 'true' ? 'NavSearch__searchedMainWord_closed' : ''}`}>
 
         <div>
           {mainTranslate ? mainTranslate.toUpperCase() : ""}
