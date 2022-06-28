@@ -14,36 +14,18 @@ export default function NavUser({ }: Props) {
 
   const userImg = useSelector(state => state.user?.data?.photoURL)
 
-  function singInWithGooglePopup() {
+  async function singInWithGooglePopup() {
 
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: result.user });
+    const user = await signInWithPopup(auth, provider)
+    const userwords = await getDoc(doc(db, "users", user.user.email, 'data', 'words'))
 
-        getDoc(doc(db, "users", result.user.email, 'data', 'words'))
-          .then(data => {
+    if (userwords.data() == undefined) {
+      await setDoc(doc(db, "users", user.user.email, 'data', 'words'), {})
+      dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: {} })
+    }
 
-            if (data.data() == undefined) {
-              setDoc(doc(db, "users", result.user.email, 'data', 'words'), {})
-                .then(() =>
-                  dispatch({
-                    type: "ADD_DATA_FROM_FIREBASE",
-                    payload: {}
-                  })
-                )
-            }
-
-            dispatch({
-              type: "ADD_DATA_FROM_FIREBASE",
-              payload: data.data()
-            });
-
-          })
-      })
-
-      .catch((error) => {
-        console.log(error);
-      });
+    dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: user.user });
+    dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: userwords.data() });
 
   }
 
@@ -64,5 +46,7 @@ export default function NavUser({ }: Props) {
       }
 
     </div>
+
   )
+
 }
