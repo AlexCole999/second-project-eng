@@ -42,6 +42,7 @@
       transform: scale(1.2);
       color: red;
     }
+
   }
 
   &__searchedMainWord {
@@ -55,13 +56,15 @@
     font-style: italic;
     font-size: 14px;
 
+    &_closed {
+      display: none;
+    }
+
     @media(max-width:550px) {
       display: none;
     }
 
-    &_closed {
-      display: none;
-    }
+
   }
 
   &__languages {
