@@ -133,21 +133,25 @@ export default function NavSearch({ }: Props) {
         <input placeholder="..." type="input"
           ref={inputsearch}
           onChange={(e) => {
-            setinputstate(e.target.value)
+
             if (e.target.value.match(/[a-zA-Zа-яА-Я]+$/)) {
               debouncedYandexDictionaryInputRequest();
             }
             if (e.target.value == 0) {
               dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: {} });
             }
+            setinputstate(e.target.value)
+
           }} />
 
         {inputstate
           ? (<div className='NavSearch__inputDeleteButton'
             onClick={() => {
+
               dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: {} });
               inputsearch.current.value = "";
               setinputstate('');
+
             }}
           >
             <AiOutlineClose className='NavSearch__inputDeleteButtonIcon' />
