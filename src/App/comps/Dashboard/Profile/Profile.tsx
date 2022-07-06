@@ -8,6 +8,9 @@ export default function Profile({ }: Props) {
 
   const userdata = useSelector(state => state.user?.data)
 
+  const userCreatedAt = userdata?.metadata?.createdAt || userdata?.createdAt || 'загрузка...'
+  const lastLoginAt = userdata?.metadata?.lastLoginAt || userdata?.lastLoginAt || 'загрузка...'
+
   return (
 
     <div className='Profile'>
@@ -49,7 +52,7 @@ export default function Profile({ }: Props) {
           </div>
 
           <div className='Profile__userDataElemText'>
-            {new Date(Number(userdata?.metadata?.createdAt)).toString() || 'загрузка...'}
+            {new Date(Number(userCreatedAt)).toString() || 'загрузка...'}
           </div>
 
         </div>
@@ -61,7 +64,7 @@ export default function Profile({ }: Props) {
           </div>
 
           <div className='Profile__userDataElemText'>
-            {new Date(Number(userdata?.metadata?.lastLoginAt)).toString() || 'загрузка...'}
+            {new Date(Number(lastLoginAt)).toString() || 'загрузка...'}
           </div>
 
         </div>
