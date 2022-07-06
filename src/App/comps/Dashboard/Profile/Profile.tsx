@@ -46,7 +46,11 @@ export default function Profile({ }: Props) {
       <div className='Profile__userData'>
 
         <div>
-          {userdata?.photoURL ? <img src={userdata?.photoURL}></img> : <FiUserX size={215} />}
+          {
+            userdata?.photoURL
+              ? <img src={userdata?.photoURL}></img>
+              : <FiUserX className='Profile__userNoPhotoIcon' size={215} onClick={logIn} />
+          }
         </div>
 
         <div className='Profile__userDataElem'>
