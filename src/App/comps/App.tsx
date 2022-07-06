@@ -11,9 +11,11 @@ type Props = {}
 
 export default function App({ }: Props) {
 
+  let localStorageUserData = JSON.parse(localStorage.getItem('user'));
+
   const dispatch = useDispatch()
 
-  const user = useSelector(state => state.user?.data?.email || 'guest');
+  const user = useSelector(state => state.user?.data?.email || localStorageUserData?.email || 'guest');
 
   useEffect(() => {
     getDoc(doc(db, "users", user, 'data', 'words')).then(data => {

@@ -25,11 +25,6 @@
     right: 8%;
     bottom: 20%;
     cursor: pointer;
-
-    @media(max-width:550px) {
-      display: none;
-    }
-
   }
 
   &__inputDeleteButtonIcon {
@@ -42,7 +37,6 @@
       transform: scale(1.2);
       color: red;
     }
-
   }
 
   &__searchedMainWord {
@@ -63,8 +57,6 @@
     @media(max-width:550px) {
       display: none;
     }
-
-
   }
 
   &__languages {
