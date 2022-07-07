@@ -20,14 +20,13 @@ export default function Dashboard({ }: Props) {
       <div className="Dashboard__body">
 
         <Routes>
-          <Route path="/second-project-eng/Profile" element={<Profile />}></Route>
-          <Route exact path="/second-project-eng/DeepSearch" element={<DeepSearch />}></Route>
-          <Route exact path="/second-project-eng/DeepSearch/:word" element={<DeepSearch />}></Route>
-          <Route path="/second-project-eng/MyWords" element={<MyWords />}></Route>
-          <Route path="/second-project-eng/Learn" element={<Learn />}></Route>
-          <Route path="/second-project-eng/Statistics" element={<Statistics />}></Route>
-          <Route path="/second-project-eng/Settings" element={<Settings />}></Route>
-          <Route path='*' element={<Instruction />}></Route>
+          <Route path="/second-project-eng/Profile" element={<Profile />} />
+          <Route path="/second-project-eng/DeepSearch" element={<DeepSearch />} />
+          <Route path="/second-project-eng/DeepSearch/:word" element={<DeepSearch />} />
+          <Route path="/second-project-eng/MyWords" element={<MyWords />} />
+          <Route path="/second-project-eng/Learn" element={<Learn />} />
+          <Route path="/second-project-eng/Statistics" element={<Statistics />} />
+          <Route path="/second-project-eng/Settings" element={<Settings />} />
         </Routes>
 
       </div>
