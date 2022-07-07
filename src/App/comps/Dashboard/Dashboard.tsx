@@ -27,6 +27,7 @@ export default function Dashboard({ }: Props) {
           <Route path="/second-project-eng/Learn" element={<Learn />} />
           <Route path="/second-project-eng/Statistics" element={<Statistics />} />
           <Route path="/second-project-eng/Settings" element={<Settings />} />
+          <Route path="/*" element={<Instruction />} />
         </Routes>
 
       </div>
