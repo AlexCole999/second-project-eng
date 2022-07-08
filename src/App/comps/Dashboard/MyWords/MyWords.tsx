@@ -39,10 +39,6 @@ export default function MyWords({ }: Props) {
 
     <div className='MyWords'>
 
-      <div className='MyWords__title'>
-
-      </div>
-
       <div className='MyWords__filterMenu'>
 
         <div className='MyWords__filterMenuTitle'>

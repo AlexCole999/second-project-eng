@@ -1,9 +1,10 @@
 import React from 'react'
+import './Settings.scss'
 
 type Props = {}
 
 export default function Settings({ }: Props) {
   return (
-    <div>Settings</div>
+    <div className='Settings'>Settings</div>
   )
 }
