@@ -42,6 +42,20 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
   }
 
+  function deleteTranslateFromFirebase() {
+
+    const newBase = createNewBase.baseWithDeletedTranslateForWord(allWordsFromFirebase, word, translate)
+
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
+      .then(() => {
+        allWordsFromFirebase[word]['translates'].length > 1
+          ? console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено из переводов слова "${capitalizeFirstLetter(word)}"`)
+          : console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`)
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
+      });
+
+  }
+
   function setGameWord() {
 
     const newBase = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, word, translate);
@@ -127,7 +141,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         {
           isAppendedTranslate
             ? <AiFillCheckCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
-              onClick={addTranslateToFirebase}
+              onClick={deleteTranslateFromFirebase}
             >
             </AiFillCheckCircle>
             : <AiFillCheckCircle className='DeepSearch__resultRowAppendButton'
