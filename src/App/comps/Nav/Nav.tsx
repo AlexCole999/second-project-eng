@@ -41,141 +41,162 @@ export default function Nav({ }: Props) {
   }
 
   return (
+
     <div className={`Nav ${navIsClosed == 'true' ? 'Nav_closed' : ''}`} ref={nav} >
 
       <div className="Nav__body">
 
-        <div className="Nav__top">
-
-          <div className={`Nav__trigger ${navIsClosed == 'true' ? 'Nav__trigger_closed' : ''}`} ref={navtrigger} onClick={openCloseNavTrigger}>
-
-            <div >
-              <FiChevronsRight size={25} />
-            </div>
-
-          </div>
-
-          <NavLink
-            to={"/second-project-eng/Profile"}
-            title="Профиль">
-
-            <NavUser />
-
-          </NavLink>
-
-          <NavSearch />
-
-          <NavLink
-            to={"/second-project-eng/DeepSearch"}
-            title="Продвинутый поиск">
-
-            <div className="Nav__elem">
-
-              <div className="Nav__elemicon">
-                <FiZoomIn size={40} />
-              </div>
-
-              <div className="Nav__elemtext">
-                Продвинутый поиск
-              </div>
-
-            </div>
-          </NavLink>
-
-          <NavLink
-            to={"/second-project-eng/Learn"}
-            title="Учить">
-
-            <div className="Nav__elem">
-
-              <div className="Nav__elemicon">
-                <FiPlay size={40} />
-              </div>
-
-              <div className="Nav__elemtext">
-                Играть
-              </div>
-
-            </div>
-          </NavLink>
-
-          <NavLink
-            to={"/second-project-eng/MyWords"}
-            title="Добавленные слова">
-
-            <div className="Nav__elem">
-
-              <div className="Nav__elemicon">
-                <FiList size={40} />
-              </div>
-
-              <div className="Nav__elemtext">
-                Мои слова
-              </div>
-
-            </div>
-          </NavLink>
-
-          <NavLink
-            to={"/second-project-eng/Statistics"}
-            title="Статистика">
-
-            <div className="Nav__elem">
-
-              <div className="Nav__elemicon">
-                <FiTrendingUp size={40} />
-              </div>
-
-              <div className="Nav__elemtext">
-                Статистика
-              </div>
-
-            </div>
-          </NavLink>
-
-          <NavLink
-            to={"/second-project-eng/Settings"}
-            title="Настройки">
-
-            <div className="Nav__elem">
-
-              <div className="Nav__elemicon">
-                <FiSliders size={40} />
-              </div>
-
-              <div className="Nav__elemtext">
-                Настройки
-              </div>
-
-            </div>
-          </NavLink>
-
-        </div>
-
-        <div className="Nav__bottom">
-
-          <NavLink
-            to={"/second-project-eng/Instruction"}
-            title="F.A.Q.">
-
-            <div className="Nav__elem">
-
-              <div className="Nav__elemicon">
-                <BsQuestionLg size={40} />
-              </div>
-
-              <div className="Nav__elemtext">
-                Краткая инструкция
-              </div>
-
-            </div>
-          </NavLink>
-
-        </div>
+        <NavTop />
+        <NavBottom />
 
       </div>
 
     </div >
 
   )
+
+  function NavTop() {
+
+    return (
+
+      <div className="Nav__top">
+
+        <div className={`Nav__trigger ${navIsClosed == 'true' ? 'Nav__trigger_closed' : ''}`} ref={navtrigger} onClick={openCloseNavTrigger}>
+
+          <div >
+            <FiChevronsRight size={25} />
+          </div>
+
+        </div>
+
+        <NavLink
+          to={"/second-project-eng/Profile"}
+          title="Профиль">
+
+          <NavUser />
+
+        </NavLink>
+
+        <NavSearch />
+
+        <NavLink
+          to={"/second-project-eng/DeepSearch"}
+          title="Продвинутый поиск">
+
+          <div className="Nav__elem">
+
+            <div className="Nav__elemicon">
+              <FiZoomIn size={40} />
+            </div>
+
+            <div className="Nav__elemtext">
+              Продвинутый поиск
+            </div>
+
+          </div>
+        </NavLink>
+
+        <NavLink
+          to={"/second-project-eng/Learn"}
+          title="Учить">
+
+          <div className="Nav__elem">
+
+            <div className="Nav__elemicon">
+              <FiPlay size={40} />
+            </div>
+
+            <div className="Nav__elemtext">
+              Играть
+            </div>
+
+          </div>
+        </NavLink>
+
+        <NavLink
+          to={"/second-project-eng/MyWords"}
+          title="Добавленные слова">
+
+          <div className="Nav__elem">
+
+            <div className="Nav__elemicon">
+              <FiList size={40} />
+            </div>
+
+            <div className="Nav__elemtext">
+              Мои слова
+            </div>
+
+          </div>
+        </NavLink>
+
+        <NavLink
+          to={"/second-project-eng/Statistics"}
+          title="Статистика">
+
+          <div className="Nav__elem">
+
+            <div className="Nav__elemicon">
+              <FiTrendingUp size={40} />
+            </div>
+
+            <div className="Nav__elemtext">
+              Статистика
+            </div>
+
+          </div>
+        </NavLink>
+
+        <NavLink
+          to={"/second-project-eng/Settings"}
+          title="Настройки">
+
+          <div className="Nav__elem">
+
+            <div className="Nav__elemicon">
+              <FiSliders size={40} />
+            </div>
+
+            <div className="Nav__elemtext">
+              Настройки
+            </div>
+
+          </div>
+        </NavLink>
+
+      </div>
+
+    )
+
+  }
+
+  function NavBottom() {
+
+    return (
+
+      <div className="Nav__bottom">
+
+        <NavLink
+          to={"/second-project-eng/Instruction"}
+          title="F.A.Q.">
+
+          <div className="Nav__elem">
+
+            <div className="Nav__elemicon">
+              <BsQuestionLg size={40} />
+            </div>
+
+            <div className="Nav__elemtext">
+              Краткая инструкция
+            </div>
+
+          </div>
+        </NavLink>
+
+      </div>
+
+    )
+
+  }
+
 }
