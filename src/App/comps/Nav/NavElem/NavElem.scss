@@ -1,0 +1,25 @@
+.Nav {
+
+  &__elem {
+    padding: 7px 0px 7px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    transition: all 1s ease;
+  }
+
+  &__elem:hover {
+    background-color: red;
+  }
+
+  &__elemicon {
+    color: rgba(255, 255, 255, 0.767);
+  }
+
+  &__elemtext {
+    font-size: 14px;
+    margin-left: 10px;
+    color: white;
+  }
+
+}

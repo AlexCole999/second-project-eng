@@ -1,6 +1,7 @@
 import './Nav.scss'
 import React from 'react'
 import { useRef } from 'react'
+import NavElem from './NavElem/NavElem';
 import NavSearch from './NavSearch/NavSearch';
 import NavUser from './NavUser/NavUser';
 
@@ -12,7 +13,6 @@ import { FiSliders } from "react-icons/fi";
 import { FiChevronsRight } from "react-icons/fi";
 import { BsQuestionLg } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
-
 type Props = {}
 
 export default function Nav({ }: Props) {
@@ -69,76 +69,36 @@ export default function Nav({ }: Props) {
 
         </div>
 
-        <NavLink
-          to={"/second-project-eng/Profile"}
-          title="Профиль">
-
+        <NavLink to={"/second-project-eng/Profile"} title="Профиль">
           <NavUser />
-
         </NavLink>
 
         <NavSearch />
 
-        <NavLink
-          to={"/second-project-eng/DeepSearch"}
-          title="Продвинутый поиск">
-
-          <NavElem icon={<FiZoomIn size={40} />} text={'text'} />
-
+        <NavLink to={"/second-project-eng/DeepSearch"} title="Продвинутый поиск">
+          <NavElem icon={<FiZoomIn size={40} />} text={'Продвинутый поиск'} />
         </NavLink>
 
-        <NavLink
-          to={"/second-project-eng/Learn"}
-          title="Учить">
-
-          <NavElem icon={<FiPlay size={40} />} text={'text'} />
-
+        <NavLink to={"/second-project-eng/Learn"} title="Учить">
+          <NavElem icon={<FiPlay size={40} />} text={'Учить'} />
         </NavLink>
 
-        <NavLink
-          to={"/second-project-eng/MyWords"}
-          title="Добавленные слова">
-
-          <NavElem icon={<FiList size={40} />} text={'text'} />
-
+        <NavLink to={"/second-project-eng/MyWords"} title="Добавленные слова">
+          <NavElem icon={<FiList size={40} />} text={'Добавленные слова'} />
         </NavLink>
 
-        <NavLink
-          to={"/second-project-eng/Statistics"}
-          title="Статистика">
-
-          <NavElem icon={<FiTrendingUp size={40} />} text={'text'} />
-
+        <NavLink to={"/second-project-eng/Statistics"} title="Статистика">
+          <NavElem icon={<FiTrendingUp size={40} />} text={'Статистика'} />
         </NavLink>
 
-        <NavLink
-          to={"/second-project-eng/Settings"}
-          title="Настройки">
-
-          <NavElem icon={<FiSliders size={40} />} text={'text'} />
-
+        <NavLink to={"/second-project-eng/Settings"} title="Настройки">
+          <NavElem icon={<FiSliders size={40} />} text={'Настройки'} />
         </NavLink>
 
       </div>
 
     )
 
-  }
-
-  function NavElem(props) {
-    return (
-      <div className="Nav__elem">
-
-        <div className="Nav__elemicon">
-          {props.icon}
-        </div>
-
-        <div className="Nav__elemtext">
-          {props.text}
-        </div>
-
-      </div>
-    )
   }
 
   function NavBottom() {
@@ -151,17 +111,8 @@ export default function Nav({ }: Props) {
           to={"/second-project-eng/Instruction"}
           title="F.A.Q.">
 
-          <div className="Nav__elem">
+          <NavElem icon={<BsQuestionLg size={40} />} text={'Краткая инструкция'} />
 
-            <div className="Nav__elemicon">
-              <BsQuestionLg size={40} />
-            </div>
-
-            <div className="Nav__elemtext">
-              Краткая инструкция
-            </div>
-
-          </div>
         </NavLink>
 
       </div>
