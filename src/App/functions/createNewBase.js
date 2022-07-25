@@ -72,6 +72,17 @@ class CreateNewBase {
 
   }
 
+  baseWithDeletedGameWord(oldbase, word) {
+
+    const currentBaseWords = JSON.parse(JSON.stringify(oldbase));
+    let newBaseWords = currentBaseWords;
+
+    delete newBaseWords[word]['gameword']
+
+    return newBaseWords
+
+  }
+
 }
 
 const createNewBase = new CreateNewBase();

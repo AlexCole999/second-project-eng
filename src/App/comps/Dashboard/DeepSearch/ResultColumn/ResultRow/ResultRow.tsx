@@ -68,6 +68,18 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
   }
 
+  function deleteGameWord() {
+
+    const newBase = createNewBase.baseWithDeletedGameWord(allWordsFromFirebase, word);
+
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
+      .then(() => {
+        console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из игры`);
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
+      });
+
+  }
+
   return (
 
     <div className='DeepSearch__resultRow'>
@@ -153,7 +165,7 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
         {
           isGameWord
             ? <AiFillPlayCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
-              onClick={setGameWord}
+              onClick={deleteGameWord}
             >
             </AiFillPlayCircle>
             : <AiFillPlayCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
