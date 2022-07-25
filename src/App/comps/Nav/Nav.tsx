@@ -83,91 +83,62 @@ export default function Nav({ }: Props) {
           to={"/second-project-eng/DeepSearch"}
           title="Продвинутый поиск">
 
-          <div className="Nav__elem">
+          <NavElem icon={<FiZoomIn size={40} />} text={'text'} />
 
-            <div className="Nav__elemicon">
-              <FiZoomIn size={40} />
-            </div>
-
-            <div className="Nav__elemtext">
-              Продвинутый поиск
-            </div>
-
-          </div>
         </NavLink>
 
         <NavLink
           to={"/second-project-eng/Learn"}
           title="Учить">
 
-          <div className="Nav__elem">
+          <NavElem icon={<FiPlay size={40} />} text={'text'} />
 
-            <div className="Nav__elemicon">
-              <FiPlay size={40} />
-            </div>
-
-            <div className="Nav__elemtext">
-              Играть
-            </div>
-
-          </div>
         </NavLink>
 
         <NavLink
           to={"/second-project-eng/MyWords"}
           title="Добавленные слова">
 
-          <div className="Nav__elem">
+          <NavElem icon={<FiList size={40} />} text={'text'} />
 
-            <div className="Nav__elemicon">
-              <FiList size={40} />
-            </div>
-
-            <div className="Nav__elemtext">
-              Мои слова
-            </div>
-
-          </div>
         </NavLink>
 
         <NavLink
           to={"/second-project-eng/Statistics"}
           title="Статистика">
 
-          <div className="Nav__elem">
+          <NavElem icon={<FiTrendingUp size={40} />} text={'text'} />
 
-            <div className="Nav__elemicon">
-              <FiTrendingUp size={40} />
-            </div>
-
-            <div className="Nav__elemtext">
-              Статистика
-            </div>
-
-          </div>
         </NavLink>
 
         <NavLink
           to={"/second-project-eng/Settings"}
           title="Настройки">
 
-          <div className="Nav__elem">
+          <NavElem icon={<FiSliders size={40} />} text={'text'} />
 
-            <div className="Nav__elemicon">
-              <FiSliders size={40} />
-            </div>
-
-            <div className="Nav__elemtext">
-              Настройки
-            </div>
-
-          </div>
         </NavLink>
 
       </div>
 
     )
 
+  }
+
+  function NavElem(props) {
+    return (
+      <div className="Nav__elem">
+
+        <div className="Nav__elemicon">
+          {props.icon}
+        </div>
+
+        <div className="Nav__elemtext">
+          {props.text}
+        </div>
+
+      </div>
+    )
   }
 
   function NavBottom() {
