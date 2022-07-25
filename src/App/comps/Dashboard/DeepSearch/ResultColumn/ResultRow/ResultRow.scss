@@ -64,13 +64,21 @@
     transition: 0.6s all ease;
     border-radius: 30%;
 
-    &_appended {
-      color: rgb(0, 252, 0);
+    &_translate {
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        color: rgb(0, 252, 0);
+      }
     }
 
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.2);
+    &_translateAppended {
+      &:hover {
+        cursor: pointer;
+        color: rgb(228, 36, 36);
+        transform: scale(0.85);
+      }
+
       color: rgb(0, 252, 0);
     }
 
@@ -84,8 +92,9 @@
 
     &_playbaseAppended {
       &:hover {
+        cursor: pointer;
         color: rgb(228, 36, 36);
-        transform: scale(0.7);
+        transform: scale(0.85);
       }
 
       color: rgb(228, 63, 206)

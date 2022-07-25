@@ -140,11 +140,11 @@ export default function ResultRow({ translate, examples, sameWords, synonyms, fr
 
         {
           isAppendedTranslate
-            ? <AiFillCheckCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
+            ? <AiFillCheckCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_translateAppended'
               onClick={deleteTranslateFromFirebase}
             >
             </AiFillCheckCircle>
-            : <AiFillCheckCircle className='DeepSearch__resultRowAppendButton'
+            : <AiFillCheckCircle className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_translate'
               onClick={addTranslateToFirebase}
             >
             </AiFillCheckCircle>
