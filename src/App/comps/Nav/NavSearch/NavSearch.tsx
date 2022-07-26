@@ -113,6 +113,20 @@ export default function NavSearch({ }: Props) {
 
   }
 
+  function deleteTranslateFromFirebase() {
+
+    const newBase = createNewBase.baseWithDeletedTranslateForWord(allWordsFromFirebase, mainWord, mainTranslate)
+
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
+      .then(() => {
+        allWordsFromFirebase[mainWord]['translates'].length > 1
+          ? console.log(`Слово "${capitalizeFirstLetter(mainTranslate)}" удалено из переводов слова "${capitalizeFirstLetter(mainWord)}"`)
+          : console.log(`Слово "${capitalizeFirstLetter(mainWord)}" удалено из базы слов"`)
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
+      });
+
+  }
+
   function setGameWord() {
 
     const newBase = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, mainWord, mainTranslate);
@@ -174,11 +188,11 @@ export default function NavSearch({ }: Props) {
               ? (
                 allWordsFromFirebase[mainWord]
                   ?
-                  <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_appended'
-                    onClick={addTranslateToFirebase}
+                  <AiFillCheckCircle size={25} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_translateAppended'
+                    onClick={deleteTranslateFromFirebase}
                   >
                   </AiFillCheckCircle>
-                  : <AiFillCheckCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton'
+                  : <AiFillCheckCircle size={25} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_translate'
                     onClick={addTranslateToFirebase}
                   >
                   </AiFillCheckCircle>
@@ -190,11 +204,11 @@ export default function NavSearch({ }: Props) {
             wordsFromYandexDictionary.length
               ? (
                 allWordsFromFirebase[mainWord]?.gameword == mainTranslate && allWordsFromFirebase[mainWord]?.gameword !== undefined
-                  ? <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
+                  ? <AiFillPlayCircle size={25} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
                     onClick={setGameWord}
                   >
                   </AiFillPlayCircle>
-                  : <AiFillPlayCircle style={{ width: '25px', height: '25px' }} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
+                  : <AiFillPlayCircle size={25} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
                     onClick={setGameWord}
                   >
                   </AiFillPlayCircle>

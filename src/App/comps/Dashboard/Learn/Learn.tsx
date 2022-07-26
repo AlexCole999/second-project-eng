@@ -31,6 +31,8 @@ export default function Learn({ }: Props) {
 
       </div>
 
+      <button style={{ width: '250px', height: '60px', backgroundColor: 'green', borderRadius: '15px', color: 'white', border: 'none', marginTop: '15px', fontSize: '26px', fontWeight: 'bold' }}>ИГРАТЬ</button>
+
     </div>
   )
 }
