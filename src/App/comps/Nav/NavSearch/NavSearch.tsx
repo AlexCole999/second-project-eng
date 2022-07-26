@@ -139,6 +139,18 @@ export default function NavSearch({ }: Props) {
 
   }
 
+  function deleteGameWord() {
+
+    const newBase = createNewBase.baseWithDeletedGameWord(allWordsFromFirebase, mainWord);
+
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
+      .then(() => {
+        console.log(`Слово "${capitalizeFirstLetter(mainWord)}" удалено из игры`);
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
+      });
+
+  }
+
   return (
 
     <div className="NavSearch">
@@ -205,7 +217,7 @@ export default function NavSearch({ }: Props) {
               ? (
                 allWordsFromFirebase[mainWord]?.gameword == mainTranslate && allWordsFromFirebase[mainWord]?.gameword !== undefined
                   ? <AiFillPlayCircle size={25} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbaseAppended'
-                    onClick={setGameWord}
+                    onClick={deleteGameWord}
                   >
                   </AiFillPlayCircle>
                   : <AiFillPlayCircle size={25} className='DeepSearch__resultRowAppendButton DeepSearch__resultRowAppendButton_playbase'
