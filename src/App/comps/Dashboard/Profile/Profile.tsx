@@ -39,91 +39,98 @@ export default function Profile({ }: Props) {
     localStorage.removeItem('user');
   }
 
+  const UserPhoto = () => {
+
+    return (
+
+      <div>
+        {
+          userdata?.photoURL
+            ? <img src={userdata?.photoURL}></img>
+            : <FiUserX className='Profile__userNoPhotoIcon' size={215} onClick={logIn} />
+        }
+      </div>
+
+    )
+
+  }
+
+  const UserData = () => {
+
+    const UserDataElem = (props) => {
+      return (
+        <div className='Profile__userDataElem'>
+
+          <div className='Profile__userDataElemTitle'>
+            {props.title ? props.title : 'Профиль не найден...'}
+          </div>
+
+          <div className='Profile__userDataElemText'>
+            {props.text ? props.text : 'Профиль не найден...'}
+          </div>
+
+        </div>
+      )
+    }
+
+
+    return (
+
+      <div>
+        <UserDataElem title={'Имя пользователя:'} text={userdata?.displayName} />
+        <UserDataElem title={'Email:'} text={userdata?.email} />
+        <UserDataElem title={'Профиль создан:'} text={new Date(Number(userCreatedAt)).toString()} />
+        <UserDataElem title={'Последний вход:'} text={new Date(Number(lastLoginAt)).toString()} />
+        <UserDataElem title={'Уникальный идентификатор:'} text={userdata?.uid} />
+        <LogOutButton />
+      </div>
+
+    )
+
+  }
+
+  const LogInButton = () => {
+
+    return (
+
+      <div className='Profile__logInButton'>
+        <button onClick={logIn}>LogIn</button>
+      </div>
+
+    )
+
+  }
+
+  const LogOutButton = () => {
+
+    return (
+
+      <div className='Profile__logOutButton'>
+        <button onClick={logOut}>LogOut</button>
+      </div>
+
+    )
+
+  }
+
   return (
 
     <div className='Profile'>
 
       <div className='Profile__userData'>
 
-        <div>
-          {
-            userdata?.photoURL
-              ? <img src={userdata?.photoURL}></img>
-              : <FiUserX className='Profile__userNoPhotoIcon' size={215} onClick={logIn} />
-          }
-        </div>
+        <UserPhoto />
 
-        <div className='Profile__userDataElem'>
-
-          <div className='Profile__userDataElemTitle'>
-            Имя пользователя:
-          </div>
-
-          <div className='Profile__userDataElemText'>
-            {userdata?.displayName || 'Профиль не найден...'}
-          </div>
-
-        </div>
-
-        <div className='Profile__userDataElem'>
-
-          <div className='Profile__userDataElemTitle'>
-            Email:
-          </div>
-
-          <div className='Profile__userDataElemText'>
-            {userdata?.email || 'Профиль не найден...'}
-          </div>
-
-        </div>
-
-        <div className='Profile__userDataElem'>
-
-          <div className='Profile__userDataElemTitle'>
-            Профиль создан:
-          </div>
-
-          <div className='Profile__userDataElemText'>
-            {new Date(Number(userCreatedAt)).toString() || 'Профиль не найден...'}
-          </div>
-
-        </div>
-
-        <div className='Profile__userDataElem'>
-
-          <div className='Profile__userDataElemTitle'>
-            Последний вход:
-          </div>
-
-          <div className='Profile__userDataElemText'>
-            {new Date(Number(lastLoginAt)).toString() || 'Профиль не найден...'}
-          </div>
-
-        </div>
-
-        <div className='Profile__userDataElem'>
-
-          <div className='Profile__userDataElemTitle'>
-            Уникальный идентификатор:
-          </div>
-
-          <div className='Profile__userDataElemText'>
-            {userdata?.uid || 'Профиль не найден...'}
-          </div>
-
-          {userdata?.displayName
-            ? <div className='Profile__logOutButton'>
-              <button onClick={logOut}>LogOut</button>
-            </div>
-            : <div className='Profile__logInButton'>
-              <button onClick={logIn}>LogIn</button>
-            </div>
-          }
-
-        </div>
+        {
+          userdata?.displayName
+            ? <UserData />
+            : <LogInButton />
+        }
 
       </div>
 
     </div>
+
   )
+
 }
