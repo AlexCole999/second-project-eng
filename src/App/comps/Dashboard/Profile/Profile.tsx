@@ -1,10 +1,11 @@
 import React from 'react';
 import './Profile.scss';
-import { FiUserX } from 'react-icons/fi';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { signInWithPopup } from "firebase/auth";
 import { setDoc, getDoc, doc } from 'firebase/firestore';
 import { auth, db, provider } from '../../../API/firebase/firebaseConfig';
+import UserPhoto from './UserPhoto/UserPhoto';
 
 type Props = {}
 
@@ -37,22 +38,6 @@ export default function Profile({ }: Props) {
   const logOut = () => {
     dispatch({ type: "LOG_IN_USER_WITH_GOOGLEAUTH", payload: [] });
     localStorage.removeItem('user');
-  }
-
-  const UserPhoto = () => {
-
-    return (
-
-      <div>
-        {
-          userdata?.photoURL
-            ? <img src={userdata?.photoURL}></img>
-            : <FiUserX className='Profile__userNoPhotoIcon' size={215} onClick={logIn} />
-        }
-      </div>
-
-    )
-
   }
 
   const UserData = () => {
@@ -119,7 +104,9 @@ export default function Profile({ }: Props) {
 
       <div className='Profile__userData'>
 
-        <UserPhoto />
+        <div onClick={logIn}>
+          <UserPhoto />
+        </div>
 
         {
           userdata?.displayName
