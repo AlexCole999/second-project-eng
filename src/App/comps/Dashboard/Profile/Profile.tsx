@@ -1,11 +1,11 @@
 import React from 'react';
 import './Profile.scss';
+import UserPhoto from './UserPhoto/UserPhoto';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { signInWithPopup } from "firebase/auth";
 import { setDoc, getDoc, doc } from 'firebase/firestore';
 import { auth, db, provider } from '../../../API/firebase/firebaseConfig';
-import UserPhoto from './UserPhoto/UserPhoto';
 
 type Props = {}
 
