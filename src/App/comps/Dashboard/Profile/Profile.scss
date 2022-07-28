@@ -15,20 +15,6 @@
 
   }
 
-  &__userNoPhotoIcon {
-    transition: 0.3s all ease;
-    color: grey;
-    border-radius: 50%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.527);
-    border-right: 1px solid rgba(0, 0, 0, 0.37);
-
-    &:hover {
-      cursor: pointer;
-      color: rgb(102, 255, 0);
-    }
-
-  }
-
   &__userDataElem {
     margin-top: 15px;
   }
