@@ -1,0 +1,32 @@
+.Profile {
+
+  &__userDataElem {
+    margin-top: 15px;
+
+    @media(max-width:550px) {
+      text-align: center;
+    }
+
+  }
+
+  &__userDataElemTitle {
+    font-size: 26px;
+    font-weight: bold;
+
+    @media(max-width:550px) {
+      font-size: 1.2em;
+    }
+
+  }
+
+  &__userDataElemText {
+    font-size: 20px;
+    font-style: italic;
+
+    @media(max-width:550px) {
+      font-size: 0.8em;
+    }
+
+  }
+
+}

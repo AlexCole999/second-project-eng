@@ -1,0 +1,27 @@
+.Profile {
+
+  &__logOutButton {
+
+    margin-top: 15px;
+
+    button {
+      padding: 8px;
+      width: 120px;
+      font-size: 25px;
+      font-weight: bold;
+      border: 0px;
+      color: rgb(255, 255, 255);
+      border-radius: 5px;
+      background-color: rgb(206, 9, 9);
+      transition: 0.3s all ease;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(255, 0, 0);
+      }
+
+    }
+
+  }
+
+}
