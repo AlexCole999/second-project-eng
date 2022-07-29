@@ -9,8 +9,7 @@ type Props = {}
 
 export default function Profile({ }: Props) {
 
-  const userdata = useSelector(state => state.user?.data)
-  const loggedIn = userdata?.displayName ? true : false
+  const loggedIn = useSelector(state => state.user?.data?.displayName ? true : false)
 
   return (
 
