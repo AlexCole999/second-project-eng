@@ -51,9 +51,8 @@ export default function Profile({ }: Props) {
 
       <div className='Profile__userData'>
 
-        <div onClick={logIn}>
-          <UserPhoto />
-        </div>
+
+        <UserPhoto />
 
         {
           userdata?.displayName
