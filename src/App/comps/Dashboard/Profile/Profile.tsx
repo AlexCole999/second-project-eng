@@ -67,7 +67,10 @@ export default function Profile({ }: Props) {
         <UserDataElem title={'Профиль создан:'} text={new Date(Number(userCreatedAt)).toString()} />
         <UserDataElem title={'Последний вход:'} text={new Date(Number(lastLoginAt)).toString()} />
         <UserDataElem title={'Уникальный идентификатор:'} text={userdata?.uid} />
-        <LogOutButton />
+        <div className='Profile__userDataElem'>
+          <LogOutButton />
+        </div>
+
       </div>
 
     )
