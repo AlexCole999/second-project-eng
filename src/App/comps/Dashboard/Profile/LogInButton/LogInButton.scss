@@ -1,0 +1,27 @@
+.Profile {
+
+  &__logInButton {
+
+    margin-top: 15px;
+
+    button {
+      padding: 8px;
+      width: 120px;
+      font-size: 25px;
+      font-weight: bold;
+      border: 0px;
+      color: rgb(255, 255, 255);
+      border-radius: 5px;
+      background-color: rgb(9, 206, 25);
+      transition: 0.3s all ease;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(0, 255, 21);
+      }
+
+    }
+
+  }
+
+}
