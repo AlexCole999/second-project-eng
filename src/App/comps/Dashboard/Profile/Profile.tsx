@@ -49,7 +49,7 @@ export default function Profile({ }: Props) {
 
     <div className='Profile'>
 
-      <div className='Profile__userData'>
+      <div className='Profile__data'>
 
 
         <UserPhoto />
