@@ -10,6 +10,7 @@ type Props = {}
 export default function Profile({ }: Props) {
 
   const userdata = useSelector(state => state.user?.data)
+  const loggedIn = userdata?.displayName ? true : false
 
   return (
 
@@ -20,7 +21,7 @@ export default function Profile({ }: Props) {
         <UserPhoto />
 
         {
-          userdata?.displayName
+          loggedIn
             ? <UserData />
             : <LogInButton />
         }
