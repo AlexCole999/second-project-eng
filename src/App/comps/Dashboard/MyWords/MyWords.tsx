@@ -64,11 +64,9 @@ export default function MyWords({ }: Props) {
 
   const MemoizedFilterMenu = useMemo(() => FilterMenu, [])
 
-  return (
+  const FilteredWords = () => {
 
-    <div className='MyWords'>
-
-      <MemoizedFilterMenu />
+    return (
 
       <div className='MyWords__words'>
 
@@ -85,6 +83,15 @@ export default function MyWords({ }: Props) {
 
       </div>
 
+    )
+
+  }
+
+  return (
+
+    <div className='MyWords'>
+      <MemoizedFilterMenu />
+      <FilteredWords />
     </div >
 
   )
