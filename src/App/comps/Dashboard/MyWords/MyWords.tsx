@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import './MyWords.scss'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from './../../../API/firebase/firebaseConfig'
 import FilteredWords from './FilteredWords/FilteredWords';
+import FilterMenu, { MemoizedFilterMenu } from './FilterMenu/FilterMenu';
 
 
 type Props = {}
@@ -37,39 +38,10 @@ export default function MyWords({ }: Props) {
 
   useEffect(() => firebaseRequest(), [])
 
-  const FilterMenu = () => {
-
-    return (
-
-      <div className='MyWords__filterMenu'>
-
-        <div className='MyWords__filterMenuTitle'>
-          Быстрый поиск
-        </div>
-
-        <div>
-          <input
-            type="text"
-            placeholder='Часть искомого слова...'
-            onChange={
-              (e) =>
-                setregexp(new RegExp((e.target.value).toLowerCase()))
-            }
-          />
-        </div>
-
-      </div >
-
-    )
-
-  }
-
-  const MemoizedFilterMenu = useMemo(() => FilterMenu, [])
-
   return (
 
     <div className='MyWords'>
-      <MemoizedFilterMenu />
+      <FilterMenu setregexp={setregexp} />
       <FilteredWords filteredWords={filteredWordsArray} />
     </div >
 

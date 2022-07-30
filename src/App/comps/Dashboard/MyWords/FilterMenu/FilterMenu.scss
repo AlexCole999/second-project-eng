@@ -1,0 +1,25 @@
+.MyWords {
+
+  &__filterMenu {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 0px 0px 15px 0px;
+
+    input {
+      border: 2px solid rgb(107, 201, 255);
+      padding: 8px;
+      border-radius: 15px;
+      font-style: italic;
+      width: 180px;
+    }
+
+  }
+
+  &__filterMenuTitle {
+    margin-bottom: 15px;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+}
