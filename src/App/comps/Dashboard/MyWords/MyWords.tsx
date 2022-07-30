@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import './MyWords.scss'
 import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,9 +35,9 @@ export default function MyWords({ }: Props) {
     });
   }, [])
 
-  return (
+  const FilterMenu = () => {
 
-    <div className='MyWords'>
+    return (
 
       <div className='MyWords__filterMenu'>
 
@@ -46,7 +46,6 @@ export default function MyWords({ }: Props) {
         </div>
 
         <div>
-
           <input
             type="text"
             placeholder='Часть искомого слова...'
@@ -55,10 +54,21 @@ export default function MyWords({ }: Props) {
                 setregexp(new RegExp(e.target.value))
             }
           />
-
         </div>
 
       </div >
+
+    )
+
+  }
+
+  const MemoizedFilterMenu = useMemo(() => FilterMenu, [])
+
+  return (
+
+    <div className='MyWords'>
+
+      <MemoizedFilterMenu />
 
       <div className='MyWords__words'>
 
