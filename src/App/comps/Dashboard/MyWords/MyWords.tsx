@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from './../../../API/firebase/firebaseConfig'
-import MyWordsElem from './MyWordsElem/MyWordsElem';
 import FilteredWords from './FilteredWords/FilteredWords';
 
 
