@@ -3,11 +3,11 @@ import './MyWordsElem.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaTimesCircle } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import capitalizeFirstLetter from './../../../../functions/capitalizeFirstLetter';
-import { db } from '../../../../API/firebase/firebaseConfig'
+import capitalizeFirstLetter from '../../../../../functions/capitalizeFirstLetter';
+import { db } from '../../../../../API/firebase/firebaseConfig'
 import { setDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import createNewBase from './../../../../functions/createNewBase';
+import createNewBase from '../../../../../functions/createNewBase';
 
 type Props = {
   word: any

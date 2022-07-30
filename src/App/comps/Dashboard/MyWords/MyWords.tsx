@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from './../../../API/firebase/firebaseConfig'
 import MyWordsElem from './MyWordsElem/MyWordsElem';
+import FilteredWords from './FilteredWords/FilteredWords';
 
 
 type Props = {}
@@ -66,34 +67,11 @@ export default function MyWords({ }: Props) {
 
   const MemoizedFilterMenu = useMemo(() => FilterMenu, [])
 
-  const FilteredWords = () => {
-
-    return (
-
-      <div className='MyWords__words'>
-
-        {
-          filteredWordsArray
-            .map(
-              mainWord =>
-                <MyWordsElem
-                  word={mainWord}
-                  key={mainWord}
-                />
-            )
-        }
-
-      </div>
-
-    )
-
-  }
-
   return (
 
     <div className='MyWords'>
       <MemoizedFilterMenu />
-      <FilteredWords />
+      <FilteredWords filteredWords={filteredWordsArray} />
     </div >
 
   )
