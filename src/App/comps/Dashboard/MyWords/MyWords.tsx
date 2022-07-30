@@ -51,7 +51,7 @@ export default function MyWords({ }: Props) {
             placeholder='Часть искомого слова...'
             onChange={
               (e) =>
-                setregexp(new RegExp(e.target.value))
+                setregexp(new RegExp((e.target.value).toLowerCase()))
             }
           />
         </div>
