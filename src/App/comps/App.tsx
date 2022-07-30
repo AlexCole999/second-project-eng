@@ -17,14 +17,16 @@ export default function App({ }: Props) {
 
   const user = useSelector(state => state.user?.data?.email || localStorageUserData?.email || 'guest');
 
-  useEffect(() => {
+  const firebaseRequest = () => {
     getDoc(doc(db, "users", user, 'data', 'words')).then(data => {
       dispatch({
         type: "ADD_DATA_FROM_FIREBASE",
         payload: data.data()
       });
     });
-  }, [])
+  }
+
+  useEffect(() => firebaseRequest(), [])
 
   return (
 
