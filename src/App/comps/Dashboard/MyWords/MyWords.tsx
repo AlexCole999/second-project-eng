@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from './../../../API/firebase/firebaseConfig'
 import FilteredWords from './FilteredWords/FilteredWords';
-import FilterMenu, { MemoizedFilterMenu } from './FilterMenu/FilterMenu';
+import FilterMenu from './FilterMenu/FilterMenu';
 
 
 type Props = {}
