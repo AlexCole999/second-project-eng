@@ -22,12 +22,14 @@ export default function DeepSearch({ }: Props) {
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
   useEffect(() => {
+
     getDoc(doc(db, "users", user, 'data', 'words')).then(data => {
       dispatch({
         type: "ADD_DATA_FROM_FIREBASE",
         payload: data.data()
       });
     });
+
     if (params.word) {
       let requestLanguage = allWordsFromFirebase[params?.word]?.translates[0]?.language || 'en-ru'
       let requestWord = params?.word !== undefined ? params?.word : 0
@@ -37,19 +39,30 @@ export default function DeepSearch({ }: Props) {
           dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: requestLanguage })
         })
     }
+
   }, [])
 
-  return (
+  function SearchedWord() {
 
-    <div className='DeepSearch'>
+    return (
 
-      <div className='DeepSearch__mainword'>
+      <div className='DeepSearch__searchedword'>
         {
           wordsFromYandexDictionary[0]?.text
             ? capitalizeFirstLetter(wordsFromYandexDictionary[0]?.text)
             : 'Нет слова'
         }
       </div>
+
+    )
+
+  }
+
+  return (
+
+    <div className='DeepSearch'>
+
+      <SearchedWord />
 
       <div className='DeepSearch__results'>
 
@@ -73,5 +86,7 @@ export default function DeepSearch({ }: Props) {
       </div>
 
     </div >
+
   )
+
 }
