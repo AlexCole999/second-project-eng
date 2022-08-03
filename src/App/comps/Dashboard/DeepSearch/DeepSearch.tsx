@@ -13,7 +13,7 @@ type Props = {}
 
 export default function DeepSearch({ }: Props) {
 
-
+  const localStorageUserData = JSON.parse(localStorage.getItem('user'));
 
   const params = useParams()
 
@@ -21,7 +21,7 @@ export default function DeepSearch({ }: Props) {
 
   const wordsFromYandexDictionary = useSelector(state => state.yandexDictionaryTranslates.data);
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
-  const user = useSelector(state => state.user?.data?.email || 'guest');
+  const user = useSelector(state => state.user?.data?.email || localStorageUserData?.email || 'guest');
 
   useEffect(() => {
 
