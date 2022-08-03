@@ -12,11 +12,13 @@ type Props = {}
 
 export default function MyWords({ }: Props) {
 
+  const localStorageUserData = JSON.parse(localStorage.getItem('user'));
+
   const dispatch = useDispatch();
 
   const [regexp, setregexp] = useState([])
 
-  const user = useSelector(state => state.user?.data?.email || 'guest');
+  const user = useSelector(state => state.user?.data?.email || localStorageUserData?.email || 'guest');
   const fullWordsList = useSelector(state => state.allWordsFromFirebase);
 
   const filteredWordsArray = [

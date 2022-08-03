@@ -11,7 +11,7 @@ type Props = {}
 
 export default function App({ }: Props) {
 
-  let localStorageUserData = JSON.parse(localStorage.getItem('user'));
+  const localStorageUserData = JSON.parse(localStorage.getItem('user'));
 
   const dispatch = useDispatch()
 
