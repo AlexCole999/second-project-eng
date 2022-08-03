@@ -69,29 +69,29 @@ export default function Nav({ }: Props) {
 
         </div>
 
-        <NavLink to={"/second-project-eng/Profile"} title="Профиль">
+        <NavLink to={"/Profile"} title="Профиль">
           <NavUser />
         </NavLink>
 
         <NavSearch />
 
-        <NavLink to={"/second-project-eng/DeepSearch"} title="Продвинутый поиск">
+        <NavLink to={"/DeepSearch"} title="Продвинутый поиск">
           <NavElem icon={<FiZoomIn size={40} />} text={'Продвинутый поиск'} />
         </NavLink>
 
-        <NavLink to={"/second-project-eng/Learn"} title="Учить">
+        <NavLink to={"/Learn"} title="Учить">
           <NavElem icon={<FiPlay size={40} />} text={'Учить'} />
         </NavLink>
 
-        <NavLink to={"/second-project-eng/MyWords"} title="Добавленные слова">
+        <NavLink to={"/MyWords"} title="Добавленные слова">
           <NavElem icon={<FiList size={40} />} text={'Добавленные слова'} />
         </NavLink>
 
-        <NavLink to={"/second-project-eng/Statistics"} title="Статистика">
+        <NavLink to={"/Statistics"} title="Статистика">
           <NavElem icon={<FiTrendingUp size={40} />} text={'Статистика'} />
         </NavLink>
 
-        <NavLink to={"/second-project-eng/Settings"} title="Настройки">
+        <NavLink to={"/Settings"} title="Настройки">
           <NavElem icon={<FiSliders size={40} />} text={'Настройки'} />
         </NavLink>
 
@@ -108,7 +108,7 @@ export default function Nav({ }: Props) {
       <div className="Nav__bottom">
 
         <NavLink
-          to={"/second-project-eng/Instruction"}
+          to={"/Instruction"}
           title="F.A.Q.">
 
           <NavElem icon={<BsQuestionLg size={40} />} text={'Краткая инструкция'} />

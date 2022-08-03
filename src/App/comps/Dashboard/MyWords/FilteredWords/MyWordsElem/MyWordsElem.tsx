@@ -74,7 +74,7 @@ export default function MyWordsElem({ word }: Props) {
 
       <div className='MyWords__elemMainWord'>
         <div
-          onClick={() => history(`../second-project-eng/DeepSearch/${allWordsFromFirebase[word]?.word}`)}>
+          onClick={() => history(`../DeepSearch/${allWordsFromFirebase[word]?.word}`)}>
 
           {capitalizeFirstLetter(allWordsFromFirebase[word]?.word)}
 
