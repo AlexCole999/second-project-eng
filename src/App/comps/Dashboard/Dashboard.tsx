@@ -9,7 +9,7 @@ import Statistics from './Statistics/Statistics';
 import Settings from './Settings/Settings';
 import Profile from './Profile/Profile';
 
-type Props = { name?: string }
+type Props = {}
 
 export default function Dashboard({ }: Props) {
 
