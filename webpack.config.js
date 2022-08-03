@@ -10,8 +10,7 @@ module.exports = {
   },
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    path: path.resolve(__dirname, 'dist')
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -23,8 +22,7 @@ module.exports = {
     })
   ],
   devServer: {
-    port: 3000,
-    historyApiFallback: true,
+    port: 3000
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json',],
