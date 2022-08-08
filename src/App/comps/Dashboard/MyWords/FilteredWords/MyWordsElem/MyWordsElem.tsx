@@ -92,56 +92,14 @@ export default function MyWordsElem({ word }: Props) {
         <div>
 
           <TransitionGroup className="todo-list">
-
-            {
-              allWordsFromFirebase[word]
-                .translates
-                .map(
-                  translateElem =>
-
-                    <CSSTransition key={translateElem.translate} timeout={500} classNames="item">
-
-                      <div className='MyWords__elemTranslateRow' >
-
-                        <div>
-
-                          {
-                            allWordsFromFirebase[word]?.gameword == translateElem.translate
-                              ?
-                              <div className='MyWords__elemTranslateWord MyWords__elemTranslateWord_gameword'>
-                                {capitalizeFirstLetter(translateElem.translate)}
-                              </div>
-                              :
-                              <div className='MyWords__elemTranslateWord'
-                                onClick={() => setGameWord(translateElem.translate)}
-                              >
-                                {capitalizeFirstLetter(translateElem.translate)}
-                              </div>
-                          }
-
-                          <div className='MyWords__elemTranslateLanguage'>
-                            {translateElem.language.split('-')[1]}
-                          </div>
-
-                        </div>
-
-                        <FaTimesCircle
-                          className='MyWords__elemDeleteButton'
-                          onClick={
-                            () => {
-                              deleteTranslateFromFirebase(translateElem.translate)
-                            }
-                          }
-                        >
-                        </FaTimesCircle>
-
-                      </div>
-
-                    </CSSTransition>
-
-                )
-            }
-
+            {allWordsFromFirebase[word]
+              .translates
+              .map(
+                translateElem =>
+                  <CSSTransition key={translateElem.translate} timeout={500} classNames="item">
+                    <ElemTranslateRow translateElem={translateElem} />
+                  </CSSTransition>
+              )}
           </TransitionGroup>
 
         </div>
@@ -151,5 +109,49 @@ export default function MyWordsElem({ word }: Props) {
     </div>
 
   )
+
+  function ElemTranslateRow({ translateElem }) {
+
+    return (
+
+      <div className='MyWords__elemTranslateRow' >
+
+        <div>
+
+          {
+            allWordsFromFirebase[word]?.gameword == translateElem.translate
+              ?
+              <div className='MyWords__elemTranslateWord MyWords__elemTranslateWord_gameword'>
+                {capitalizeFirstLetter(translateElem.translate)}
+              </div>
+              :
+              <div className='MyWords__elemTranslateWord'
+                onClick={() => setGameWord(translateElem.translate)}
+              >
+                {capitalizeFirstLetter(translateElem.translate)}
+              </div>
+          }
+
+          <div className='MyWords__elemTranslateLanguage'>
+            {translateElem.language.split('-')[1]}
+          </div>
+
+        </div>
+
+        <FaTimesCircle
+          className='MyWords__elemDeleteButton'
+          onClick={
+            () => {
+              deleteTranslateFromFirebase(translateElem.translate)
+            }
+          }
+        >
+        </FaTimesCircle>
+
+      </div>
+
+    )
+
+  }
 
 }
