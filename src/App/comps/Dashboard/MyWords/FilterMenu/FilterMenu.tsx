@@ -1,7 +1,7 @@
 import React from 'react'
 import './FilterMenu.scss'
 
-const FilterMenu = ({ setregexp }) => {
+export default function FilterMenu({ setregexp }) {
 
   return (
 
@@ -27,4 +27,3 @@ const FilterMenu = ({ setregexp }) => {
   )
 
 }
-export default React.memo(FilterMenu)
