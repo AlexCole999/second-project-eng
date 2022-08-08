@@ -266,72 +266,20 @@ export default function NavSearch({ }: Props) {
           ref={languageListTrigger}>
           <FiChevronsRight size={20} />
         </div>
+
         <div className="NavSearch__languagesList"
           ref={languagesList}
           onClick={selectLanguage}>
 
-          <div className="NavSearch__languageListElem">
-            <img src={us} alt="" className="NavSearch__languageListElemFlag" />
-            <div className="NavSearch__languageListElemText">
-              en-ru
-            </div>
-          </div>
-
-          <div className="NavSearch__languageListElem">
-            <img src={de} alt="" className="NavSearch__languageListElemFlag" />
-            <div className="NavSearch__languageListElemText">
-              de-ru
-            </div>
-          </div>
-
-          <div className="NavSearch__languageListElem">
-            <img src={fr} alt="" className="NavSearch__languageListElemFlag" />
-            <div className="NavSearch__languageListElemText">
-              fr-ru
-            </div>
-          </div>
-
-          <div className="NavSearch__languageListElem">
-            <img src={es} alt="" className="NavSearch__languageListElemFlag" />
-            <div className="NavSearch__languageListElemText">
-              es-ru
-            </div>
-          </div>
-
-          <div className="NavSearch__languageListElem">
-            <img src={it} alt="" className="NavSearch__languageListElemFlag" />
-            <div className="NavSearch__languageListElemText">
-              it-ru
-            </div>
-          </div>
-
-          <div className="NavSearch__languageListElem">
-            <img src={nl} alt="" className="NavSearch__languageListElemFlag" />
-            <div className="NavSearch__languageListElemText">
-              nl-ru
-            </div>
-          </div>
-
-          <div className="NavSearch__languageListElem">
-            <img src={pl} alt="" className="NavSearch__languageListElemFlag" />
-            <div className="NavSearch__languageListElemText">
-              pl-ru
-            </div>
-          </div>
-
-          <div className="NavSearch__languageListElem">
-            <img src={bg} alt="" className="NavSearch__languageListElemFlag" />
-            <div className="NavSearch__languageListElemText">
-              bg-ru
-            </div>
-          </div>
-
-          <div className="NavSearch__languageListElem">
-            <img src={cz} alt="" className="NavSearch__languageListElemFlag" />
-            <div className="NavSearch__languageListElemText">
-              cs-ru
-            </div>
-          </div>
+          <LanguageListElem flagsrc={us} text='en-ru' />
+          <LanguageListElem flagsrc={de} text='de-ru' />
+          <LanguageListElem flagsrc={fr} text='fr-ru' />
+          <LanguageListElem flagsrc={es} text='es-ru' />
+          <LanguageListElem flagsrc={it} text='it-ru' />
+          <LanguageListElem flagsrc={nl} text='nl-ru' />
+          <LanguageListElem flagsrc={pl} text='pl-ru' />
+          <LanguageListElem flagsrc={bg} text='bg-ru' />
+          <LanguageListElem flagsrc={cz} text='cz-ru' />
 
         </div>
 
@@ -339,4 +287,16 @@ export default function NavSearch({ }: Props) {
 
     </div>
   )
+
+  function LanguageListElem({ flagsrc, text }) {
+    return (
+      <div className="NavSearch__languageListElem">
+        <img src={flagsrc} alt="" className="NavSearch__languageListElemFlag" />
+        <div className="NavSearch__languageListElemText">
+          {text}
+        </div>
+      </div>
+    )
+  }
+
 }
