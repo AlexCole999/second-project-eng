@@ -8,6 +8,7 @@ import { db } from '../../../../../API/firebase/firebaseConfig'
 import { setDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import createNewBase from '../../../../../functions/createNewBase';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 type Props = {
   word: any
@@ -88,50 +89,62 @@ export default function MyWordsElem({ word }: Props) {
 
       <div>
 
-        {
-          allWordsFromFirebase[word]
-            .translates
-            .map(
-              translateElem =>
+        <div>
 
-                <div className='MyWords__elemTranslateRow' key={translateElem.translate}>
+          <TransitionGroup className="todo-list">
 
-                  <div>
+            {
+              allWordsFromFirebase[word]
+                .translates
+                .map(
+                  translateElem =>
 
-                    {
-                      allWordsFromFirebase[word]?.gameword == translateElem.translate
-                        ?
-                        <div className='MyWords__elemTranslateWord MyWords__elemTranslateWord_gameword'>
-                          {capitalizeFirstLetter(translateElem.translate)}
+                    <CSSTransition key={translateElem.translate} timeout={500} classNames="item">
+
+                      <div className='MyWords__elemTranslateRow' >
+
+                        <div>
+
+                          {
+                            allWordsFromFirebase[word]?.gameword == translateElem.translate
+                              ?
+                              <div className='MyWords__elemTranslateWord MyWords__elemTranslateWord_gameword'>
+                                {capitalizeFirstLetter(translateElem.translate)}
+                              </div>
+                              :
+                              <div className='MyWords__elemTranslateWord'
+                                onClick={() => setGameWord(translateElem.translate)}
+                              >
+                                {capitalizeFirstLetter(translateElem.translate)}
+                              </div>
+                          }
+
+                          <div className='MyWords__elemTranslateLanguage'>
+                            {translateElem.language.split('-')[1]}
+                          </div>
+
                         </div>
-                        :
-                        <div className='MyWords__elemTranslateWord'
-                          onClick={() => setGameWord(translateElem.translate)}
+
+                        <FaTimesCircle
+                          className='MyWords__elemDeleteButton'
+                          onClick={
+                            () => {
+                              deleteTranslateFromFirebase(translateElem.translate)
+                            }
+                          }
                         >
-                          {capitalizeFirstLetter(translateElem.translate)}
-                        </div>
-                    }
+                        </FaTimesCircle>
 
-                    <div className='MyWords__elemTranslateLanguage'>
-                      {translateElem.language.split('-')[1]}
-                    </div>
+                      </div>
 
-                  </div>
+                    </CSSTransition>
 
-                  <FaTimesCircle
-                    className='MyWords__elemDeleteButton'
-                    onClick={
-                      () => {
-                        deleteTranslateFromFirebase(translateElem.translate)
-                      }
-                    }
-                  >
-                  </FaTimesCircle>
+                )
+            }
 
-                </div>
+          </TransitionGroup>
 
-            )
-        }
+        </div>
 
       </div>
 
