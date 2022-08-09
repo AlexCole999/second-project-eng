@@ -24,44 +24,6 @@ export default function MyWordsElem({ word }: Props) {
   const selectedLanguage = useSelector(state => state.selectedLanguage);
   const user = useSelector(state => state.user?.data?.email || 'guest');
 
-  function deleteAllTranslatesFromFirebase() {
-
-    const newBase = createNewBase.baseWithDeletedWord(allWordsFromFirebase, word);
-
-    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
-      .then(() => {
-        console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`);
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
-      });
-
-  }
-
-  function setGameWord(translate) {
-
-    const newBase = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, word, translate);
-
-    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
-      .then(() => {
-        console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`);
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
-      });
-
-  }
-
-  function deleteTranslateFromFirebase(translate) {
-
-    const newBase = createNewBase.baseWithDeletedTranslateForWord(allWordsFromFirebase, word, translate)
-
-    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
-      .then(() => {
-        allWordsFromFirebase[word]['translates'].length > 1
-          ? console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено из переводов слова "${capitalizeFirstLetter(word)}"`)
-          : console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`)
-        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
-      });
-
-  }
-
   return (
 
     <div className='MyWords__elem'>
@@ -85,6 +47,18 @@ export default function MyWordsElem({ word }: Props) {
   )
 
   function DeleteWordButton() {
+
+    function deleteAllTranslatesFromFirebase() {
+
+      const newBase = createNewBase.baseWithDeletedWord(allWordsFromFirebase, word);
+
+      setDoc(doc(db, "users", user, 'data', 'words'), newBase)
+        .then(() => {
+          console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`);
+          dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
+        });
+
+    }
 
     return (
 
@@ -121,6 +95,32 @@ export default function MyWordsElem({ word }: Props) {
   }
 
   function ElemTranslateRow({ translateElem }) {
+
+    function deleteTranslateFromFirebase(translate) {
+
+      const newBase = createNewBase.baseWithDeletedTranslateForWord(allWordsFromFirebase, word, translate)
+
+      setDoc(doc(db, "users", user, 'data', 'words'), newBase)
+        .then(() => {
+          allWordsFromFirebase[word]['translates'].length > 1
+            ? console.log(`Слово "${capitalizeFirstLetter(translate)}" удалено из переводов слова "${capitalizeFirstLetter(word)}"`)
+            : console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из базы слов"`)
+          dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
+        });
+
+    }
+
+    function setGameWord(translate) {
+
+      const newBase = createNewBase.baseWithNewGameWord(allWordsFromFirebase, selectedLanguage, word, translate);
+
+      setDoc(doc(db, "users", user, 'data', 'words'), newBase)
+        .then(() => {
+          console.log(`Теперь в слове "${capitalizeFirstLetter(word)}" во время игры вы будете угадывать слово "${capitalizeFirstLetter(translate)}"`);
+          dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
+        });
+
+    }
 
     return (
 
