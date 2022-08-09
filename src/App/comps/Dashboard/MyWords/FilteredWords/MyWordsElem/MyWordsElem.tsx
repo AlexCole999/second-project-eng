@@ -66,11 +66,7 @@ export default function MyWordsElem({ word }: Props) {
 
     <div className='MyWords__elem'>
 
-      <div className='MyWords__elemDeleteAllButtonBody'>
-        <FaTimes className='MyWords__elemDeleteAllButton'
-          onClick={deleteAllTranslatesFromFirebase}
-        />
-      </div>
+      <DeleteWordButton />
 
       <ElemMainWord />
 
@@ -88,13 +84,27 @@ export default function MyWordsElem({ word }: Props) {
 
   )
 
+  function DeleteWordButton() {
+
+    return (
+
+      <div className='MyWords__elemDeleteAllButtonBody'>
+        <FaTimes className='MyWords__elemDeleteAllButton'
+          onClick={deleteAllTranslatesFromFirebase}
+        />
+      </div>
+
+    )
+
+  }
+
   function ElemMainWord() {
 
     return (
 
       <div className='MyWords__elemMainWord'>
-        <div
-          onClick={() => history(`../DeepSearch/${allWordsFromFirebase[word]?.word}`)}>
+
+        <div onClick={() => history(`../DeepSearch/${allWordsFromFirebase[word]?.word}`)}>
 
           {capitalizeFirstLetter(allWordsFromFirebase[word]?.word)}
 
