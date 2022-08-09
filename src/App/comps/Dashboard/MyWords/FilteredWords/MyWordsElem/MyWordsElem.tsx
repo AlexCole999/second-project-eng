@@ -86,7 +86,7 @@ export default function MyWordsElem({ word }: Props) {
 
       </div>
 
-      <TransitionGroup className="todo-list">
+      <TransitionGroup>
         {allWordsFromFirebase[word]
           .translates
           .map(
