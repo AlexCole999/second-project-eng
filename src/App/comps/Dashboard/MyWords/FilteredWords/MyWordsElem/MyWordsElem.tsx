@@ -72,6 +72,26 @@ export default function MyWordsElem({ word }: Props) {
         />
       </div>
 
+      <ElemMainWord />
+
+      <TransitionGroup>
+
+        {allWordsFromFirebase[word].translates.map(translateElem =>
+          <CSSTransition key={translateElem.translate} timeout={500} classNames="item">
+            <ElemTranslateRow translateElem={translateElem} />
+          </CSSTransition>
+        )}
+
+      </TransitionGroup>
+
+    </div>
+
+  )
+
+  function ElemMainWord() {
+
+    return (
+
       <div className='MyWords__elemMainWord'>
         <div
           onClick={() => history(`../DeepSearch/${allWordsFromFirebase[word]?.word}`)}>
@@ -86,20 +106,9 @@ export default function MyWordsElem({ word }: Props) {
 
       </div>
 
-      <TransitionGroup>
-        {allWordsFromFirebase[word]
-          .translates
-          .map(
-            translateElem =>
-              <CSSTransition key={translateElem.translate} timeout={500} classNames="item">
-                <ElemTranslateRow translateElem={translateElem} />
-              </CSSTransition>
-          )}
-      </TransitionGroup>
+    )
 
-    </div>
-
-  )
+  }
 
   function ElemTranslateRow({ translateElem }) {
 
