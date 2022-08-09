@@ -10,14 +10,13 @@ import { useNavigate } from 'react-router-dom';
 import createNewBase from '../../../../../functions/createNewBase';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import ElemTranslateRow from './ElemTranslateRow/ElemTranslateRow';
+import ElemMainWord from './ElemMainWord/ElemMainWord';
 
 type Props = {
   word: any
 }
 
 export default function MyWordsElem({ word }: Props) {
-
-  const history = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -30,7 +29,7 @@ export default function MyWordsElem({ word }: Props) {
 
       <DeleteWordButton />
 
-      <ElemMainWord />
+      <ElemMainWord word={word} />
 
       <TransitionGroup>
 
@@ -72,26 +71,6 @@ export default function MyWordsElem({ word }: Props) {
 
   }
 
-  function ElemMainWord() {
 
-    return (
-
-      <div className='MyWords__elemMainWord'>
-
-        <div onClick={() => history(`../DeepSearch/${allWordsFromFirebase[word]?.word}`)}>
-
-          {capitalizeFirstLetter(allWordsFromFirebase[word]?.word)}
-
-          <div className='MyWords__elemTranslateLanguage'>
-            {allWordsFromFirebase[word].translates[0].language.split('-')[0]}
-          </div>
-
-        </div>
-
-      </div>
-
-    )
-
-  }
 
 }

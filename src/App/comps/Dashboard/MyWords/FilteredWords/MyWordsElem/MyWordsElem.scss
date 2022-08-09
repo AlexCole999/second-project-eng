@@ -28,21 +28,6 @@
       }
     }
 
-    &__elemMainWord {
-      cursor: pointer;
-      margin-bottom: 10px;
-      text-align: center;
-      font-size: 26px;
-      font-weight: bold;
-      transition: 0.2s all ease;
-
-      &:hover {
-        color: rgb(245, 0, 184);
-        transform: scale(1, 1.1);
-      }
-
-    }
-
   }
 
   .item-enter {
