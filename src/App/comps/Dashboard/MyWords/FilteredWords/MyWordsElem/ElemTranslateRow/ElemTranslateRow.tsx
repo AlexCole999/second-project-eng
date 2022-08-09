@@ -69,13 +69,8 @@ export default function ElemTranslateRow({ translateElem, word }: Props) {
 
       </div>
 
-      <FaTimesCircle
-        className='MyWords__elemDeleteButton'
-        onClick={
-          () => {
-            deleteTranslateFromFirebase(translateElem.translate)
-          }
-        }
+      <FaTimesCircle className='MyWords__elemDeleteTranslateButton'
+        onClick={() => { deleteTranslateFromFirebase(translateElem.translate) }}
       >
       </FaTimesCircle>
 

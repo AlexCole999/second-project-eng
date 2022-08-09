@@ -24,11 +24,16 @@ export default function MyWordsElem({ word }: Props) {
 
       <TransitionGroup>
 
-        {allWordsFromFirebase[word].translates.map(translateElem =>
-          <CSSTransition key={translateElem.translate} timeout={500} classNames="item">
-            <ElemTranslateRow translateElem={translateElem} word={word} />
-          </CSSTransition>
-        )}
+        {
+          allWordsFromFirebase[word]
+            .translates
+            .map(
+              translateElem =>
+                <CSSTransition key={translateElem.translate} timeout={500} classNames="item">
+                  <ElemTranslateRow translateElem={translateElem} word={word} />
+                </CSSTransition>
+            )
+        }
 
       </TransitionGroup>
 
