@@ -67,8 +67,7 @@ export default function MyWordsElem({ word }: Props) {
     <div className='MyWords__elem'>
 
       <div className='MyWords__elemDeleteAllButtonBody'>
-        <FaTimes
-          className='MyWords__elemDeleteAllButton'
+        <FaTimes className='MyWords__elemDeleteAllButton'
           onClick={deleteAllTranslatesFromFirebase}
         />
       </div>
@@ -87,24 +86,16 @@ export default function MyWordsElem({ word }: Props) {
 
       </div>
 
-      <div>
-
-        <div>
-
-          <TransitionGroup className="todo-list">
-            {allWordsFromFirebase[word]
-              .translates
-              .map(
-                translateElem =>
-                  <CSSTransition key={translateElem.translate} timeout={500} classNames="item">
-                    <ElemTranslateRow translateElem={translateElem} />
-                  </CSSTransition>
-              )}
-          </TransitionGroup>
-
-        </div>
-
-      </div>
+      <TransitionGroup className="todo-list">
+        {allWordsFromFirebase[word]
+          .translates
+          .map(
+            translateElem =>
+              <CSSTransition key={translateElem.translate} timeout={500} classNames="item">
+                <ElemTranslateRow translateElem={translateElem} />
+              </CSSTransition>
+          )}
+      </TransitionGroup>
 
     </div>
 
