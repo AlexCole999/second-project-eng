@@ -33,11 +33,7 @@ export default function NavSearch({ }: Props) {
   const [reversedTranslateDirection, setReversedTranslateDirection] = useState(false)
   const [inputstate, setinputstate] = useState('')
 
-  const user = useSelector(state => state.user?.data?.email || 'guest')
   const selectedLanguage = useSelector(state => state.selectedLanguage)
-  const mainWord = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text)
-  const mainTranslate = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.tr[0]?.text)
-  const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
 
   const inputsearch = useRef(null);
   const languageListTrigger = useRef(null);
@@ -167,15 +163,11 @@ export default function NavSearch({ }: Props) {
 
         </div>
 
-        <div className="NavSearch__languagesListTrigger"
-          onClick={openCloseLanguagesListTrigger}
-          ref={languageListTrigger}>
+        <div className="NavSearch__languagesListTrigger" onClick={openCloseLanguagesListTrigger} ref={languageListTrigger}>
           <FiChevronsRight size={20} />
         </div>
 
-        <div className="NavSearch__languagesList"
-          ref={languagesList}
-          onClick={selectLanguage}>
+        <div className="NavSearch__languagesList" ref={languagesList} onClick={selectLanguage}>
 
           <LanguageListElem flagsrc={us} text='en-ru' />
           <LanguageListElem flagsrc={de} text='de-ru' />
@@ -220,7 +212,6 @@ function SearchedMainWord() {
   const dispatch = useDispatch();
 
   let navIsClosed = localStorage.getItem('navIsClosed');
-
 
   function addTranslateToFirebase() {
 
