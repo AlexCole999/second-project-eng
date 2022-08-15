@@ -202,16 +202,17 @@ export default function NavSearch({ }: Props) {
 }
 
 function SearchedMainWord() {
+
+  const dispatch = useDispatch();
+
+  let navIsClosed = localStorage.getItem('navIsClosed');
+
   const mainTranslate = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.tr[0]?.text)
   const wordsFromYandexDictionary = useSelector(state => state.yandexDictionaryTranslates.data)
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
   const mainWord = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text)
   const user = useSelector(state => state.user?.data?.email || 'guest')
   const selectedLanguage = useSelector(state => state.selectedLanguage)
-
-  const dispatch = useDispatch();
-
-  let navIsClosed = localStorage.getItem('navIsClosed');
 
   function addTranslateToFirebase() {
 
