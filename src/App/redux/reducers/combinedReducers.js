@@ -3,14 +3,14 @@ import getWordsFromFirebaseReducer from './getWordsFromFirebaseReducer';
 import logInUserWithGoogleAuthReducer from './logInUserWithGoogleAuthReducer';
 import getTranslatesFromYandexDictionaryReducer from './getTranslatesFromYandexDictionaryReducer';
 import changeSelectedLanguageReducer from './changeSelectedLanguageReducer';
-import searchedInputReducer from './searchedInputReducer';
+import changeSearchedInputReducer from './changeSearchedInputReducer';
 
 const combinedReducers = combineReducers({
   user: logInUserWithGoogleAuthReducer,
   selectedLanguage: changeSelectedLanguageReducer,
   yandexDictionaryTranslates: getTranslatesFromYandexDictionaryReducer,
   allWordsFromFirebase: getWordsFromFirebaseReducer,
-  searchedInput: searchedInputReducer
+  searchedInput: changeSearchedInputReducer
 })
 
 export default combinedReducers;

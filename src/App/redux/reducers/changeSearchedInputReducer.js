@@ -1,6 +1,6 @@
 let defaultstate = ''
 
-const searchedInputReducer = (state = defaultstate, action) => {
+const changeSearchedInputReducer = (state = defaultstate, action) => {
   switch (action.type) {
     case "CHANGE_SEARCHED_INPUT":
       return action.payload
@@ -8,4 +8,4 @@ const searchedInputReducer = (state = defaultstate, action) => {
   }
 }
 
-export default searchedInputReducer;
+export default changeSearchedInputReducer;
