@@ -98,6 +98,7 @@ export default function NavSearch({ }: Props) {
     <div className="NavSearch">
 
       <div className='NavSearch__inputElem'>
+
         <input placeholder="..." type="input"
           ref={inputsearch}
           onChange={(e) => {
@@ -105,9 +106,11 @@ export default function NavSearch({ }: Props) {
             if (e.target.value.match(/[a-zA-Zа-яА-Я]+$/)) {
               debouncedYandexDictionaryInputRequest();
             }
+
             if (e.target.value == 0) {
               dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: {} });
             }
+
             setinputstate(e.target.value)
 
           }} />

@@ -51,14 +51,10 @@ export default function ElemTranslateRow({ translateElem, word }: Props) {
 
         {
           allWordsFromFirebase[word]?.gameword == translateElem.translate
-            ?
-            <div className='MyWords__elemTranslateWord MyWords__elemTranslateWord_gameword'>
+            ? <div className='MyWords__elemTranslateWord MyWords__elemTranslateWord_gameword'>
               {capitalizeFirstLetter(translateElem.translate)}
             </div>
-            :
-            <div className='MyWords__elemTranslateWord'
-              onClick={() => setGameWord(translateElem.translate)}
-            >
+            : <div className='MyWords__elemTranslateWord' onClick={() => setGameWord(translateElem.translate)}            >
               {capitalizeFirstLetter(translateElem.translate)}
             </div>
         }
