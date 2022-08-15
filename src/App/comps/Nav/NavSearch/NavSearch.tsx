@@ -40,7 +40,7 @@ export default function NavSearch({ }: Props) {
           type="input"
           ref={inputsearch}
           onChange={(e) => {
-            if (e.target.value.match(/[a-zA-Zа-яА-Я]+$/)) { debouncedYandexDictionaryInputRequest(); dispatch({ type: "CHANGE_SEARCHED_INPUT", payload: e.target.value }) }
+            if (e.target.value.match(/[a-zA-Zа-яА-Я]+$/)) { debouncedYandexDictionaryInputRequest(); }
             if (!e.target.value) { dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: {} }) }
             setinputstate(e.target.value)
           }} />
