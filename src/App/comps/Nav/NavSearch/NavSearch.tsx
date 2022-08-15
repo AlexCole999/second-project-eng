@@ -35,20 +35,14 @@ export default function NavSearch({ }: Props) {
 
       <div className='NavSearch__inputElem'>
 
-        <input placeholder="..." type="input"
+        <input
+          placeholder="..."
+          type="input"
           ref={inputsearch}
           onChange={(e) => {
-
-            if (e.target.value.match(/[a-zA-Zа-яА-Я]+$/)) {
-              debouncedYandexDictionaryInputRequest();
-            }
-
-            if (e.target.value == 0) {
-              dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: {} });
-            }
-
+            if (e.target.value.match(/[a-zA-Zа-яА-Я]+$/)) { debouncedYandexDictionaryInputRequest(); dispatch({ type: "CHANGE_SEARCHED_INPUT", payload: e.target.value }) }
+            if (!e.target.value) { dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: {} }) }
             setinputstate(e.target.value)
-
           }} />
 
         <InputDeleteButton display={inputstate ? true : false} />
@@ -60,6 +54,7 @@ export default function NavSearch({ }: Props) {
       <LanguagesPanel inputsearch={inputsearch} />
 
     </div>
+
   )
 
   function InputDeleteButton({ display }) {
