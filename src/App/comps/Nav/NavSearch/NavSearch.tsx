@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
 import yandexDictionaryRequest from './../../../Api/yandexDictionary/yandexDictionaryRequest';
 import { AiOutlineClose } from "react-icons/ai";
+import SearchedMainWord from './SearchedMainWord/SearchedMainWord';
 
 import us from '../../../source/flags/us.svg';
 import de from '../../../source/flags/de.svg';
@@ -16,7 +17,6 @@ import nl from '../../../source/flags/nl.svg';
 import pl from '../../../source/flags/pl.svg';
 import bg from '../../../source/flags/bg.svg';
 import cz from '../../../source/flags/cz.svg';
-import SearchedMainWord from './SearchedMainWord/SearchedMainWord';
 
 type Props = {}
 
