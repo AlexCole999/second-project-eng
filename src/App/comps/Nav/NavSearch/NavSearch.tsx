@@ -112,19 +112,7 @@ export default function NavSearch({ }: Props) {
 
           }} />
 
-        {inputstate
-          ? (<div className='NavSearch__inputDeleteButton'
-            onClick={() => {
-
-              dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: {} });
-              inputsearch.current.value = "";
-              setinputstate('');
-
-            }}
-          >
-            <AiOutlineClose className='NavSearch__inputDeleteButtonIcon' />
-          </div>)
-          : ''}
+        <InputDeleteButton view={inputstate ? true : false} />
 
       </div>
 
@@ -181,6 +169,20 @@ export default function NavSearch({ }: Props) {
 
     </div>
   )
+
+  function InputDeleteButton({ view }) {
+    return (
+      view
+        ? <div className='NavSearch__inputDeleteButton' onClick={() => {
+          dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: {} });
+          inputsearch.current.value = "";
+          setinputstate('');
+        }}>
+          <AiOutlineClose className='NavSearch__inputDeleteButtonIcon' />
+        </div>
+        : ''
+    )
+  }
 
   function LanguageListElem({ flagsrc, text }) {
     return (
