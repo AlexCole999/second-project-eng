@@ -6,6 +6,17 @@
   padding: 0px 6px;
   position: relative;
 
+  &__microphoneButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin-bottom: 7px;
+  }
+
   &__inputElem {
     position: relative;
     display: flex;
