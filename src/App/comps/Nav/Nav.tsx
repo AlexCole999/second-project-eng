@@ -13,6 +13,7 @@ import { FiSliders } from "react-icons/fi";
 import { FiChevronsRight } from "react-icons/fi";
 import { BsQuestionLg } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
+
 type Props = {}
 
 export default function Nav({ }: Props) {
