@@ -16,12 +16,16 @@ import bg from '../../../../source/flags/bg.svg';
 
 type Props = {}
 
-export default function LanguagesPanel({ inputsearch }) {
+export default function LanguagesPanel() {
 
   const dispatch = useDispatch();
+
   const selectedLanguage = useSelector(state => state.selectedLanguage)
+  const mainWord = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text)
+
   const languageListTrigger = useRef(null);
   const languagesList = useRef(null);
+
   const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
   const [reversedTranslateDirection, setReversedTranslateDirection] = useState(false)
 
@@ -63,7 +67,7 @@ export default function LanguagesPanel({ inputsearch }) {
 
     dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage })
 
-    yandexDictionaryRequest(newLanguage, inputsearch.current.value)
+    yandexDictionaryRequest(newLanguage, mainWord)
       .then(response => {
         dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
       })
@@ -100,7 +104,7 @@ export default function LanguagesPanel({ inputsearch }) {
           setReversedTranslateDirection(!reversedTranslateDirection)
           dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
           e.target.parentElement.classList.toggle('NavSearch__reverseButtonSelectedLanguage_reversed');
-          yandexDictionaryRequest(newLanguage, inputsearch.current.value)
+          yandexDictionaryRequest(newLanguage, mainWord)
             .then(response => {
               dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
             })
