@@ -16,12 +16,12 @@ import bg from '../../../../source/flags/bg.svg';
 
 type Props = {}
 
-export default function LanguagesPanel() {
+export default function LanguagesPanel({ inputsearch }) {
 
   const dispatch = useDispatch();
 
   const selectedLanguage = useSelector(state => state.selectedLanguage)
-  const mainWord = useSelector(state => state.yandexDictionaryTranslates?.data[0]?.text)
+  const mainWord = inputsearch?.current?.value
 
   const languageListTrigger = useRef(null);
   const languagesList = useRef(null);
@@ -67,10 +67,12 @@ export default function LanguagesPanel() {
 
     dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage })
 
-    yandexDictionaryRequest(newLanguage, mainWord)
-      .then(response => {
-        dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
-      })
+    if (mainWord) {
+      yandexDictionaryRequest(newLanguage, mainWord)
+        .then(response => {
+          dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
+        })
+    }
 
   }
 
@@ -102,12 +104,16 @@ export default function LanguagesPanel() {
 
           let newLanguage = selectedLanguage.split('-').reverse().join('-')
           setReversedTranslateDirection(!reversedTranslateDirection)
+
           dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
           e.target.parentElement.classList.toggle('NavSearch__reverseButtonSelectedLanguage_reversed');
+
           yandexDictionaryRequest(newLanguage, mainWord)
             .then(response => {
               dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
+              console.log(response.data.def)
             })
+
         }}>
         <FiRotateCw />
       </div>

@@ -75,7 +75,7 @@ export default function NavSearch({ }: Props) {
 
       <SearchedMainWord />
 
-      <LanguagesPanel />
+      <LanguagesPanel inputsearch={inputsearch} />
 
     </div>
 
