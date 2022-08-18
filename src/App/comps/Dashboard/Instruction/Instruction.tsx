@@ -9,8 +9,10 @@ import { BsQuestionLg } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { FiUserX } from 'react-icons/fi';
 import { FaMicrophone } from "react-icons/fa";
-import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
+import { FaKeyboard } from "react-icons/fa"
+import { RiTranslate } from "react-icons/ri"
 import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
+import us from '../../../source/flags/us.svg'
 
 type Props = {}
 
@@ -69,28 +71,28 @@ export default function Instruction({ }: Props) {
 
       <InstructionElem
         direction={''}
-        icon={null}
+        icon={<FaKeyboard size={60} color='black' />}
         title='Текстовый ввод'
         text='Ниже кнопки голосового ввода находится поле текстового ввода. Введите слово в текстовом формате, чтобы найти перевод'
       />
 
       <InstructionElem
         direction={''}
-        icon={null}
+        icon={<RiTranslate size={60} color='black' />}
         title='Быстрый результат'
         text='Для отображения самого популярного перевода непосредственно в панели поиска - раскройте панель меню (кликните на две направленные горизонтально вправо стрелки, расположенные выше и левее иконки входа в аккаунт). Результат поиска будет отображен ниже панели текстового ввода. (Примечание: доступно только при ширине экрана больше 550 пикселей. Поверните экран горизонтально для отображения быстрого результата, либо воспользуйтесь вкладкой Продвинутого поиска)'
       />
 
       <InstructionElem
         direction={''}
-        icon={null}
+        icon={<div><AiFillCheckCircle size={60} color='black' /><AiFillPlayCircle size={60} color='black' /></div>}
         title='Кнопки быстрого добавления'
         text='Ниже строки быстрого результата отобразятся кнопки управления словом. Добавьте перевод в базу, кликнув на кнопку с отображением галочки. Добавьте слово в игровые, кликнув по иконке с изображением "play" (Примечание:При повторном нажатии на кнопку с галочкой перевод удалится, однако, если в базе слов есть иные переводы - она останется зеленой, сообщая о наличии слова в базе)'
       />
 
       <InstructionElem
         direction={''}
-        icon={null}
+        icon={<img src={us} style={{ width: '55px' }} />}
         title='Языковая панель'
         text='Для выбора языка раскройте панель языков (кликните на две направленные вертикально вниз стрелки под флагом выбранного языка и выберите интересующий вас язык. Для смены направления перевода нажмите на кнопку, расположенную между кнопкой открытия языковой панели и флагом языка'
       />
