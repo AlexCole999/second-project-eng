@@ -76,6 +76,24 @@ export default function LanguagesPanel({ inputsearch }) {
 
   }
 
+  function changeTranslateDirectionTrigger(e) {
+
+    let newLanguage = selectedLanguage.split('-').reverse().join('-')
+    setReversedTranslateDirection(!reversedTranslateDirection)
+
+    dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
+    e.target.parentElement.classList.toggle('NavSearch__reverseButtonSelectedLanguage_reversed');
+
+    if (mainWord) {
+      yandexDictionaryRequest(newLanguage, mainWord)
+        .then(response => {
+          dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
+          console.log(response.data.def)
+        })
+    }
+
+  }
+
   function LanguageListElem({ flagsrc, text }) {
     return (
       <div className="NavSearch__languageListElem">
@@ -100,21 +118,7 @@ export default function LanguagesPanel({ inputsearch }) {
       </div>
 
       <div className="NavSearch__reverseButtonSelectedLanguage"
-        onClick={(e) => {
-
-          let newLanguage = selectedLanguage.split('-').reverse().join('-')
-          setReversedTranslateDirection(!reversedTranslateDirection)
-
-          dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
-          e.target.parentElement.classList.toggle('NavSearch__reverseButtonSelectedLanguage_reversed');
-
-          yandexDictionaryRequest(newLanguage, mainWord)
-            .then(response => {
-              dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
-              console.log(response.data.def)
-            })
-
-        }}>
+        onClick={changeTranslateDirectionTrigger}>
         <FiRotateCw />
       </div>
 
