@@ -94,41 +94,46 @@ export default function LanguagesPanel({ inputsearch }) {
     )
   }
 
-  return (<div className="NavSearch__languages">
+  return (
 
-    <div className="NavSearch__selectedLanguage">
+    <div className="NavSearch__languages">
 
-      <div className="NavSearch__languageListElemFlag_selected">
-        <img src={selectedLanguageFlag} alt="" className="NavSearch__languageListElemFlag" />
+      <div className="NavSearch__selectedLanguage">
+
+        <div className="NavSearch__languageListElemFlag_selected">
+          <img src={selectedLanguageFlag} alt="" className="NavSearch__languageListElemFlag" />
+        </div>
+
+        <div>
+          {selectedLanguage}
+        </div>
+
+        <div className="NavSearch__reverseButtonSelectedLanguage"
+          onClick={changeTranslateDirectionTrigger}>
+          <FiRotateCw />
+        </div>
+
       </div>
 
-      <div>
-        {selectedLanguage}
+      <div className="NavSearch__languagesListTrigger" onClick={openCloseLanguagesListTrigger} ref={languageListTrigger}>
+        <FiChevronsRight size={20} />
       </div>
 
-      <div className="NavSearch__reverseButtonSelectedLanguage"
-        onClick={changeTranslateDirectionTrigger}>
-        <FiRotateCw />
+      <div className="NavSearch__languagesList" ref={languagesList} onClick={selectLanguage}>
+
+        <LanguageListElem flagsrc={languageFlagCheck('en-ru')} text='en-ru' />
+        <LanguageListElem flagsrc={languageFlagCheck('de-ru')} text='de-ru' />
+        <LanguageListElem flagsrc={languageFlagCheck('fr-ru')} text='fr-ru' />
+        <LanguageListElem flagsrc={languageFlagCheck('es-ru')} text='es-ru' />
+        <LanguageListElem flagsrc={languageFlagCheck('it-ru')} text='it-ru' />
+        <LanguageListElem flagsrc={languageFlagCheck('nl-ru')} text='nl-ru' />
+        <LanguageListElem flagsrc={languageFlagCheck('pl-ru')} text='pl-ru' />
+        <LanguageListElem flagsrc={languageFlagCheck('bg-ru')} text='bg-ru' />
+
       </div>
 
     </div>
 
-    <div className="NavSearch__languagesListTrigger" onClick={openCloseLanguagesListTrigger} ref={languageListTrigger}>
-      <FiChevronsRight size={20} />
-    </div>
+  )
 
-    <div className="NavSearch__languagesList" ref={languagesList} onClick={selectLanguage}>
-
-      <LanguageListElem flagsrc={languageFlagCheck('en-ru')} text='en-ru' />
-      <LanguageListElem flagsrc={languageFlagCheck('de-ru')} text='de-ru' />
-      <LanguageListElem flagsrc={languageFlagCheck('fr-ru')} text='fr-ru' />
-      <LanguageListElem flagsrc={languageFlagCheck('es-ru')} text='es-ru' />
-      <LanguageListElem flagsrc={languageFlagCheck('it-ru')} text='it-ru' />
-      <LanguageListElem flagsrc={languageFlagCheck('nl-ru')} text='nl-ru' />
-      <LanguageListElem flagsrc={languageFlagCheck('pl-ru')} text='pl-ru' />
-      <LanguageListElem flagsrc={languageFlagCheck('bg-ru')} text='bg-ru' />
-
-    </div>
-
-  </div>)
 }
