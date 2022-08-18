@@ -36,23 +36,18 @@ export default function LanguagesPanel({ inputsearch }) {
 
   const languageFlagCheck = (language) => {
 
-    return language == 'de-ru'
-      ? (<img src={de} alt="" className="NavSearch__languageListElemFlag" />)
-      : language == 'fr-ru'
-        ? (<img src={fr} alt="" className="NavSearch__languageListElemFlag" />)
-        : language == 'es-ru'
-          ? (<img src={es} alt="" className="NavSearch__languageListElemFlag" />)
-          : language == 'it-ru'
-            ? (<img src={it} alt="" className="NavSearch__languageListElemFlag" />)
-            : language == 'nl-ru'
-              ? (<img src={nl} alt="" className="NavSearch__languageListElemFlag" />)
-              : language == 'pl-ru'
-                ? (<img src={pl} alt="" className="NavSearch__languageListElemFlag" />)
-                : language == 'bg-ru'
-                  ? (<img src={bg} alt="" className="NavSearch__languageListElemFlag" />)
-                  : language == 'en-ru'
-                    ? (<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
-                    : ""
+    let src =
+      language == 'de-ru' ? de
+        : language == 'fr-ru' ? fr
+          : language == 'es-ru' ? es
+            : language == 'it-ru' ? it
+              : language == 'nl-ru' ? nl
+                : language == 'pl-ru' ? pl
+                  : language == 'bg-ru' ? bg
+                    : language == 'en-ru' ? us
+                      : ""
+
+    return <img src={src} alt="" className="NavSearch__languageListElemFlag" />
 
   }
 
