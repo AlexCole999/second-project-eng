@@ -1,7 +1,7 @@
 import React from 'react'
 import './LanguagesPanel.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
 import yandexDictionaryRequest from './../../../../Api/yandexDictionary/yandexDictionaryRequest';
 import languageFlagCheck from './../../../../functions/languageFlagCheck';
@@ -56,6 +56,7 @@ export default function LanguagesPanel({ inputsearch }) {
 
     let newLanguage = selectedLanguage.split('-').reverse().join('-')
     setReversedTranslateDirection(!reversedTranslateDirection)
+    localStorage.setItem('reversedTranslateDirection', reversedTranslateDirection == true ? "false" : 'true')
 
     dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
     e.target.parentElement.classList.toggle('NavSearch__reverseButtonSelectedLanguage_reversed');
@@ -69,6 +70,18 @@ export default function LanguagesPanel({ inputsearch }) {
     }
 
   }
+
+  useEffect(() => {
+
+    if (localStorage.getItem('reversedTranslateDirection') == 'true') {
+
+      let newLanguage = selectedLanguage.split('-').reverse().join('-')
+      dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
+      setReversedTranslateDirection(true)
+
+    }
+
+  }, [])
 
   function LanguageListElem({ flagsrc, text }) {
     return (
