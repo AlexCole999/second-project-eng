@@ -46,7 +46,7 @@ export default function Instruction({ }: Props) {
 
   return (
     <div className='Instruction'>
-
+      1111111111111111111111
       <InstructionTitle title='Инструкция' />
 
       <InstructionSubtitle subtitle='Профиль' />
