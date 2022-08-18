@@ -4,32 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useRef } from 'react';
 import { FiChevronsRight, FiRotateCw } from "react-icons/fi";
 import yandexDictionaryRequest from './../../../../Api/yandexDictionary/yandexDictionaryRequest';
-
-import us from '../../../../source/flags/us.svg'
-import de from '../../../../source/flags/de.svg';
-import fr from '../../../../source/flags/fr.svg';
-import es from '../../../../source/flags/es.svg';
-import it from '../../../../source/flags/it.svg';
-import nl from '../../../../source/flags/nl.svg';
-import pl from '../../../../source/flags/pl.svg';
-import bg from '../../../../source/flags/bg.svg';
-
-const languageFlagCheck = (language) => {
-
-  let src =
-    language == 'de-ru' ? de
-      : language == 'fr-ru' ? fr
-        : language == 'es-ru' ? es
-          : language == 'it-ru' ? it
-            : language == 'nl-ru' ? nl
-              : language == 'pl-ru' ? pl
-                : language == 'bg-ru' ? bg
-                  : language == 'en-ru' ? us
-                    : ""
-
-  return src
-
-}
+import languageFlagCheck from './../../../../functions/languageFlagCheck';
 
 type Props = {}
 
@@ -131,14 +106,14 @@ export default function LanguagesPanel({ inputsearch }) {
 
     <div className="NavSearch__languagesList" ref={languagesList} onClick={selectLanguage}>
 
-      <LanguageListElem flagsrc={us} text='en-ru' />
-      <LanguageListElem flagsrc={de} text='de-ru' />
-      <LanguageListElem flagsrc={fr} text='fr-ru' />
-      <LanguageListElem flagsrc={es} text='es-ru' />
-      <LanguageListElem flagsrc={it} text='it-ru' />
-      <LanguageListElem flagsrc={nl} text='nl-ru' />
-      <LanguageListElem flagsrc={pl} text='pl-ru' />
-      <LanguageListElem flagsrc={bg} text='bg-ru' />
+      <LanguageListElem flagsrc={languageFlagCheck('en-ru')} text='en-ru' />
+      <LanguageListElem flagsrc={languageFlagCheck('de-ru')} text='de-ru' />
+      <LanguageListElem flagsrc={languageFlagCheck('fr-ru')} text='fr-ru' />
+      <LanguageListElem flagsrc={languageFlagCheck('es-ru')} text='es-ru' />
+      <LanguageListElem flagsrc={languageFlagCheck('it-ru')} text='it-ru' />
+      <LanguageListElem flagsrc={languageFlagCheck('nl-ru')} text='nl-ru' />
+      <LanguageListElem flagsrc={languageFlagCheck('pl-ru')} text='pl-ru' />
+      <LanguageListElem flagsrc={languageFlagCheck('bg-ru')} text='bg-ru' />
 
     </div>
 
