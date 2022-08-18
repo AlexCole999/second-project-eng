@@ -26,7 +26,7 @@ export default function LanguagesPanel({ inputsearch }) {
   const languageListTrigger = useRef(null);
   const languagesList = useRef(null);
 
-  const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(<img src={us} alt="" className="NavSearch__languageListElemFlag" />)
+  const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(us)
   const [reversedTranslateDirection, setReversedTranslateDirection] = useState(false)
 
   function openCloseLanguagesListTrigger(): void {
@@ -47,28 +47,33 @@ export default function LanguagesPanel({ inputsearch }) {
                     : language == 'en-ru' ? us
                       : ""
 
-    return <img src={src} alt="" className="NavSearch__languageListElemFlag" />
+    return src
 
   }
 
   function selectLanguage(e) {
 
-    const flagCheckString = e.target.parentElement.childNodes[1].outerText;
-    setSelectedLanguageFlag(languageFlagCheck(flagCheckString))
+    const correctClassList = e.target.classList.value == 'NavSearch__languageListElemFlag' || e.target.classList.value == 'NavSearch__languageListElemText'
 
-    const newLanguage = reversedTranslateDirection
-      ? e.target.parentElement.childNodes[1].outerText.split('-').reverse().join('-')
-      : e.target.parentElement.childNodes[1].outerText;
+    if (correctClassList) {
 
-    dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage })
+      const flagCheckString = e.target.parentElement.childNodes[1].outerText;
+      setSelectedLanguageFlag(languageFlagCheck(flagCheckString))
 
-    if (mainWord) {
-      yandexDictionaryRequest(newLanguage, mainWord)
-        .then(response => {
-          dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
-        })
+      const newLanguage = reversedTranslateDirection
+        ? e.target.parentElement.childNodes[1].outerText.split('-').reverse().join('-')
+        : e.target.parentElement.childNodes[1].outerText;
+
+      dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage })
+
+      if (mainWord) {
+        yandexDictionaryRequest(newLanguage, mainWord)
+          .then(response => {
+            dispatch({ type: "GET_TRANSLATES_FROM_YANDEX_DICTIONARY", payload: response.data.def });
+          })
+      }
+
     }
-
   }
 
   function changeTranslateDirectionTrigger(e) {
@@ -105,7 +110,7 @@ export default function LanguagesPanel({ inputsearch }) {
     <div className="NavSearch__selectedLanguage">
 
       <div className="NavSearch__languageListElemFlag_selected">
-        {selectedLanguageFlag}
+        <img src={selectedLanguageFlag} alt="" className="NavSearch__languageListElemFlag" />
       </div>
 
       <div>
