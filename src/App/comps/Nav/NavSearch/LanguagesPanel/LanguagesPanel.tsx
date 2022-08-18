@@ -14,6 +14,23 @@ import nl from '../../../../source/flags/nl.svg';
 import pl from '../../../../source/flags/pl.svg';
 import bg from '../../../../source/flags/bg.svg';
 
+const languageFlagCheck = (language) => {
+
+  let src =
+    language == 'de-ru' ? de
+      : language == 'fr-ru' ? fr
+        : language == 'es-ru' ? es
+          : language == 'it-ru' ? it
+            : language == 'nl-ru' ? nl
+              : language == 'pl-ru' ? pl
+                : language == 'bg-ru' ? bg
+                  : language == 'en-ru' ? us
+                    : ""
+
+  return src
+
+}
+
 type Props = {}
 
 export default function LanguagesPanel({ inputsearch }) {
@@ -26,29 +43,12 @@ export default function LanguagesPanel({ inputsearch }) {
   const languageListTrigger = useRef(null);
   const languagesList = useRef(null);
 
-  const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(us)
+  const [selectedLanguageFlag, setSelectedLanguageFlag] = useState(languageFlagCheck(selectedLanguage))
   const [reversedTranslateDirection, setReversedTranslateDirection] = useState(false)
 
   function openCloseLanguagesListTrigger(): void {
     languagesList.current.classList.toggle('NavSearch__languagesList_opened');
     languageListTrigger.current.classList.toggle('NavSearch__languagesListTrigger_opened');
-  }
-
-  const languageFlagCheck = (language) => {
-
-    let src =
-      language == 'de-ru' ? de
-        : language == 'fr-ru' ? fr
-          : language == 'es-ru' ? es
-            : language == 'it-ru' ? it
-              : language == 'nl-ru' ? nl
-                : language == 'pl-ru' ? pl
-                  : language == 'bg-ru' ? bg
-                    : language == 'en-ru' ? us
-                      : ""
-
-    return src
-
   }
 
   function selectLanguage(e) {
@@ -57,8 +57,9 @@ export default function LanguagesPanel({ inputsearch }) {
 
     if (correctClassList) {
 
-      const flagCheckString = e.target.parentElement.childNodes[1].outerText;
-      setSelectedLanguageFlag(languageFlagCheck(flagCheckString))
+      const languageString = e.target.parentElement.childNodes[1].outerText;
+      localStorage.setItem('language', languageString)
+      setSelectedLanguageFlag(languageFlagCheck(languageString))
 
       const newLanguage = reversedTranslateDirection
         ? e.target.parentElement.childNodes[1].outerText.split('-').reverse().join('-')

@@ -1,4 +1,5 @@
-let defaultstate = 'en-ru'
+
+let defaultstate = localStorage.getItem('language') || 'en-ru'
 
 const changeSelectedLanguageReducer = (state = defaultstate, action) => {
   switch (action.type) {
