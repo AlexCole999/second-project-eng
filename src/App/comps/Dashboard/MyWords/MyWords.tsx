@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './MyWords.scss'
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { getDoc, doc } from 'firebase/firestore';
+import { useSelector, useDispatch } from 'react-redux'
+import { getDoc, doc } from 'firebase/firestore'
 import { db } from './../../../API/firebase/firebaseConfig'
-import FilteredWords from './FilteredWords/FilteredWords';
-import FilterMenu from './FilterMenu/FilterMenu';
+import FilteredWords from './FilteredWords/FilteredWords'
+import FilterMenu from './FilterMenu/FilterMenu'
 
 
 type Props = {}
