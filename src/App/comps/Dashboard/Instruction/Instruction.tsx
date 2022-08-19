@@ -3,7 +3,7 @@ import './Instruction.scss'
 import { NavLink } from "react-router-dom";
 import { FiList, FiZoomIn, FiPlay, FiTrendingUp, FiSliders, FiUserX } from "react-icons/fi";
 import { FaMicrophone, FaKeyboard, FaFlagCheckered } from "react-icons/fa";
-import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
+import { AiFillCheckCircle } from "react-icons/ai";
 import { BsQuestionLg } from "react-icons/bs";
 import { RiTranslate } from "react-icons/ri"
 
@@ -78,7 +78,7 @@ export default function Instruction({ }: Props) {
 
       <InstructionElem
         direction={''}
-        icon={<div><AiFillCheckCircle size={60} color='black' /><AiFillPlayCircle size={60} color='black' /></div>}
+        icon={<AiFillCheckCircle size={60} color='black' />}
         title='Кнопки быстрого добавления'
         text='Ниже строки быстрого результата отобразятся кнопки управления словом. Добавьте перевод в базу, кликнув на кнопку с отображением галочки. Добавьте слово в игровые, кликнув по иконке с изображением "play" (Примечание:При повторном нажатии на кнопку с галочкой перевод удалится, однако, если в базе слов есть иные переводы - она останется зеленой, сообщая о наличии слова в базе)'
       />
