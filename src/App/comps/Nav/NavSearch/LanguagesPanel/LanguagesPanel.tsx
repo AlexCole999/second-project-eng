@@ -8,6 +8,15 @@ import languageFlagCheck from './../../../../functions/languageFlagCheck';
 
 type Props = {}
 
+const languageList = ['en-ru',
+  'de-ru',
+  'fr-ru',
+  'es-ru',
+  'it-ru',
+  'nl-ru',
+  'pl-ru',
+  'bg-ru']
+
 export default function LanguagesPanel({ inputsearch }) {
 
   const dispatch = useDispatch();
@@ -75,7 +84,7 @@ export default function LanguagesPanel({ inputsearch }) {
 
     if (localStorage.getItem('reversedTranslateDirection') == 'true') {
 
-      let newLanguage = selectedLanguage.split('-').reverse().join('-')
+      const newLanguage = selectedLanguage.split('-').reverse().join('-')
       dispatch({ type: "CHANGE_SELECTED_LANGUAGE", payload: newLanguage });
       setReversedTranslateDirection(true)
 
@@ -121,14 +130,13 @@ export default function LanguagesPanel({ inputsearch }) {
 
       <div className="NavSearch__languagesList" ref={languagesList} onClick={selectLanguage}>
 
-        <LanguageListElem flagsrc={languageFlagCheck('en-ru')} text='en-ru' />
-        <LanguageListElem flagsrc={languageFlagCheck('de-ru')} text='de-ru' />
-        <LanguageListElem flagsrc={languageFlagCheck('fr-ru')} text='fr-ru' />
-        <LanguageListElem flagsrc={languageFlagCheck('es-ru')} text='es-ru' />
-        <LanguageListElem flagsrc={languageFlagCheck('it-ru')} text='it-ru' />
-        <LanguageListElem flagsrc={languageFlagCheck('nl-ru')} text='nl-ru' />
-        <LanguageListElem flagsrc={languageFlagCheck('pl-ru')} text='pl-ru' />
-        <LanguageListElem flagsrc={languageFlagCheck('bg-ru')} text='bg-ru' />
+        {
+          languageList
+            .map(
+              language =>
+                <LanguageListElem flagsrc={languageFlagCheck(language)} text={language} />
+            )
+        }
 
       </div>
 
