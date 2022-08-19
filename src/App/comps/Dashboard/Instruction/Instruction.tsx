@@ -40,6 +40,7 @@ export default function Instruction({ }: Props) {
   }
 
   return (
+
     <div className='Instruction'>
 
       <InstructionTitle title='Инструкция' />
