@@ -1,18 +1,11 @@
 import React from 'react'
 import './Instruction.scss'
-import { FiList } from "react-icons/fi";
-import { FiZoomIn } from "react-icons/fi";
-import { FiPlay } from "react-icons/fi";
-import { FiTrendingUp } from "react-icons/fi";
-import { FiSliders } from "react-icons/fi";
-import { BsQuestionLg } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
-import { FiUserX } from 'react-icons/fi';
-import { FaMicrophone } from "react-icons/fa";
-import { FaKeyboard } from "react-icons/fa"
-import { RiTranslate } from "react-icons/ri"
+import { FiList, FiZoomIn, FiPlay, FiTrendingUp, FiSliders, FiUserX } from "react-icons/fi";
+import { FaMicrophone, FaKeyboard, FaFlagCheckered } from "react-icons/fa";
 import { AiFillCheckCircle, AiFillPlayCircle } from "react-icons/ai";
-import us from '../../../source/flags/us.svg'
+import { BsQuestionLg } from "react-icons/bs";
+import { RiTranslate } from "react-icons/ri"
 
 type Props = {}
 
@@ -92,7 +85,7 @@ export default function Instruction({ }: Props) {
 
       <InstructionElem
         direction={''}
-        icon={<img src={us} style={{ width: '55px' }} />}
+        icon={<FaFlagCheckered size={60} color='black' />}
         title='Языковая панель'
         text='Для выбора языка раскройте панель языков (кликните на две направленные вертикально вниз стрелки под флагом выбранного языка и выберите интересующий вас язык. Для смены направления перевода нажмите на кнопку, расположенную между кнопкой открытия языковой панели и флагом языка'
       />
