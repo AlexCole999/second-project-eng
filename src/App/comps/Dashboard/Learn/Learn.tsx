@@ -60,7 +60,7 @@ export default function Learn({ }: Props) {
 
   }
 
-  const GuessWordGame = () => {
+  const GuessTranslateGame = () => {
 
     const base = useSelector(state => state.allWordsFromFirebase)
     const gamebase = Object.keys(base).filter(x => base[x]?.gameword)
@@ -108,7 +108,7 @@ export default function Learn({ }: Props) {
 
         <button
           style={{ width: '200px', height: '50px', backgroundColor: 'red', borderRadius: '15px', color: 'white', border: 'none', margin: '15px 0px 15px 0px', fontSize: '1.2em', fontWeight: 'bold' }}
-          onClick={() => setinguesswordgame(!inguesswordgame)}
+          onClick={() => setinguesstranslategame(!inguesstranslategame)}
         >
           ЗАКОНЧИТЬ
         </button>
@@ -119,7 +119,7 @@ export default function Learn({ }: Props) {
 
   }
 
-  const GuessTranslateGame = () => {
+  const GuessWordGame = () => {
 
     const [wordinbase, setwordinbase] = useState('')
     const [wordininput, setwordininput] = useState('')
@@ -145,7 +145,7 @@ export default function Learn({ }: Props) {
 
         <button
           style={{ width: '200px', height: '50px', backgroundColor: 'red', borderRadius: '15px', color: 'white', border: 'none', margin: '15px 0px 15px 0px', fontSize: '1.2em', fontWeight: 'bold' }}
-          onClick={() => setinguesstranslategame(!inguesstranslategame)}
+          onClick={() => setinguesswordgame(!inguesswordgame)}
         >
           ЗАКОНЧИТЬ
         </button>
