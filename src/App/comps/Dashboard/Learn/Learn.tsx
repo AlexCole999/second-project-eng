@@ -159,12 +159,10 @@ export default function Learn({ }: Props) {
   return (
 
     <div className='Learn'>
-      {String(somestate)}
+
       {
-        inguesswordgame
-          ? <GuessWordGame />
-          : inguesstranslategame
-            ? <GuessTranslateGame />
+        inguesswordgame ? <GuessWordGame />
+          : inguesstranslategame ? <GuessTranslateGame />
             : <StartGameMenu />
 
       }
