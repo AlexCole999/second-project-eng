@@ -7,42 +7,52 @@ type Props = {}
 
 export default function Learn({ }: Props) {
 
+  const [somestate, setsomestate] = useState(false)
   const [inguesswordgame, setinguesswordgame] = useState(false)
   const [inguesstranslategame, setinguesstranslategame] = useState(false)
 
-  const StartGameMenu = () => {
+  function GameElem({ title, description, startgame }) {
 
     return (
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+      <div className='Learn__gameElem'>
 
-        <div style={{ fontStyle: 'italic' }}>
-          <div style={{ textAlign: 'center' }}>
-            <b style={{ fontSize: '2.3em', textDecoration: 'underline' }}>Отгадай перевод</b><br />
-            <div style={{ fontSize: '1.3em' }}>Выпадает случайное слово из базы, вы угадываете перевод этого слова</div>
-          </div>
+        <div className='Learn__gameTitle'>
+          {title}
         </div>
 
-        <button
-          style={{ width: '220px', height: '60px', backgroundColor: 'green', borderRadius: '15px', color: 'white', border: 'none', margin: '15px 0px 15px 0px', fontSize: '1.2em', fontWeight: 'bold' }}
-          onClick={() => setinguesstranslategame(!inguesstranslategame)}
-        >
+        <div className='Learn__gameDescription' >
+          {description}
+        </div>
+
+
+        <button className='Learn__gameStartButton' onClick={startgame}>
           ИГРАТЬ
         </button>
 
-        <div style={{ fontStyle: 'italic' }}>
-          <div style={{ textAlign: 'center' }}>
-            <b style={{ fontSize: '2.3em', textDecoration: 'underline' }}>Отгадай слово</b><br />
-            <div style={{ fontSize: '1.3em' }}>Выпадает случайный перевод из базы, вы угадываете это слово на основном языке</div>
-          </div>
-        </div>
+      </div>
 
-        <button
-          style={{ width: '220px', height: '60px', backgroundColor: 'green', borderRadius: '15px', color: 'white', border: 'none', margin: '15px 0px 15px 0px', fontSize: '1.2em', fontWeight: 'bold' }}
-          onClick={() => setinguesswordgame(!inguesswordgame)}
-        >
-          ИГРАТЬ
-        </button>
+    )
+
+  }
+
+  function StartGameMenu() {
+
+    return (
+
+      <div className='Learn__gamesList'>
+
+        <GameElem
+          title='Отгадай перевод'
+          description='Выпадает случайное слово из базы, вы угадываете перевод этого слова'
+          startgame={() => setinguesstranslategame(!inguesstranslategame)}
+        />
+
+        <GameElem
+          title='Отгадай слово'
+          description='Выпадает случайный перевод из базы, вы угадываете это слово на основном языке'
+          startgame={() => setinguesswordgame(!inguesswordgame)}
+        />
 
       </div>
 
@@ -149,7 +159,7 @@ export default function Learn({ }: Props) {
   return (
 
     <div className='Learn'>
-
+      {String(somestate)}
       {
         inguesswordgame
           ? <GuessWordGame />
