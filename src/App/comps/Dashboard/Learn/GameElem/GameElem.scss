@@ -1,0 +1,31 @@
+.Learn {
+
+  &__gameElem {
+    font-style: italic;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__gameTitle {
+    font-size: 2.3em;
+    font-weight: bold;
+  }
+
+  &__gameDescription {
+    font-size: 1.3em;
+  }
+
+  &__gameStartButton {
+    width: 220px;
+    height: 60px;
+    background-color: green;
+    border-radius: 15px;
+    color: white;
+    border: none;
+    margin: 15px 0px 15px 0px;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+}
