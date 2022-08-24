@@ -1,0 +1,40 @@
+.GuessTranslateGame {
+  display: flex;
+  justify-content: center;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__getNewWordButton {}
+
+  &__gamewordLetter {}
+
+  &__translate {
+    display: flex;
+  }
+
+  &__translateLetterBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    border: 2px solid black;
+    border-radius: 3px;
+  }
+
+  &__translateLetter {
+    color: white
+  }
+
+  &__endGameButton {
+    background-color: red;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    font-weight: bold;
+  }
+
+}
