@@ -1,15 +1,15 @@
 import React from 'react'
-import './DeleteWordButton.scss'
+import './TopButtons.scss'
 import { setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../../API/firebase/firebaseConfig';
-import createNewBase from './../../../../../../functions/createNewBase';
-import capitalizeFirstLetter from './../../../../../../functions/capitalizeFirstLetter';
+import createNewBase from '../../../../../../functions/createNewBase';
+import capitalizeFirstLetter from '../../../../../../functions/capitalizeFirstLetter';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
 
 type Props = { word: string }
 
-export default function DeleteWordButton({ word }) {
+export default function TopButtons({ word }) {
 
   const dispatch = useDispatch()
 
