@@ -11,6 +11,7 @@ export default function Statistics({ }: Props) {
 
   const wordsCount = Object.keys(allWordsFromFirebase).length
   const [translatesCount, settranslatesCount] = useState(0)
+  const [gameWordsCount, setgameWordsCount] = useState(0)
 
   function translatesCounter() {
     let translatesCount = 0;
@@ -18,16 +19,27 @@ export default function Statistics({ }: Props) {
     settranslatesCount(translatesCount)
   }
 
+  function gameWordsCounter() {
+    let gameWordsCount = 0;
+    Object.keys(allWordsFromFirebase).forEach(x => gameWordsCount += 'gameword' in allWordsFromFirebase[x] ? 1 : 0)
+    setgameWordsCount(gameWordsCount)
+  }
 
-
-  useEffect(() => { translatesCounter() })
+  useEffect(() => {
+    translatesCounter()
+    gameWordsCounter()
+  })
 
   return (
+
     <div className='Statistics'>
 
-      <div>Количество слов в словаре: {wordsCount}</div>
-      <div>Количество переводов в словаре: {translatesCount}</div>
+      <div>Слов в игре: {gameWordsCount}</div>
+      <div>Слов в словаре: {wordsCount}</div>
+      <div>Переводов в словаре: {translatesCount}</div>
 
     </div>
+
   )
+
 }
