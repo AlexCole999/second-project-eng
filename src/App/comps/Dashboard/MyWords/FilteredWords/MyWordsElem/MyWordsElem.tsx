@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import ElemTranslateRow from './ElemTranslateRow/ElemTranslateRow';
 import ElemMainWord from './ElemMainWord/ElemMainWord';
-import TopButtons from './DeleteWordButton/TopButtons';
+import ElemTopButtons from './ElemTopButtons/ElemTopButtons';
 
 type Props = {
   word: any
@@ -18,7 +18,7 @@ export default function MyWordsElem({ word }: Props) {
 
     <div className='MyWords__elem'>
 
-      <TopButtons word={word} />
+      <ElemTopButtons word={word} />
 
       <ElemMainWord word={word} />
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import './TopButtons.scss'
+import './ElemTopButtons.scss'
 import { setDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../../../API/firebase/firebaseConfig';
 import createNewBase from '../../../../../../functions/createNewBase';
@@ -10,7 +10,7 @@ import { AiFillPlayCircle } from "react-icons/ai";
 
 type Props = { word: string }
 
-export default function TopButtons({ word }) {
+export default function ElemTopButtons({ word }) {
 
   const dispatch = useDispatch()
 
