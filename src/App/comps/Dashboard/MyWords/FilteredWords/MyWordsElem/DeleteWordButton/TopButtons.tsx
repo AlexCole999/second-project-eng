@@ -6,6 +6,7 @@ import createNewBase from '../../../../../../functions/createNewBase';
 import capitalizeFirstLetter from '../../../../../../functions/capitalizeFirstLetter';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
+import { AiFillPlayCircle } from "react-icons/ai";
 
 type Props = { word: string }
 
@@ -28,12 +29,32 @@ export default function TopButtons({ word }) {
 
   }
 
+  function deleteGamewordFromFirebase() {
+
+    const newBase = createNewBase.baseWithDeletedGameWord(allWordsFromFirebase, word);
+
+    setDoc(doc(db, "users", user, 'data', 'words'), newBase)
+      .then(() => {
+        console.log(`Слово "${capitalizeFirstLetter(word)}" удалено из игры"`);
+        dispatch({ type: "ADD_DATA_FROM_FIREBASE", payload: newBase });
+      });
+
+  }
+
   return (
 
-    <div className='MyWords__elemDeleteAllButtonBody'>
+    <div className='MyWords__elemTopButtonsMenu'>
+
+      {
+        'gameword' in allWordsFromFirebase[word]
+          ? <AiFillPlayCircle className='MyWords__elemDeleteGamewordButton' onClick={deleteGamewordFromFirebase} />
+          : <AiFillPlayCircle className='MyWords__elemDeleteGamewordButton_inactive' />
+      }
+
       <FaTimes className='MyWords__elemDeleteAllButton'
         onClick={deleteAllTranslatesFromFirebase}
       />
+
     </div>
 
   )
