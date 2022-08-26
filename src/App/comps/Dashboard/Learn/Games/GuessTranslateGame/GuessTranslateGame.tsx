@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useSelector } from 'react-redux';
 import './GuessTranslateGame.scss'
 
@@ -12,6 +12,8 @@ export default function GuessTranslateGame({ endgame }) {
   const [wordinbase, setwordinbase] = useState('')
   const [wordininput, setwordininput] = useState('')
 
+  const inputtranslate = useRef()
+
   function getRandomWordGromBase() {
     return gamebase[Math.ceil(Math.random() * gamebase.length - 1)]
   }
@@ -23,6 +25,10 @@ export default function GuessTranslateGame({ endgame }) {
       <div className='GuessTranslateGame__body'>
 
         <button className='GuessTranslateGame__getNewWordButton' onClick={() => { setchangedWord(getRandomWordGromBase()) }}>
+          НОВОЕ СЛОВО
+        </button>
+
+        <button className='GuessTranslateGame__getNewWordButton' onClick={() => { console.log(inputtranslate.current.value, base[changedWord]?.gameword, base[changedWord]?.gameword == inputtranslate.current.value) }}>
           НОВОЕ СЛОВО
         </button>
 
@@ -58,7 +64,7 @@ export default function GuessTranslateGame({ endgame }) {
 
         </div>
 
-        <input className='GuessTranslateGame__input' type="text" />
+        <input className='GuessTranslateGame__input' type="text" ref={inputtranslate} />
         {/* <div>
 
           {
@@ -79,7 +85,7 @@ export default function GuessTranslateGame({ endgame }) {
 
       </div>
 
-    </div>
+    </div >
 
   )
 
