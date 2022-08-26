@@ -29,7 +29,7 @@ export default function GuessTranslateGame({ endgame }) {
         </button>
 
         <button className='GuessTranslateGame__getNewWordButton' onClick={() => { console.log(inputtranslate.current.value, base[changedWord]?.gameword, base[changedWord]?.gameword == inputtranslate.current.value) }}>
-          НОВОЕ СЛОВО
+          ПРОВЕРИТЬ
         </button>
 
         <div className='GuessTranslateGame__gameword'>
