@@ -27,6 +27,7 @@ export default function GuessTranslateGame({ endgame }) {
         </button>
 
         <div className='GuessTranslateGame__gameword'>
+
           {
             changedWord
               .toUpperCase()
@@ -37,24 +38,27 @@ export default function GuessTranslateGame({ endgame }) {
                     {x}
                   </span>)
           }
+
         </div>
 
 
         <div className='GuessTranslateGame__translate'>
 
-          {base[changedWord]
-            ?.gameword
-            .toUpperCase()
-            .split('')
-            .map(x =>
-              <div className='GuessTranslateGame__translateLetterBox'>
-                <div className='GuessTranslateGame__translateLetter'>{x}</div>
-              </div>
-            )}
+          {
+            base[changedWord]
+              ?.gameword
+              .toUpperCase()
+              .split('')
+              .map(x =>
+                <div className='GuessTranslateGame__translateLetterBox'>
+                  <div className='GuessTranslateGame__translateLetter'>{ }</div>
+                </div>
+              )
+          }
 
         </div>
 
-
+        <input className='GuessTranslateGame__input' type="text" />
         {/* <div>
 
           {
