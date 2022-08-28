@@ -9,6 +9,7 @@ export default function GuessTranslateGame({ endgame }) {
   const base = useSelector(state => state.allWordsFromFirebase)
   const gamebase = Object.keys(base).filter(x => base[x]?.gameword)
   const [changedWord, setchangedWord] = useState('')
+  const [input, setinput] = useState('')
   const [wordinbase, setwordinbase] = useState('')
   const [wordininput, setwordininput] = useState('')
 
@@ -55,16 +56,18 @@ export default function GuessTranslateGame({ endgame }) {
               ?.gameword
               .toUpperCase()
               .split('')
-              .map(x =>
+              .map((x, i) =>
                 <div className='GuessTranslateGame__translateLetterBox'>
-                  <div className='GuessTranslateGame__translateLetter'>{ }</div>
+                  <div className='GuessTranslateGame__translateLetter'>{input[i]}</div>
                 </div>
               )
           }
 
         </div>
 
-        <input className='GuessTranslateGame__input' type="text" ref={inputtranslate} />
+        <input className='GuessTranslateGame__input' type="text" ref={inputtranslate}
+          onChange={() => setinput(inputtranslate.current.value)}
+        />
         {/* <div>
 
           {
