@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import './Learn.scss'
-import GuessTranslateGame from './Games/GuessTranslateGame/GuessTranslateGame';
+import GuessTranslateByLettersGame from './Games/GuessTranslateByLettersGame/GuessTranslateByLettersGame';
 import GuessWordGame from './Games/GuessWordGame/GuessWordGame';
 import GameElem from './GameElem/GameElem';
 
@@ -10,7 +10,7 @@ type Props = {}
 export default function Learn({ }: Props) {
 
   const [inguesswordgame, setinguesswordgame] = useState(false)
-  const [inguesstranslategame, setinguesstranslategame] = useState(false)
+  const [inguesstranslatebylettersgame, setinguesstranslatebylettersgame] = useState(false)
 
   function StartGameMenu() {
 
@@ -21,7 +21,7 @@ export default function Learn({ }: Props) {
         <GameElem
           title='Напиши перевод правильно'
           description='Выпадает случайное слово из базы, вы пишете перевод этого слова'
-          startgame={() => setinguesstranslategame(!inguesstranslategame)}
+          startgame={() => setinguesstranslatebylettersgame(!inguesstranslatebylettersgame)}
         />
 
         <GameElem
@@ -42,7 +42,7 @@ export default function Learn({ }: Props) {
 
       {
         inguesswordgame ? <GuessWordGame endgame={() => setinguesswordgame(!inguesswordgame)} />
-          : inguesstranslategame ? <GuessTranslateGame endgame={() => setinguesstranslategame(!inguesstranslategame)} />
+          : inguesstranslatebylettersgame ? <GuessTranslateByLettersGame endgame={() => setinguesstranslatebylettersgame(!inguesstranslatebylettersgame)} />
             : <StartGameMenu />
       }
 
