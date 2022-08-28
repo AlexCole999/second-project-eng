@@ -19,8 +19,8 @@ export default function Learn({ }: Props) {
       <div className='Learn__gamesList'>
 
         <GameElem
-          title='Отгадай перевод'
-          description='Выпадает случайное слово из базы, вы угадываете перевод этого слова'
+          title='Напиши перевод правильно'
+          description='Выпадает случайное слово из базы, вы пишете перевод этого слова'
           startgame={() => setinguesstranslategame(!inguesstranslategame)}
         />
 
