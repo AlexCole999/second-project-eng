@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import './GuessTranslateGame.scss'
 import { AiFillCheckCircle, AiFillCheckSquare, AiFillPlaySquare } from "react-icons/ai";
@@ -29,7 +29,7 @@ export default function GuessTranslateGame({ endgame }) {
     inputtranslate.current.value = '';
   }
 
-
+  useEffect(startNewGame, [])
 
   return (
 
