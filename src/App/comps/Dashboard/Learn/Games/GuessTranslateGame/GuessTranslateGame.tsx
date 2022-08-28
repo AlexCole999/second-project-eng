@@ -21,20 +21,20 @@ export default function GuessTranslateGame({ endgame }) {
     return gamebase[Math.ceil(Math.random() * gamebase.length - 1)]
   }
 
+  function startNewGame() {
+    setchangedWord(getRandomWordGromBase());
+    setgamechecked(false);
+    setinput('')
+    inputtranslate.current.value = '';
+  }
+
   return (
 
     <div className='GuessTranslateGame'>
 
       <div className='GuessTranslateGame__body'>
 
-        <button className='GuessTranslateGame__getNewWordButton' onClick={() => {
-          setchangedWord(getRandomWordGromBase());
-          setgamechecked(false);
-          setinput('')
-          inputtranslate.current.value = '';
-
-        }
-        }>
+        <button className='GuessTranslateGame__getNewWordButton' onClick={startNewGame}>
           НОВОЕ СЛОВО
         </button>
 
