@@ -10,6 +10,8 @@ export default function GuessTranslateGame({ endgame }) {
   const gamebase = Object.keys(base).filter(x => base[x]?.gameword)
   const [changedWord, setchangedWord] = useState('')
   const [input, setinput] = useState('')
+  const [gamechecked, setgamechecked] = useState(false)
+
   const [wordinbase, setwordinbase] = useState('')
   const [wordininput, setwordininput] = useState('')
 
@@ -25,12 +27,15 @@ export default function GuessTranslateGame({ endgame }) {
 
       <div className='GuessTranslateGame__body'>
 
-        <button className='GuessTranslateGame__getNewWordButton' onClick={() => { setchangedWord(getRandomWordGromBase()) }}>
-          НОВОЕ СЛОВО
-        </button>
+        <button className='GuessTranslateGame__getNewWordButton' onClick={() => {
+          setchangedWord(getRandomWordGromBase());
+          setgamechecked(false);
+          setinput('')
+          inputtranslate.current.value = '';
 
-        <button className='GuessTranslateGame__getNewWordButton' onClick={() => { console.log(inputtranslate.current.value, base[changedWord]?.gameword, base[changedWord]?.gameword == inputtranslate.current.value) }}>
-          ПРОВЕРИТЬ
+        }
+        }>
+          НОВОЕ СЛОВО
         </button>
 
         <div className='GuessTranslateGame__gameword'>
@@ -43,12 +48,21 @@ export default function GuessTranslateGame({ endgame }) {
           {
             base[changedWord]
               ?.gameword
-              .toUpperCase()
               .split('')
               .map((x, i) =>
-                <div className='GuessTranslateGame__translateLetterBox'>
-                  <div className='GuessTranslateGame__translateLetter'>{input[i]}</div>
-                </div>
+                gamechecked
+                  ?
+                  (x == input[i]
+                    ? <div className='GuessTranslateGame__translateLetterBox'>
+                      <div className='GuessTranslateGame__translateLetter'>{x}</div>
+                    </div>
+                    : <div className='GuessTranslateGame__translateLetterBox' style={{ backgroundColor: 'red' }} onClick={() => { console.log(x == input[i], x, input[i]) }}>
+                      <div className='GuessTranslateGame__translateLetter'>{x}</div>
+                    </div>
+                  )
+                  : <div className='GuessTranslateGame__translateLetterBox'>
+                    <div className='GuessTranslateGame__translateLetter'>{input[i]}</div>
+                  </div>
               )
           }
 
@@ -57,6 +71,17 @@ export default function GuessTranslateGame({ endgame }) {
         <input className='GuessTranslateGame__input' type="text" ref={inputtranslate}
           onChange={() => setinput(inputtranslate.current.value)}
         />
+
+
+
+        <button className='GuessTranslateGame__getNewWordButton'
+          onClick={() => {
+            console.log(inputtranslate.current.value, base[changedWord]?.gameword, base[changedWord]?.gameword == inputtranslate.current.value);
+            setgamechecked(true)
+          }}>
+          ПРОВЕРИТЬ
+        </button>
+
         {/* <div>
 
           {
