@@ -1,19 +1,20 @@
 import React, { useState, useRef } from 'react'
 import { useSelector } from 'react-redux';
 import './GuessTranslateGame.scss'
+import { AiFillCheckCircle, AiFillCheckSquare, AiFillPlaySquare } from "react-icons/ai";
+import { FaTimesCircle } from 'react-icons/fa';
 
 type Props = {}
 
 export default function GuessTranslateGame({ endgame }) {
 
   const base = useSelector(state => state.allWordsFromFirebase)
+
   const gamebase = Object.keys(base).filter(x => base[x]?.gameword)
-  const [changedWord, setchangedWord] = useState('')
+
+  const [selectedWord, setselectedword] = useState('')
   const [input, setinput] = useState('')
   const [gamechecked, setgamechecked] = useState(false)
-
-  const [wordinbase, setwordinbase] = useState('')
-  const [wordininput, setwordininput] = useState('')
 
   const inputtranslate = useRef()
 
@@ -22,11 +23,13 @@ export default function GuessTranslateGame({ endgame }) {
   }
 
   function startNewGame() {
-    setchangedWord(getRandomWordGromBase());
+    setselectedword(getRandomWordGromBase());
     setgamechecked(false);
     setinput('')
     inputtranslate.current.value = '';
   }
+
+
 
   return (
 
@@ -34,67 +37,74 @@ export default function GuessTranslateGame({ endgame }) {
 
       <div className='GuessTranslateGame__body'>
 
-        <button className='GuessTranslateGame__getNewWordButton' onClick={startNewGame}>
-          НОВОЕ СЛОВО
-        </button>
-
         <div className='GuessTranslateGame__gameword'>
-          {changedWord.toUpperCase()}
+
+          {selectedWord.toUpperCase()}
+
+          {
+            gamechecked
+              ? (base[selectedWord]?.gameword == inputtranslate.current.value
+                ? <AiFillCheckCircle className='GuessTranslateGame__resultGameIcon' style={{ color: 'green' }} />
+                : <FaTimesCircle className='GuessTranslateGame__resultGameIcon' style={{ color: 'red' }} />
+              )
+              : ''
+          }
+
         </div>
 
 
         <div className='GuessTranslateGame__translate'>
 
           {
-            base[changedWord]
+            base[selectedWord]
               ?.gameword
               .split('')
-              .map((x, i) =>
+              .map((letter, i) =>
+
                 gamechecked
-                  ?
-                  (x == input[i]
-                    ? <div className='GuessTranslateGame__translateLetterBox'>
-                      <div className='GuessTranslateGame__translateLetter'>{x}</div>
-                    </div>
-                    : <div className='GuessTranslateGame__translateLetterBox' style={{ backgroundColor: 'red' }} onClick={() => { console.log(x == input[i], x, input[i]) }}>
-                      <div className='GuessTranslateGame__translateLetter'>{x}</div>
-                    </div>
-                  )
+                  ? <div className='GuessTranslateGame__translateLetterBox' style={{ backgroundColor: letter == input[i] ? '' : 'red' }}>
+                    <div className='GuessTranslateGame__translateLetter'>{letter}</div>
+                  </div>
+
                   : <div className='GuessTranslateGame__translateLetterBox'>
                     <div className='GuessTranslateGame__translateLetter'>{input[i]}</div>
                   </div>
+
               )
           }
 
         </div>
 
-        <input className='GuessTranslateGame__input' type="text" ref={inputtranslate}
-          onChange={() => setinput(inputtranslate.current.value)}
-        />
+        <div className='GuessTranslateGame__inputMenu'>
 
+          <input className='GuessTranslateGame__input' type="text"
+            ref={inputtranslate}
+            style={{
+              border: `4px solid 
+              ${gamechecked
+                  ? (
+                    base[selectedWord]?.gameword == inputtranslate?.current?.value
+                      ? 'green'
+                      : 'red')
+                  : 'black'
+                }`
+            }}
+            onChange={() => setinput(inputtranslate.current.value)}
+          />
 
+        </div>
 
-        <button className='GuessTranslateGame__getNewWordButton'
-          onClick={() => {
-            console.log(inputtranslate.current.value, base[changedWord]?.gameword, base[changedWord]?.gameword == inputtranslate.current.value);
-            setgamechecked(true)
-          }}>
-          ПРОВЕРИТЬ
-        </button>
+        <div className='GuessTranslateGame__topButtons'>
 
-        {/* <div>
+          <AiFillPlaySquare className='GuessTranslateGame__topButtonsElem' onClick={startNewGame} />
 
           {
-            wordinbase
-              .split('')
-              .map((elem, index) =>
-                elem == wordininput[index]
-                  ? <span style={{ color: 'green' }}>{wordininput[index]}</span>
-                  : <span style={{ color: 'red' }} >{wordininput[index]}</span>
-              )
+            selectedWord
+              ? <AiFillCheckSquare className='GuessTranslateGame__topButtonsElem' onClick={() => { setgamechecked(true) }} />
+              : ''
           }
 
-        </div> */}
+        </div>
 
         <button className='GuessTranslateGame__endGameButton' onClick={endgame}>
           STOP
