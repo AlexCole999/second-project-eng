@@ -23,6 +23,10 @@ export default function GuessTranslationByLettersGame({ endgame }) {
       ? (base[selectedWord]?.gameword == input ? 'green' : 'red')
       : 'black'
 
+  function checkInputEnterKeyDown(event) {
+    if (event.nativeEvent.key == "Enter") { gamechecked ? startNewGame() : setgamechecked(true) }
+  }
+
   function getRandomWordGromBase() {
     return gamebase[Math.ceil(Math.random() * gamebase.length - 1)]
   }
@@ -67,11 +71,11 @@ export default function GuessTranslationByLettersGame({ endgame }) {
               .map((letter, i) =>
 
                 gamechecked
-                  ? <div className='GuessTranslateGame__translateLetterBox' style={{ backgroundColor: letter == input[i] ? 'green' : 'red' }}>
+                  ? <div className='GuessTranslateGame__translateLetterBox' style={{ backgroundColor: letter == input[i] ? 'green' : 'red' }} key={i}>
                     <div className='GuessTranslateGame__translateLetter'>{letter}</div>
                   </div>
 
-                  : <div className='GuessTranslateGame__translateLetterBox'>
+                  : <div className='GuessTranslateGame__translateLetterBox' key={i}>
                     <div className='GuessTranslateGame__translateLetter'>{input[i]}</div>
                   </div>
 
@@ -82,10 +86,9 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         <div className='GuessTranslateGame__inputMenu'>
 
-          <input className='GuessTranslateGame__input' type="text" ref={inputtranslate}
-            style={{ borderColor: inputBorderColor }}
+          <input className='GuessTranslateGame__input' type="text" ref={inputtranslate} style={{ borderColor: inputBorderColor }}
             onChange={(e) => { setinput(e.target.value.toLowerCase()) }}
-            onKeyDown={(e) => { if (e.nativeEvent.key == "Enter") { setgamechecked(true) } }}
+            onKeyDown={checkInputEnterKeyDown}
           />
 
         </div>
