@@ -99,9 +99,9 @@ export default function GuessTranslationByLettersGame({ endgame }) {
           <AiFillPlaySquare className='GuessTranslateGame__topButtonsElem' onClick={startNewGame} />
 
           {
-            selectedWord
-              ? <AiFillCheckSquare className='GuessTranslateGame__topButtonsElem' onClick={() => { setgamechecked(true) }} />
-              : ''
+            gamechecked
+              ? <AiFillCheckSquare className='GuessTranslateGame__topButtonsElem_disabled' />
+              : <AiFillCheckSquare className='GuessTranslateGame__topButtonsElem' onClick={() => { setgamechecked(true) }} />
           }
 
         </div>

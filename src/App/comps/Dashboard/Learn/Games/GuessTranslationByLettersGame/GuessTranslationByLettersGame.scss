@@ -70,15 +70,24 @@
     transition: 0.4s all ease;
     color: #1db100;
 
+    &_disabled {
+      color: grey;
+      cursor: not-allowed;
+      width: 17vw;
+      height: 17vw;
+      transition: 0.4s all ease;
+    }
 
     &:hover {
       color: #00fc00
     }
+
   }
 
   &__endGameButton {
+    cursor: pointer;
     margin-top: 1vw;
-    width: 55%;
+    width: 45vw;
     height: 8vh;
     font-size: 4vw;
     background-color: red;
