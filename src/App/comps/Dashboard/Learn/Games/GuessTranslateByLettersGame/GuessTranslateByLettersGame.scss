@@ -8,6 +8,35 @@
     align-items: center;
   }
 
+  &__gameword {
+    font-size: 5vw;
+  }
+
+  &__translate {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2vw 0vw 2vw 0vw;
+  }
+
+  &__translateLetterBox {
+    margin-left: 1vw;
+    width: 5vw;
+    height: 6vw;
+    margin-top: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(85, 85, 85);
+    border: 2px solid black;
+    border-radius: 3px;
+  }
+
+  &__translateLetter {
+    color: white;
+    text-transform: uppercase;
+    font-size: 3vw;
+  }
+
   &__inputMenu {
     display: flex;
     justify-content: center;
@@ -45,35 +74,6 @@
     &:hover {
       color: #00fc00
     }
-  }
-
-  &__gameword {
-    font-size: 5vw;
-  }
-
-  &__translate {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 2vw 0vw 2vw 0vw;
-  }
-
-  &__translateLetterBox {
-    margin-left: 1vw;
-    width: 5vw;
-    height: 6vw;
-    margin-top: 1vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: green;
-    border: 2px solid black;
-    border-radius: 3px;
-  }
-
-  &__translateLetter {
-    color: white;
-    text-transform: uppercase;
-    font-size: 3vw;
   }
 
   &__endGameButton {

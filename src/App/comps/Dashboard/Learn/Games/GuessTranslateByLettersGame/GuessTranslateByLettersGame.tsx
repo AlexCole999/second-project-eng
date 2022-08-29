@@ -62,7 +62,7 @@ export default function GuessTranslateByLettersGame({ endgame }) {
               .map((letter, i) =>
 
                 gamechecked
-                  ? <div className='GuessTranslateGame__translateLetterBox' style={{ backgroundColor: letter == input[i] ? '' : 'red' }}>
+                  ? <div className='GuessTranslateGame__translateLetterBox' style={{ backgroundColor: letter == input[i] ? 'green' : 'red' }}>
                     <div className='GuessTranslateGame__translateLetter'>{letter}</div>
                   </div>
 
