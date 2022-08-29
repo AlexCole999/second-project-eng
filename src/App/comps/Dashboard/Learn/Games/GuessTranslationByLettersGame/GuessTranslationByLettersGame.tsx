@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import './GuessTranslateByLettersGame.scss'
+import './GuessTranslationByLettersGame.scss'
 import { AiFillCheckCircle, AiFillCheckSquare, AiFillPlaySquare } from "react-icons/ai";
 import { FaTimesCircle } from 'react-icons/fa';
 
 type Props = {}
 
-export default function GuessTranslateByLettersGame({ endgame }) {
+export default function GuessTranslationByLettersGame({ endgame }) {
 
   const base = useSelector(state => state.allWordsFromFirebase)
 

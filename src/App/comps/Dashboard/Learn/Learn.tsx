@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import './Learn.scss'
-import GuessTranslateByLettersGame from './Games/GuessTranslateByLettersGame/GuessTranslateByLettersGame';
+import GuessTranslationByLettersGame from './Games/GuessTranslationByLettersGame/GuessTranslationByLettersGame';
 import GuessWordGame from './Games/GuessWordGame/GuessWordGame';
 import GameElem from './GameElem/GameElem';
 
@@ -42,7 +42,7 @@ export default function Learn({ }: Props) {
 
       {
         inguesswordgame ? <GuessWordGame endgame={() => setinguesswordgame(!inguesswordgame)} />
-          : inguesstranslatebylettersgame ? <GuessTranslateByLettersGame endgame={() => setinguesstranslatebylettersgame(!inguesstranslatebylettersgame)} />
+          : inguesstranslatebylettersgame ? <GuessTranslationByLettersGame endgame={() => setinguesstranslatebylettersgame(!inguesstranslatebylettersgame)} />
             : <StartGameMenu />
       }
 
