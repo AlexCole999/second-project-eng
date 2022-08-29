@@ -43,7 +43,7 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
           {
             gamechecked
-              ? (base[selectedWord]?.gameword == inputtranslate.current.value
+              ? (base[selectedWord]?.gameword == inputtranslate.current.value.toLowerCase()
                 ? <AiFillCheckCircle className='GuessTranslateGame__resultGameIcon' style={{ color: 'green' }} />
                 : <FaTimesCircle className='GuessTranslateGame__resultGameIcon' style={{ color: 'red' }} />
               )
@@ -89,7 +89,7 @@ export default function GuessTranslationByLettersGame({ endgame }) {
                   : 'black'
                 }`
             }}
-            onChange={() => setinput(inputtranslate.current.value)}
+            onChange={() => setinput(inputtranslate.current.value.toLowerCase())}
           />
 
         </div>
