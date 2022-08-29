@@ -18,6 +18,11 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
   const inputtranslate = useRef()
 
+  const inputBorderColor =
+    gamechecked
+      ? (base[selectedWord]?.gameword == input ? 'green' : 'red')
+      : 'black'
+
   function getRandomWordGromBase() {
     return gamebase[Math.ceil(Math.random() * gamebase.length - 1)]
   }
@@ -78,12 +83,12 @@ export default function GuessTranslationByLettersGame({ endgame }) {
         <div className='GuessTranslateGame__inputMenu'>
 
           <input className='GuessTranslateGame__input' type="text" ref={inputtranslate}
-            style={{
-              borderColor: `${gamechecked
-                ? (base[selectedWord]?.gameword == input ? 'green' : 'red')
-                : 'black'}`
+            style={{ borderColor: inputBorderColor }}
+            onChange={(e) => {
+              setinput(e.target.value.toLowerCase());
+              console.log(e.nativeEvent)
             }}
-            onChange={(e) => setinput(e.target.value.toLowerCase())}
+            onKeyDown={(e) => { if (e.nativeEvent.key == "Enter") { setgamechecked(true) } }}
           />
 
         </div>
