@@ -23,6 +23,8 @@ export default function GuessTranslationByLettersGame({ endgame }) {
       ? (base[selectedWord]?.gameword == input ? 'green' : 'red')
       : 'black'
 
+  function setLowerCaseInput(event) { setinput(event.target.value.toLowerCase()) }
+
   function checkInputEnterKeyDown(event) {
     if (event.nativeEvent.key == "Enter") { gamechecked ? startNewGame() : setgamechecked(true) }
   }
@@ -87,7 +89,7 @@ export default function GuessTranslationByLettersGame({ endgame }) {
         <div className='GuessTranslateGame__inputMenu'>
 
           <input className='GuessTranslateGame__input' type="text" ref={inputtranslate} style={{ borderColor: inputBorderColor }}
-            onChange={(e) => { setinput(e.target.value.toLowerCase()) }}
+            onChange={setLowerCaseInput}
             onKeyDown={checkInputEnterKeyDown}
           />
 
