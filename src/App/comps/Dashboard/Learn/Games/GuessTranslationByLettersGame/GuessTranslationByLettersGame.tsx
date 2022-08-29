@@ -88,21 +88,25 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         <div className='GuessTranslateGame__inputMenu'>
 
-          <input className='GuessTranslateGame__input' type="text" ref={inputtranslate} style={{ borderColor: inputBorderColor }}
+          <input className='GuessTranslateGame__input'
+            placeholder='...'
+            type="text"
+            ref={inputtranslate}
+            style={{ borderColor: inputBorderColor }}
             onChange={setLowerCaseInput}
             onKeyDown={checkInputEnterKeyDown}
           />
 
         </div>
 
-        <div className='GuessTranslateGame__topButtons'>
+        <div className='GuessTranslateGame__buttons'>
 
-          <AiFillPlaySquare className='GuessTranslateGame__topButtonsElem' onClick={startNewGame} />
+          <AiFillPlaySquare className='GuessTranslateGame__buttonsElem' onClick={startNewGame} />
 
           {
             gamechecked
-              ? <AiFillCheckSquare className='GuessTranslateGame__topButtonsElem_disabled' />
-              : <AiFillCheckSquare className='GuessTranslateGame__topButtonsElem' onClick={() => { setgamechecked(true) }} />
+              ? <AiFillCheckSquare className='GuessTranslateGame__buttonsElem_disabled' />
+              : <AiFillCheckSquare className='GuessTranslateGame__buttonsElem' onClick={() => { setgamechecked(true) }} />
           }
 
         </div>

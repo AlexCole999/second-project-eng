@@ -9,8 +9,10 @@
   }
 
   &__gameword {
+    margin-top: 1vh;
     font-size: 5vw;
     text-transform: uppercase;
+    font-weight: bold;
   }
 
   &__translate {
@@ -61,11 +63,11 @@
     height: 4vw;
   }
 
-  &__topButtons {
+  &__buttons {
     display: flex;
   }
 
-  &__topButtonsElem {
+  &__buttonsElem {
     cursor: pointer;
     display: flex;
     justify-content: center;
