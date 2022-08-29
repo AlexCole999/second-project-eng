@@ -80,8 +80,8 @@ export default function GuessTranslationByLettersGame({ endgame }) {
           <input className='GuessTranslateGame__input' type="text" ref={inputtranslate}
             style={{
               borderColor: `${gamechecked
-                  ? (base[selectedWord]?.gameword == input ? 'green' : 'red')
-                  : 'black'}`
+                ? (base[selectedWord]?.gameword == input ? 'green' : 'red')
+                : 'black'}`
             }}
             onChange={(e) => setinput(e.target.value.toLowerCase())}
           />
