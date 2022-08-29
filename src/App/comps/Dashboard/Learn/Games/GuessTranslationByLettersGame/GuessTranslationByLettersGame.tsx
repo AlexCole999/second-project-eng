@@ -50,7 +50,7 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         <div className='GuessTranslateGame__gameword'>
 
-          {selectedWord.toUpperCase()}
+          {selectedWord}
 
           {
             gamechecked
