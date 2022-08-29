@@ -43,7 +43,7 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
           {
             gamechecked
-              ? (base[selectedWord]?.gameword == inputtranslate.current.value.toLowerCase()
+              ? (base[selectedWord]?.gameword == input
                 ? <AiFillCheckCircle className='GuessTranslateGame__resultGameIcon' style={{ color: 'green' }} />
                 : <FaTimesCircle className='GuessTranslateGame__resultGameIcon' style={{ color: 'red' }} />
               )
@@ -77,19 +77,13 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         <div className='GuessTranslateGame__inputMenu'>
 
-          <input className='GuessTranslateGame__input' type="text"
-            ref={inputtranslate}
+          <input className='GuessTranslateGame__input' type="text" ref={inputtranslate}
             style={{
-              border: `4px solid 
-              ${gamechecked
-                  ? (
-                    base[selectedWord]?.gameword == inputtranslate?.current?.value
-                      ? 'green'
-                      : 'red')
-                  : 'black'
-                }`
+              borderColor: `${gamechecked
+                  ? (base[selectedWord]?.gameword == input ? 'green' : 'red')
+                  : 'black'}`
             }}
-            onChange={() => setinput(inputtranslate.current.value.toLowerCase())}
+            onChange={(e) => setinput(e.target.value.toLowerCase())}
           />
 
         </div>

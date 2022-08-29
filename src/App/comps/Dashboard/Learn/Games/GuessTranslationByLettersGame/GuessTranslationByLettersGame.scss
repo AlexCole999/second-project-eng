@@ -35,6 +35,7 @@
     color: white;
     text-transform: uppercase;
     font-size: 3vw;
+    font-weight: bold;
   }
 
   &__inputMenu {
@@ -44,6 +45,9 @@
   }
 
   &__input {
+    border-radius: 8px;
+    border: 4px;
+    border-style: solid;
     width: 60vw;
     height: 10vw;
     font-size: 6vw;
