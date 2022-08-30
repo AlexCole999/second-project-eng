@@ -44,26 +44,26 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
   return (
 
-    <div className='GuessTranslateGame'>
+    <div className='GuessTranslationByLettersGame'>
 
-      <div className='GuessTranslateGame__body'>
+      <div className='GuessTranslationByLettersGame__body'>
 
-        <div className='GuessTranslateGame__gameword'>
+        <div className='GuessTranslationByLettersGame__gameword'>
 
           {selectedWord}
 
           {
             gamechecked
               ? (base[selectedWord]?.gameword == input
-                ? <AiFillCheckCircle className='GuessTranslateGame__resultGameIcon' style={{ color: 'green' }} />
-                : <FaTimesCircle className='GuessTranslateGame__resultGameIcon' style={{ color: 'red' }} />
+                ? <AiFillCheckCircle className='GuessTranslationByLettersGame__resultGameIcon' style={{ color: 'green' }} />
+                : <FaTimesCircle className='GuessTranslationByLettersGame__resultGameIcon' style={{ color: 'red' }} />
               )
               : ''
           }
 
         </div>
 
-        <div className='GuessTranslateGame__translate'>
+        <div className='GuessTranslationByLettersGame__translate'>
 
           {
             base[selectedWord]
@@ -72,12 +72,12 @@ export default function GuessTranslationByLettersGame({ endgame }) {
               .map((letter, i) =>
 
                 gamechecked
-                  ? <div className='GuessTranslateGame__translateLetterBox' style={{ backgroundColor: letter == input[i] ? 'green' : 'red' }} key={i}>
-                    <div className='GuessTranslateGame__translateLetter'>{letter}</div>
+                  ? <div className='GuessTranslationByLettersGame__translateLetterBox' style={{ backgroundColor: letter == input[i] ? 'green' : 'red' }} key={i}>
+                    <div className='GuessTranslationByLettersGame__translateLetter'>{letter}</div>
                   </div>
 
-                  : <div className='GuessTranslateGame__translateLetterBox' key={i}>
-                    <div className='GuessTranslateGame__translateLetter'>{input[i]}</div>
+                  : <div className='GuessTranslationByLettersGame__translateLetterBox' key={i}>
+                    <div className='GuessTranslationByLettersGame__translateLetter'>{input[i]}</div>
                   </div>
 
               )
@@ -85,9 +85,9 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         </div>
 
-        <div className='GuessTranslateGame__inputMenu'>
+        <div className='GuessTranslationByLettersGame__inputMenu'>
 
-          <input className='GuessTranslateGame__input'
+          <input className='GuessTranslationByLettersGame__input'
             placeholder='...'
             type="text"
             ref={inputtranslate}
@@ -98,24 +98,24 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         </div>
 
-        <div className='GuessTranslateGame__buttons'>
+        <div className='GuessTranslationByLettersGame__buttons'>
           {
             !gamechecked
-              ? <AiFillPlaySquare className='GuessTranslateGame__buttonsElem_disabled' />
-              : <AiFillPlaySquare className='GuessTranslateGame__buttonsElem' onClick={startNewGame} />
+              ? <AiFillPlaySquare className='GuessTranslationByLettersGame__buttonsElem_disabled' />
+              : <AiFillPlaySquare className='GuessTranslationByLettersGame__buttonsElem' onClick={startNewGame} />
 
           }
 
 
           {
             gamechecked
-              ? <AiFillCheckSquare className='GuessTranslateGame__buttonsElem_disabled' />
-              : <AiFillCheckSquare className='GuessTranslateGame__buttonsElem' onClick={() => { setgamechecked(true) }} />
+              ? <AiFillCheckSquare className='GuessTranslationByLettersGame__buttonsElem_disabled' />
+              : <AiFillCheckSquare className='GuessTranslationByLettersGame__buttonsElem' onClick={() => { setgamechecked(true) }} />
           }
 
         </div>
 
-        <button className='GuessTranslateGame__endGameButton' onClick={endgame}>
+        <button className='GuessTranslationByLettersGame__endGameButton' onClick={endgame}>
           STOP
         </button>
 
