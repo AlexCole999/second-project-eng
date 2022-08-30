@@ -63,7 +63,6 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         </div>
 
-
         <div className='GuessTranslateGame__translate'>
 
           {
@@ -100,8 +99,13 @@ export default function GuessTranslationByLettersGame({ endgame }) {
         </div>
 
         <div className='GuessTranslateGame__buttons'>
+          {
+            !gamechecked
+              ? <AiFillPlaySquare className='GuessTranslateGame__buttonsElem_disabled' />
+              : <AiFillPlaySquare className='GuessTranslateGame__buttonsElem' onClick={startNewGame} />
 
-          <AiFillPlaySquare className='GuessTranslateGame__buttonsElem' onClick={startNewGame} />
+          }
+
 
           {
             gamechecked
