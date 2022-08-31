@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import './GuessTranslationByLettersGame.scss'
 import { AiFillCheckCircle, AiFillCheckSquare, AiFillPlaySquare } from "react-icons/ai";
 import { FaTimesCircle } from 'react-icons/fa';
+import { AiOutlinePoweroff } from 'react-icons/ai';
 
 type Props = {}
 
@@ -115,9 +116,9 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         </div>
 
-        <button className='GuessTranslationByLettersGame__endGameButton' onClick={endgame}>
-          STOP
-        </button>
+        <div className='GuessTranslationByLettersGame__endGameButton' onClick={endgame} >
+          <AiOutlinePoweroff className='GuessTranslationByLettersGame__endGameButtonIcon' />
+        </div>
 
       </div>
 

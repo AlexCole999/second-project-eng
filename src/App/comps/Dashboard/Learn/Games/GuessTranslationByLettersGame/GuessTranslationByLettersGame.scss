@@ -93,15 +93,19 @@
 
   &__endGameButton {
     cursor: pointer;
-    margin-top: 1vw;
-    width: 45vw;
-    height: 8vh;
-    font-size: 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7vw;
+    height: 7vw;
     background-color: red;
-    border-radius: 3px;
+    border-radius: 8px;
+  }
+
+  &__endGameButtonIcon {
+    width: 65%;
+    height: 65%;
     color: white;
-    border: none;
-    font-weight: bold;
   }
 
 }

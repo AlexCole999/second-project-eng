@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import './GuessGamewordByLettersGame.scss'
 import { AiFillCheckCircle, AiFillCheckSquare, AiFillPlaySquare } from "react-icons/ai";
-import { FaTimesCircle, FaPowerOff } from 'react-icons/fa';
+import { FaTimesCircle } from 'react-icons/fa';
 import { AiOutlinePoweroff } from 'react-icons/ai';
 
 type Props = {}
