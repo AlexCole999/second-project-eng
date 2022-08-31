@@ -1,6 +1,6 @@
 import './Nav.scss'
 import React from 'react'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import NavElem from './NavElem/NavElem';
 import NavSearch from './NavSearch/NavSearch';
 import NavUser from './NavUser/NavUser';
@@ -23,6 +23,8 @@ export default function Nav({ }: Props) {
   const nav = useRef();
   const navtrigger = useRef(null)
 
+  const [navstatechanged, setnavstatechanged] = useState(false)
+
   function openCloseNavTrigger(): void {
 
     let mainTranslateWord = document.getElementsByClassName('NavSearch__searchedMainWord')[0];
@@ -38,6 +40,8 @@ export default function Nav({ }: Props) {
           ? 'false'
           : 'true'
     localStorage.setItem('navIsClosed', navIsClosed)
+
+    setTimeout(() => setnavstatechanged(!navstatechanged), 800)
 
   }
 
