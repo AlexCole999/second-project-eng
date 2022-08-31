@@ -20,7 +20,7 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
   const inputBorderColor =
     gamechecked
-      ? (base[selectedWord]?.gameword == input ? 'green' : 'red')
+      ? (selectedWord == input ? 'green' : 'red')
       : 'black'
 
   function setLowerCaseInput(event) { setinput(event.target.value.toLowerCase()) }
@@ -50,11 +50,11 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         <div className='GuessTranslationByLettersGame__gameword'>
 
-          {selectedWord}
+          {base[selectedWord]?.gameword}
 
           {
             gamechecked
-              ? (base[selectedWord]?.gameword == input
+              ? (selectedWord == input
                 ? <AiFillCheckCircle className='GuessTranslationByLettersGame__resultGameIcon' style={{ color: 'green' }} />
                 : <FaTimesCircle className='GuessTranslationByLettersGame__resultGameIcon' style={{ color: 'red' }} />
               )
@@ -66,8 +66,7 @@ export default function GuessTranslationByLettersGame({ endgame }) {
         <div className='GuessTranslationByLettersGame__translate'>
 
           {
-            base[selectedWord]
-              ?.gameword
+            selectedWord
               .split('')
               .map((letter, i) =>
 
