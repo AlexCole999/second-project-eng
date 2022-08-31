@@ -14,14 +14,8 @@ export default function NavUser({ }: Props) {
   const dispatch = useDispatch();
 
   let localStorageUserData = JSON.parse(localStorage.getItem('user'));
-  let navIsClosed = localStorage.getItem('navIsClosed');
 
   const userImg = useSelector(state => state.user?.data?.photoURL)
-
-  let userSize = navIsClosed == 'true' ? '48px' : '88px'
-  let userImgSize = navIsClosed == 'true' ? '50px' : '90px'
-  let userIconSize = navIsClosed == 'true' ? 25 : 50
-
 
   async function singInWithGooglePopup() {
 
@@ -70,12 +64,12 @@ export default function NavUser({ }: Props) {
       {
         userImg !== undefined
           ?
-          <div className="NavUser__body" style={{ width: userSize, height: userSize }} >
-            <img className="NavUser__userImg" style={{ width: userImgSize, height: userImgSize }} src={userImg}></img>
+          <div className="NavUser__body" >
+            <img className="NavUser__userImg" src={userImg}></img>
           </div>
           :
-          <div className="NavUser__body" onClick={singInWithGooglePopup} style={{ width: userSize, height: userSize }}>
-            <FiUserX size={userIconSize} />
+          <div className="NavUser__body" onClick={singInWithGooglePopup}>
+            <FiUserX size={25} />
           </div>
       }
 

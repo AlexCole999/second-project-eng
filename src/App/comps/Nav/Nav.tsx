@@ -23,8 +23,6 @@ export default function Nav({ }: Props) {
   const nav = useRef();
   const navtrigger = useRef(null)
 
-  const [navstatechanged, setnavstatechanged] = useState(false)
-
   function openCloseNavTrigger(): void {
 
     let mainTranslateWord = document.getElementsByClassName('NavSearch__searchedMainWord')[0];
@@ -40,8 +38,6 @@ export default function Nav({ }: Props) {
           ? 'false'
           : 'true'
     localStorage.setItem('navIsClosed', navIsClosed)
-
-    setTimeout(() => setnavstatechanged(!navstatechanged), 800)
 
   }
 
