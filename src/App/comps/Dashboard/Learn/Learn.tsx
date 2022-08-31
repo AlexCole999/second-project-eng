@@ -1,15 +1,17 @@
 import React from 'react'
 import { useState } from 'react'
 import './Learn.scss'
-import GuessTranslationByLettersGame from './Games/GuessTranslationByLettersGame/GuessTranslationByLettersGame';
-import GuessWordGame from './Games/GuessWordGame/GuessWordGame';
 import GameElem from './GameElem/GameElem';
+import GuessTranslationByLettersGame from './Games/GuessTranslationByLettersGame/GuessTranslationByLettersGame';
+import GuessGamewordByLettersGame from './Games/GuessGamewordByLettersGame/GuessGamewordByLettersGame';
+
+
 
 type Props = {}
 
 export default function Learn({ }: Props) {
 
-  const [inguesswordgame, setinguesswordgame] = useState(false)
+  const [inguessgamewordbylettersgame, setinguessgamewordbylettersgame] = useState(false)
   const [inguesstranslatebylettersgame, setinguesstranslatebylettersgame] = useState(false)
 
   function StartGameMenu() {
@@ -25,9 +27,9 @@ export default function Learn({ }: Props) {
         />
 
         <GameElem
-          title='Отгадай слово'
-          description='Выпадает случайный перевод из базы, вы угадываете это слово на основном языке'
-          startgame={() => setinguesswordgame(!inguesswordgame)}
+          title='Напиши слово правильно'
+          description='Выпадает случайный перевод слова из базы, вы пишете это слово на основном языке'
+          startgame={() => setinguessgamewordbylettersgame(!inguessgamewordbylettersgame)}
         />
 
       </div>
@@ -41,8 +43,8 @@ export default function Learn({ }: Props) {
     <div className='Learn'>
 
       {
-        inguesswordgame ? <GuessWordGame endgame={() => setinguesswordgame(!inguesswordgame)} />
-          : inguesstranslatebylettersgame ? <GuessTranslationByLettersGame endgame={() => setinguesstranslatebylettersgame(!inguesstranslatebylettersgame)} />
+        inguesstranslatebylettersgame ? <GuessTranslationByLettersGame endgame={() => setinguesstranslatebylettersgame(!inguesstranslatebylettersgame)} />
+          : inguessgamewordbylettersgame ? <GuessGamewordByLettersGame endgame={() => setinguessgamewordbylettersgame(!inguessgamewordbylettersgame)} />
             : <StartGameMenu />
       }
 
