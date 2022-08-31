@@ -1,0 +1,107 @@
+.GuessGamewordByLettersGame {
+  display: flex;
+  justify-content: center;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__gameword {
+    margin-top: 1vh;
+    font-size: 5vw;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &__translate {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2vw 0vw 2vw 0vw;
+  }
+
+  &__translateLetterBox {
+    margin-left: 1vw;
+    width: 5vw;
+    height: 6vw;
+    margin-top: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(85, 85, 85);
+    border: 2px solid black;
+    border-radius: 3px;
+  }
+
+  &__translateLetter {
+    color: white;
+    text-transform: uppercase;
+    font-size: 3vw;
+    font-weight: bold;
+  }
+
+  &__inputMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__input {
+    border-radius: 8px;
+    border: 4px;
+    border-style: solid;
+    width: 60vw;
+    height: 10vw;
+    font-size: 6vw;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__resultGameIcon {
+    width: 4vw;
+    height: 4vw;
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__buttonsElem {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17vw;
+    height: 17vw;
+    transition: 0.4s all ease;
+    color: #1db100;
+
+    &_disabled {
+      color: grey;
+      cursor: not-allowed;
+      width: 17vw;
+      height: 17vw;
+      transition: 0.4s all ease;
+    }
+
+    &:hover {
+      color: #00fc00
+    }
+
+  }
+
+  &__endGameButton {
+    cursor: pointer;
+    margin-top: 1vw;
+    width: 45vw;
+    height: 8vh;
+    font-size: 4vw;
+    background-color: red;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    font-weight: bold;
+  }
+
+}

@@ -6,7 +6,7 @@ import { FaTimesCircle } from 'react-icons/fa';
 
 type Props = {}
 
-export default function GuessTranslationByLettersGame({ endgame }) {
+export default function GuessGamewordByLettersGame({ endgame }) {
 
   const base = useSelector(state => state.allWordsFromFirebase)
 
@@ -44,26 +44,26 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
   return (
 
-    <div className='GuessTranslationByLettersGame'>
+    <div className='GuessGamewordByLettersGame'>
 
-      <div className='GuessTranslationByLettersGame__body'>
+      <div className='GuessGamewordByLettersGame__body'>
 
-        <div className='GuessTranslationByLettersGame__gameword'>
+        <div className='GuessGamewordByLettersGame__gameword'>
 
           {base[selectedWord]?.gameword}
 
           {
             gamechecked
               ? (selectedWord == input
-                ? <AiFillCheckCircle className='GuessTranslationByLettersGame__resultGameIcon' style={{ color: 'green' }} />
-                : <FaTimesCircle className='GuessTranslationByLettersGame__resultGameIcon' style={{ color: 'red' }} />
+                ? <AiFillCheckCircle className='GuessGamewordByLettersGame__resultGameIcon' style={{ color: 'green' }} />
+                : <FaTimesCircle className='GuessGamewordByLettersGame__resultGameIcon' style={{ color: 'red' }} />
               )
               : ''
           }
 
         </div>
 
-        <div className='GuessTranslationByLettersGame__translate'>
+        <div className='GuessGamewordByLettersGame__translate'>
 
           {
             selectedWord
@@ -71,12 +71,12 @@ export default function GuessTranslationByLettersGame({ endgame }) {
               .map((letter, i) =>
 
                 gamechecked
-                  ? <div className='GuessTranslationByLettersGame__translateLetterBox' style={{ backgroundColor: letter == input[i] ? 'green' : 'red' }} key={i}>
-                    <div className='GuessTranslationByLettersGame__translateLetter'>{letter}</div>
+                  ? <div className='GuessGamewordByLettersGame__translateLetterBox' style={{ backgroundColor: letter == input[i] ? 'green' : 'red' }} key={i}>
+                    <div className='GuessGamewordByLettersGame__translateLetter'>{letter}</div>
                   </div>
 
-                  : <div className='GuessTranslationByLettersGame__translateLetterBox' key={i}>
-                    <div className='GuessTranslationByLettersGame__translateLetter'>{input[i]}</div>
+                  : <div className='GuessGamewordByLettersGame__translateLetterBox' key={i}>
+                    <div className='GuessGamewordByLettersGame__translateLetter'>{input[i]}</div>
                   </div>
 
               )
@@ -84,9 +84,9 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         </div>
 
-        <div className='GuessTranslationByLettersGame__inputMenu'>
+        <div className='GuessGamewordByLettersGame__inputMenu'>
 
-          <input className='GuessTranslationByLettersGame__input'
+          <input className='GuessGamewordByLettersGame__input'
             placeholder='...'
             type="text"
             ref={inputtranslate}
@@ -97,24 +97,24 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
         </div>
 
-        <div className='GuessTranslationByLettersGame__buttons'>
+        <div className='GuessGamewordByLettersGame__buttons'>
           {
             !gamechecked
-              ? <AiFillPlaySquare className='GuessTranslationByLettersGame__buttonsElem_disabled' />
-              : <AiFillPlaySquare className='GuessTranslationByLettersGame__buttonsElem' onClick={startNewGame} />
+              ? <AiFillPlaySquare className='GuessGamewordByLettersGame__buttonsElem_disabled' />
+              : <AiFillPlaySquare className='GuessGamewordByLettersGame__buttonsElem' onClick={startNewGame} />
 
           }
 
 
           {
             gamechecked
-              ? <AiFillCheckSquare className='GuessTranslationByLettersGame__buttonsElem_disabled' />
-              : <AiFillCheckSquare className='GuessTranslationByLettersGame__buttonsElem' onClick={() => { setgamechecked(true) }} />
+              ? <AiFillCheckSquare className='GuessGamewordByLettersGame__buttonsElem_disabled' />
+              : <AiFillCheckSquare className='GuessGamewordByLettersGame__buttonsElem' onClick={() => { setgamechecked(true) }} />
           }
 
         </div>
 
-        <button className='GuessTranslationByLettersGame__endGameButton' onClick={endgame}>
+        <button className='GuessGamewordByLettersGame__endGameButton' onClick={endgame}>
           STOP
         </button>
 
