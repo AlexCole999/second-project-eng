@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import './GuessGamewordByLettersGame.scss'
 import { AiFillCheckCircle, AiFillCheckSquare, AiFillPlaySquare } from "react-icons/ai";
-import { FaTimesCircle } from 'react-icons/fa';
+import { FaTimesCircle, FaPowerOff } from 'react-icons/fa';
+import { AiOutlinePoweroff } from 'react-icons/ai';
 
 type Props = {}
 
@@ -63,7 +64,7 @@ export default function GuessGamewordByLettersGame({ endgame }) {
 
         </div>
 
-        <div className='GuessGamewordByLettersGame__translate'>
+        <div className='GuessGamewordByLettersGame__guessword'>
 
           {
             selectedWord
@@ -71,12 +72,12 @@ export default function GuessGamewordByLettersGame({ endgame }) {
               .map((letter, i) =>
 
                 gamechecked
-                  ? <div className='GuessGamewordByLettersGame__translateLetterBox' style={{ backgroundColor: letter == input[i] ? 'green' : 'red' }} key={i}>
-                    <div className='GuessGamewordByLettersGame__translateLetter'>{letter}</div>
+                  ? <div className='GuessGamewordByLettersGame__guesswordLetterBox' style={{ backgroundColor: letter == input[i] ? 'green' : 'red' }} key={i}>
+                    <div className='GuessGamewordByLettersGame__guesswordLetter'>{letter}</div>
                   </div>
 
-                  : <div className='GuessGamewordByLettersGame__translateLetterBox' key={i}>
-                    <div className='GuessGamewordByLettersGame__translateLetter'>{input[i]}</div>
+                  : <div className='GuessGamewordByLettersGame__guesswordLetterBox' key={i}>
+                    <div className='GuessGamewordByLettersGame__guesswordLetter'>{input[i]}</div>
                   </div>
 
               )
@@ -98,6 +99,7 @@ export default function GuessGamewordByLettersGame({ endgame }) {
         </div>
 
         <div className='GuessGamewordByLettersGame__buttons'>
+
           {
             !gamechecked
               ? <AiFillPlaySquare className='GuessGamewordByLettersGame__buttonsElem_disabled' />
@@ -114,9 +116,9 @@ export default function GuessGamewordByLettersGame({ endgame }) {
 
         </div>
 
-        <button className='GuessGamewordByLettersGame__endGameButton' onClick={endgame}>
-          STOP
-        </button>
+        <div className='GuessGamewordByLettersGame__endGameButton' onClick={endgame} >
+          <AiOutlinePoweroff className='GuessGamewordByLettersGame__endGameButtonIcon' />
+        </div>
 
       </div>
 

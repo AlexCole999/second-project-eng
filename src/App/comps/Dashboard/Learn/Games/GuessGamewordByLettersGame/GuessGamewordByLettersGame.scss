@@ -15,13 +15,13 @@
     font-weight: bold;
   }
 
-  &__translate {
+  &__guessword {
     display: flex;
     flex-wrap: wrap;
     margin: 2vw 0vw 2vw 0vw;
   }
 
-  &__translateLetterBox {
+  &__guesswordLetterBox {
     margin-left: 1vw;
     width: 5vw;
     height: 6vw;
@@ -34,7 +34,7 @@
     border-radius: 3px;
   }
 
-  &__translateLetter {
+  &__guesswordLetter {
     color: white;
     text-transform: uppercase;
     font-size: 3vw;
@@ -93,15 +93,19 @@
 
   &__endGameButton {
     cursor: pointer;
-    margin-top: 1vw;
-    width: 45vw;
-    height: 8vh;
-    font-size: 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7vw;
+    height: 7vw;
     background-color: red;
-    border-radius: 3px;
+    border-radius: 8px;
+  }
+
+  &__endGameButtonIcon {
+    width: 65%;
+    height: 65%;
     color: white;
-    border: none;
-    font-weight: bold;
   }
 
 }
