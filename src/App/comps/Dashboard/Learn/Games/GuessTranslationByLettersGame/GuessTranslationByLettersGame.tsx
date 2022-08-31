@@ -29,12 +29,12 @@ export default function GuessTranslationByLettersGame({ endgame }) {
     if (event.nativeEvent.key == "Enter") { gamechecked ? startNewGame() : setgamechecked(true) }
   }
 
-  function getRandomWordGromBase() {
+  function getRandomWordFromBase() {
     return gamebase[Math.ceil(Math.random() * gamebase.length - 1)]
   }
 
   function startNewGame() {
-    setselectedword(getRandomWordGromBase());
+    setselectedword(getRandomWordFromBase());
     setgamechecked(false);
     setinput('')
     inputtranslate.current.value = '';
