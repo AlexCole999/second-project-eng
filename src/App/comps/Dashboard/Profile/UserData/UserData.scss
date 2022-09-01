@@ -2,11 +2,7 @@
 
   &__userDataElem {
     margin-top: 15px;
-
-    @media(max-width:1000px) {
-      text-align: center;
-    }
-
+    text-align: center;
   }
 
   &__userDataElemTitle {

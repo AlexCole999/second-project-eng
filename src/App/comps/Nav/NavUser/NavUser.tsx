@@ -69,7 +69,7 @@ export default function NavUser({ }: Props) {
             <img className="NavUser__userImg" src={userImg}></img>
           </div>
           :
-          <div className="NavUser__body" onClick={singInWithGooglePopup}>
+          <div className={`NavUser__body ${navIsClosed == 'true' ? 'NavUser__body_closed' : ''}`} onClick={singInWithGooglePopup}>
             <FiUserX size={25} />
           </div>
       }

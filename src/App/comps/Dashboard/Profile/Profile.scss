@@ -6,6 +6,7 @@
     background-color: #fff;
     border-radius: 15px;
     padding: 25px;
+    align-items: center;
 
     img {
       width: 215px;
@@ -13,9 +14,6 @@
       border-radius: 50%;
     }
 
-    @media(max-width:1000px) {
-      align-items: center;
-    }
   }
 
 }
