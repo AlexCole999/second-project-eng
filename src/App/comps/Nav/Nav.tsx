@@ -26,7 +26,10 @@ export default function Nav({ }: Props) {
   function openCloseNavTrigger(): void {
 
     let mainTranslateWord = document.getElementsByClassName('NavSearch__searchedMainWord')[0];
+    let navSearchUser = document.getElementsByClassName('NavUser')[0].childNodes[0]
+    console.log(navSearchUser)
 
+    navSearchUser.classList.toggle('NavUser__body_closed');
     mainTranslateWord.classList.toggle('NavSearch__searchedMainWord_closed');
     nav.current.classList.toggle('Nav_closed');
     navtrigger.current.classList.toggle('Nav__trigger_closed');

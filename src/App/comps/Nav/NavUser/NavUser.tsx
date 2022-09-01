@@ -14,6 +14,7 @@ export default function NavUser({ }: Props) {
   const dispatch = useDispatch();
 
   let localStorageUserData = JSON.parse(localStorage.getItem('user'));
+  let navIsClosed = localStorage.getItem('navIsClosed');
 
   const userImg = useSelector(state => state.user?.data?.photoURL)
 
@@ -64,7 +65,7 @@ export default function NavUser({ }: Props) {
       {
         userImg !== undefined
           ?
-          <div className="NavUser__body" >
+          <div className={`NavUser__body ${navIsClosed == 'true' ? 'NavUser__body_closed' : ''}`} >
             <img className="NavUser__userImg" src={userImg}></img>
           </div>
           :
