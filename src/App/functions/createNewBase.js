@@ -47,10 +47,14 @@ class CreateNewBase {
     let translatesArrayLength = currentBaseWords[word]['translates'].length
 
     if (translatesArrayLength > 1) {
+
       newBaseWords[word] = {
         ...currentBaseWords[word],
         translates: currentBaseWords[word]['translates'].filter(x => x.translate !== translateForDelete)
       }
+
+      if (newBaseWords[word]['gameword'] == translateForDelete) { delete newBaseWords[word]['gameword'] }
+
     }
 
     if (translatesArrayLength == 1) {
