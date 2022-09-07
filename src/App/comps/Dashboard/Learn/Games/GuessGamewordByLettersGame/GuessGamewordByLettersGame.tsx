@@ -57,6 +57,10 @@ export default function GuessGamewordByLettersGame({ endgame }) {
       await setDoc(doc(db, "users", user, 'data', 'statistics'), { GuessGamewordByLettersGame: { gamesCount: 1, correctGamesCount: selectedWord == input ? 1 : 0 } });
     }
 
+    if (currentStatistics['GuessGamewordByLettersGame'] == undefined) {
+      await setDoc(doc(db, "users", user, 'data', 'statistics'), { ...currentStatistics, GuessTranslationByLettersGame: { gamesCount: 1, correctGamesCount: base[selectedWord]?.gameword == input ? 1 : 0 } });
+    }
+
     if (currentStatistics !== undefined) {
       const nextGamesCount = currentStatistics.GuessGamewordByLettersGame.gamesCount + 1;
       const nextCorrectGamesCount = currentStatistics.GuessGamewordByLettersGame.correctGamesCount + (selectedWord == input ? 1 : 0);
