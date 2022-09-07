@@ -14,25 +14,16 @@ type Props = {}
 
 export default function Dashboard({ }: Props) {
 
-  const [showTopBtn, setShowTopBtn] = useState(false);
+  const [showTopButton, setShowTopButton] = useState(false);
 
   function showGoTopButtonHandler() {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) {
-        setShowTopBtn(true);
-      } else {
-        setShowTopBtn(false);
-      }
-    });
+    window.addEventListener('scroll', () => { window.scrollY > 400 ? setShowTopButton(true) : setShowTopButton(false); });
   }
 
   function GoTopButton() {
     return (
-      <BsFillArrowUpCircleFill
-        size={35}
-        style={{ position: 'fixed', bottom: '0.5%', right: '1%' }}
-        onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-      />
+      <BsFillArrowUpCircleFill size={35} style={{ position: 'fixed', bottom: '0.5%', right: '1%' }}
+        onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }) }} />
     )
   }
 
@@ -59,7 +50,7 @@ export default function Dashboard({ }: Props) {
 
       </div>
 
-      {showTopBtn ? <GoTopButton /> : ''}
+      {showTopButton ? <GoTopButton /> : ''}
 
     </div>
 
