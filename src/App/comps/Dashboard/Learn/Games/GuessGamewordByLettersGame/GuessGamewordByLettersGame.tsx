@@ -4,12 +4,17 @@ import './GuessGamewordByLettersGame.scss'
 import { AiFillCheckCircle, AiFillCheckSquare, AiFillPlaySquare } from "react-icons/ai";
 import { FaTimesCircle } from 'react-icons/fa';
 import { AiOutlinePoweroff } from 'react-icons/ai';
+import { getDoc, doc, setDoc } from 'firebase/firestore';
+import { db } from '../../../../../API/firebase/firebaseConfig';
 
 type Props = {}
 
 export default function GuessGamewordByLettersGame({ endgame }) {
 
+  const localStorageUserData = JSON.parse(localStorage.getItem('user'));
+
   const base = useSelector(state => state.allWordsFromFirebase)
+  const user = useSelector(state => state.user?.data?.email || localStorageUserData?.email || 'guest');
 
   const gamebase = Object.keys(base).filter(x => base[x]?.gameword)
 
@@ -27,7 +32,7 @@ export default function GuessGamewordByLettersGame({ endgame }) {
   function setLowerCaseInput(event) { setinput(event.target.value.toLowerCase()) }
 
   function checkInputEnterKeyDown(event) {
-    if (event.nativeEvent.key == "Enter") { gamechecked ? startNewGame() : setgamechecked(true) }
+    if (event.nativeEvent.key == "Enter") { gamechecked ? startNewGame() : (setgamechecked(true), sendStatistics()) }
   }
 
   function getRandomWordFromBase() {
@@ -41,6 +46,24 @@ export default function GuessGamewordByLettersGame({ endgame }) {
     inputtranslate.current.value = '';
   }
 
+  async function sendStatistics() {
+
+    setgamechecked(true);
+
+    const statistics = await getDoc(doc(db, "users", user, 'data', 'statistics'));
+    const currentStatistics = statistics.data()
+
+    if (currentStatistics == undefined) {
+      await setDoc(doc(db, "users", user, 'data', 'statistics'), { GuessGamewordByLettersGame: { gamesCount: 1, correctGamesCount: selectedWord == input ? 1 : 0 } });
+    }
+
+    if (currentStatistics !== undefined) {
+      const nextGamesCount = currentStatistics.GuessGamewordByLettersGame.gamesCount + 1;
+      const nextCorrectGamesCount = currentStatistics.GuessGamewordByLettersGame.correctGamesCount + (selectedWord == input ? 1 : 0);
+      await setDoc(doc(db, "users", user, 'data', 'statistics'), { GuessGamewordByLettersGame: { gamesCount: nextGamesCount, correctGamesCount: nextCorrectGamesCount } });
+    }
+
+  }
   useEffect(startNewGame, [])
 
   return (
@@ -104,14 +127,14 @@ export default function GuessGamewordByLettersGame({ endgame }) {
             !gamechecked
               ? <AiFillPlaySquare className='GuessGamewordByLettersGame__buttonsElem_disabled' />
               : <AiFillPlaySquare className='GuessGamewordByLettersGame__buttonsElem' onClick={startNewGame} />
-
           }
 
 
           {
             gamechecked
               ? <AiFillCheckSquare className='GuessGamewordByLettersGame__buttonsElem_disabled' />
-              : <AiFillCheckSquare className='GuessGamewordByLettersGame__buttonsElem' onClick={() => { setgamechecked(true) }} />
+              : <AiFillCheckSquare className='GuessGamewordByLettersGame__buttonsElem'
+                onClick={() => sendStatistics()} />
           }
 
         </div>
