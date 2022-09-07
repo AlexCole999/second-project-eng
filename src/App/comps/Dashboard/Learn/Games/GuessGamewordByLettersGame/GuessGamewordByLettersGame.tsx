@@ -134,8 +134,7 @@ export default function GuessGamewordByLettersGame({ endgame }) {
           {
             gamechecked
               ? <AiFillCheckSquare className='GuessGamewordByLettersGame__buttonsElem_disabled' />
-              : <AiFillCheckSquare className='GuessGamewordByLettersGame__buttonsElem'
-                onClick={() => sendStatistics()} />
+              : <AiFillCheckSquare className='GuessGamewordByLettersGame__buttonsElem' onClick={sendStatistics} />
           }
 
         </div>
