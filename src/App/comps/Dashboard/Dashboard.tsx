@@ -22,7 +22,7 @@ export default function Dashboard({ }: Props) {
 
   function GoTopButton() {
     return (
-      <BsFillArrowUpCircleFill size={35} style={{ position: 'fixed', bottom: '0.5%', right: '1%' }}
+      <BsFillArrowUpCircleFill size={35} className="Dashboard__GoTopButton"
         onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }) }} />
     )
   }
