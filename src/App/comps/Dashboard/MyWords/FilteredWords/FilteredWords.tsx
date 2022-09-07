@@ -23,8 +23,6 @@ export default function FilteredWords({ filteredWords }: Props) {
           )
       }
 
-
-
     </div>
 
   )
