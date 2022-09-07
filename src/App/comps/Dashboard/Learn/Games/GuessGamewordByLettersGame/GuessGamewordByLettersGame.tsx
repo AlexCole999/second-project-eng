@@ -64,6 +64,7 @@ export default function GuessGamewordByLettersGame({ endgame }) {
     }
 
   }
+
   useEffect(startNewGame, [])
 
   return (
