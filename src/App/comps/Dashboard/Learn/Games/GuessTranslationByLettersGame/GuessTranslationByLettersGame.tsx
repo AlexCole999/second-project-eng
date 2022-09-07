@@ -48,8 +48,6 @@ export default function GuessTranslationByLettersGame({ endgame }) {
 
   async function sendStatistics() {
 
-    setgamechecked(true);
-
     const statistics = await getDoc(doc(db, "users", user, 'data', 'statistics'));
     const currentStatistics = statistics.data()
 
@@ -139,7 +137,7 @@ export default function GuessTranslationByLettersGame({ endgame }) {
           {
             gamechecked
               ? <AiFillCheckSquare className='GuessTranslationByLettersGame__buttonsElem_disabled' />
-              : <AiFillCheckSquare className='GuessTranslationByLettersGame__buttonsElem' onClick={sendStatistics} />
+              : <AiFillCheckSquare className='GuessTranslationByLettersGame__buttonsElem' onClick={() => { sendStatistics(); setgamechecked(true) }} />
           }
 
         </div>
