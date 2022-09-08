@@ -21,7 +21,7 @@ export default function BaseStatistics({ }: Props) {
 
   return (
 
-    <div>
+    <div className='Statistics__BaseStatistics'>
 
       <div>Статистика базы</div><br />
 
