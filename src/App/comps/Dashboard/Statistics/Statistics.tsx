@@ -40,7 +40,7 @@ export default function Statistics({ }: Props) {
 
       <div>
 
-        <div>Статистика базы:</div><br />
+        <div>Статистика базы</div><br />
 
         <div>Слов в игре: {gameWordsCount}</div>
         <div>Слов в словаре: {wordsCount}</div>
@@ -50,7 +50,7 @@ export default function Statistics({ }: Props) {
 
       <div>
 
-        <div>Статистика игр:</div><br />
+        <div>Статистика игр</div><br />
 
         <div>Напиши слово правильно:</div>
         <div>Всего сыграно: {gamestatistics?.GuessGamewordByLettersGame?.gamesCount}</div>
