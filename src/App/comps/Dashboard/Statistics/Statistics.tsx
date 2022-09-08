@@ -3,6 +3,7 @@ import './Statistics.scss'
 import { useSelector } from 'react-redux';
 import { db } from '../../../API/firebase/firebaseConfig';
 import { getDoc, doc } from 'firebase/firestore';
+import BaseStatistics from './BaseStatistics/BaseStatistics';
 
 type Props = {}
 
@@ -14,17 +15,6 @@ export default function Statistics({ }: Props) {
   const user = useSelector(state => state.user?.data?.email || localStorageUserData?.email || 'guest');
 
   const [gamestatistics, setgamestatistics] = useState({})
-
-  const wordsCount = Object.keys(allWordsFromFirebase).length
-  let translatesCount = 0;
-  let gameWordsCount = 0;
-
-  Object.keys(allWordsFromFirebase).forEach(
-    x => {
-      translatesCount += allWordsFromFirebase[x].translates.length;
-      gameWordsCount += 'gameword' in allWordsFromFirebase[x] ? 1 : 0
-    }
-  )
 
   function getStatisticsFromFirebase() {
     getDoc(doc(db, "users", user, 'data', 'statistics')).then(x => setgamestatistics(x.data()))
@@ -38,15 +28,7 @@ export default function Statistics({ }: Props) {
 
     <div className='Statistics'>
 
-      <div>
-
-        <div>Статистика базы</div><br />
-
-        <div>Слов в игре: {gameWordsCount}</div>
-        <div>Слов в словаре: {wordsCount}</div>
-        <div>Переводов в словаре: {translatesCount}</div>
-
-      </div><br />
+      <BaseStatistics />
 
       <div>
 
