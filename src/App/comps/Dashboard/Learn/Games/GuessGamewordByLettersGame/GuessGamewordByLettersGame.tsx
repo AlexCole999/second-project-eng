@@ -52,17 +52,14 @@ export default function GuessGamewordByLettersGame({ endgame }) {
     const currentStatistics = statistics.data()
 
     if (currentStatistics == undefined) {
-      console.log(0)
       await setDoc(doc(db, "users", user, 'data', 'statistics'), { GuessGamewordByLettersGame: { gamesCount: 1, correctGamesCount: selectedWord == input ? 1 : 0 } });
     }
 
     if (currentStatistics['GuessGamewordByLettersGame'] == undefined) {
-      console.log(1)
       await setDoc(doc(db, "users", user, 'data', 'statistics'), { ...currentStatistics, GuessGamewordByLettersGame: { gamesCount: 1, correctGamesCount: base[selectedWord]?.gameword == input ? 1 : 0 } });
     }
 
     if (currentStatistics !== undefined) {
-      console.log(2)
       const nextGamesCount = currentStatistics.GuessGamewordByLettersGame.gamesCount + 1;
       const nextCorrectGamesCount = currentStatistics.GuessGamewordByLettersGame.correctGamesCount + (selectedWord == input ? 1 : 0);
       await setDoc(doc(db, "users", user, 'data', 'statistics'), { ...currentStatistics, GuessGamewordByLettersGame: { gamesCount: nextGamesCount, correctGamesCount: nextCorrectGamesCount } });
