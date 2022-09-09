@@ -6,8 +6,6 @@ type Props = { filteredWords: any }
 
 export default function FilteredWords({ filteredWords }: Props) {
 
-
-
   return (
 
     <div className='MyWords__words' style={{ position: 'relative' }}>

@@ -3,7 +3,7 @@ import './GameElem.scss'
 
 type Props = {}
 
-export default function GameElem({ title, description, startgame }) {
+export default function GameElem({ title, description, startgame, available }) {
 
   return (
 
@@ -17,10 +17,15 @@ export default function GameElem({ title, description, startgame }) {
         {description}
       </div>
 
-
-      <button className='Learn__gameStartButton' onClick={startgame}>
-        ИГРАТЬ
-      </button>
+      {
+        available
+          ? <button className='Learn__gameStartButton' onClick={startgame}>
+            ИГРАТЬ
+          </button>
+          : <button className='Learn__gameStartButton' style={{ backgroundColor: 'grey', cursor: 'not-allowed' }}>
+            ИГРАТЬ
+          </button>
+      }
 
     </div>
 
