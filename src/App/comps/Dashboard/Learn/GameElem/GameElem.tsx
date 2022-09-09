@@ -1,5 +1,6 @@
 import React from 'react'
 import './GameElem.scss'
+import { AiFillPlaySquare } from "react-icons/ai";
 
 type Props = {}
 
@@ -20,10 +21,10 @@ export default function GameElem({ title, description, startgame, available }) {
       {
         available
           ? <button className='Learn__gameStartButton' onClick={startgame}>
-            ИГРАТЬ
+            <AiFillPlaySquare size={50} />
           </button>
           : <button className='Learn__gameStartButton' style={{ backgroundColor: 'grey', cursor: 'not-allowed' }}>
-            ИГРАТЬ
+            <AiFillPlaySquare size={50} />
           </button>
       }
 

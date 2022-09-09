@@ -14,6 +14,7 @@ export default function Learn({ }: Props) {
 
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
   const baseIsNotEmpty = Object.keys(allWordsFromFirebase).length
+
   const [inguessgamewordbylettersgame, setinguessgamewordbylettersgame] = useState(false)
   const [inguesstranslatebylettersgame, setinguesstranslatebylettersgame] = useState(false)
 
