@@ -14,8 +14,13 @@ export default function GamesStatistics({ }: Props) {
 
   const [gamestatistics, setgamestatistics] = useState({})
 
+  const emptyStatistics = {
+    GuessTranslationByLettersGame: { gamesCount: 0, correctGamesCount: 0 },
+    GuessGamewordByLettersGame: { gamesCount: 0, correctGamesCount: 0 }
+  }
+
   function getGamesStatisticsFromFirebase() {
-    getDoc(doc(db, "users", user, 'data', 'statistics')).then(x => setgamestatistics(x.data()))
+    getDoc(doc(db, "users", user, 'data', 'statistics')).then(x => { x.data() !== undefined ? setgamestatistics(x.data()) : setgamestatistics(emptyStatistics); console.log() })
   }
 
   useEffect(() => { getGamesStatisticsFromFirebase(); }, [])
