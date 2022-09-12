@@ -23,7 +23,7 @@ export default function GameElem({ title, description, startgame, available }) {
           ? <button className='Learn__gameStartButton' onClick={startgame}>
             <AiFillPlaySquare size={50} />
           </button>
-          : <button className='Learn__gameStartButton' style={{ backgroundColor: 'grey', cursor: 'not-allowed' }}>
+          : <button className='Learn__gameStartButton' style={{ backgroundColor: 'grey', borderColor: 'grey', cursor: 'not-allowed' }}>
             <AiFillPlaySquare size={50} />
           </button>
       }
