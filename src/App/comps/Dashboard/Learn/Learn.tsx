@@ -14,6 +14,7 @@ export default function Learn({ }: Props) {
 
   const allWordsFromFirebase = useSelector(state => state.allWordsFromFirebase)
   const baseIsNotEmpty = Object.keys(allWordsFromFirebase).length
+  const baseContainGamewords = Object.keys(allWordsFromFirebase).filter(word => 'gameword' in allWordsFromFirebase[word]).length
 
   const [inguessgamewordbylettersgame, setinguessgamewordbylettersgame] = useState(false)
   const [inguesstranslatebylettersgame, setinguesstranslatebylettersgame] = useState(false)
@@ -26,16 +27,16 @@ export default function Learn({ }: Props) {
 
         <GameElem
           title='Напиши перевод правильно'
-          description={baseIsNotEmpty ? 'Выпадает случайное слово из базы, вы пишете перевод этого слова' : 'Пожалуйста, добавьте слова и переводы в базу для начала игры'}
+          description={baseIsNotEmpty && baseContainGamewords ? 'Выпадает случайное слово из базы, вы пишете перевод этого слова' : 'Пожалуйста, добавьте слова и переводы в базу для начала игры'}
           startgame={() => setinguesstranslatebylettersgame(!inguesstranslatebylettersgame)}
-          available={baseIsNotEmpty}
+          available={baseIsNotEmpty && baseContainGamewords}
         />
 
         <GameElem
           title='Напиши слово правильно'
-          description={baseIsNotEmpty ? 'Выпадает случайный перевод слова из базы, вы пишете это слово на основном языке' : 'Пожалуйста, добавьте слова и переводы в базу для начала игры'}
+          description={baseIsNotEmpty && baseContainGamewords ? 'Выпадает случайный перевод слова из базы, вы пишете это слово на основном языке' : 'Пожалуйста, добавьте слова и переводы в базу для начала игры'}
           startgame={() => setinguessgamewordbylettersgame(!inguessgamewordbylettersgame)}
-          available={baseIsNotEmpty}
+          available={baseIsNotEmpty && baseContainGamewords}
         />
 
       </div>
